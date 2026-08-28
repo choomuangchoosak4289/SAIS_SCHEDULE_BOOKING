@@ -24,34 +24,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '24'
-
-      - name: Install and Build
+      - name: Prepare Files
         run: |
-          npm init -y
-          npm install @babel/cli @babel/core @babel/preset-react @babel/preset-env --save-dev
-          
-          # สร้างโฟลเดอร์สำหรับ Deploy โดยเฉพาะ
-          mkdir dist
-          
-          # คอมไพล์ React แบบปลอดภัยลงใน dist
-          npx babel App.jsx --out-file dist/App.js --presets=@babel/preset-env,@babel/preset-react
-          
-          # คัดลอกไฟล์ที่จำเป็นทั้งหมดไปยัง dist
-          cp index.html dist/
-          cp styles.css dist/
-          cp config.js dist/
-          cp utils.js dist/
-          cp manifest.json dist/ || true
-          cp sw.js dist/ || true
-          
-          # ปรับแต่ง index.html สำหรับ Production
-          sed -i '/babel.min.js/d' dist/index.html
-          sed -i 's/src="App.jsx"/src="App.js"/g' dist/index.html
-          sed -i 's/type="text\/babel"//g' dist/index.html
+          mkdir -p dist
+          # ยกเลิกการ Compile ให้คัดลอกไฟล์ต้นฉบับทั้งหมดไป Deploy โดยตรง
+          cp *.* dist/ 2>/dev/null || true
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -59,7 +36,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist'   
+          path: './dist'
 
       - name: Deploy to GitHub Pages
         id: deployment
