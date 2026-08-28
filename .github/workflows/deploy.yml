@@ -1,0 +1,66 @@
+name: Build and Deploy Enterprise PWA
+
+on:
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install and Build
+        run: |
+          npm init -y
+          npm install @babel/cli @babel/core @babel/preset-react @babel/preset-env --save-dev
+          
+          # สร้างโฟลเดอร์สำหรับ Deploy โดยเฉพาะ
+          mkdir dist
+          
+          # คอมไพล์ React แบบปลอดภัยลงใน dist
+          npx babel App.jsx --out-file dist/App.js --presets=@babel/preset-env,@babel/preset-react
+          
+          # คัดลอกไฟล์ที่จำเป็นทั้งหมดไปยัง dist
+          cp index.html dist/
+          cp styles.css dist/
+          cp config.js dist/
+          cp utils.js dist/
+          cp manifest.json dist/ || true
+          cp sw.js dist/ || true
+          
+          # ปรับแต่ง index.html สำหรับ Production
+          sed -i '/babel.min.js/d' dist/index.html
+          sed -i 's/src="App.jsx"/src="App.js"/g' dist/index.html
+          sed -i 's/type="text\/babel"//g' dist/index.html
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist'   # 📍 เปลี่ยนมาอัปโหลดเฉพาะโฟลเดอร์ dist เท่านั้น ป้องกันบัคขนาดไฟล์
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
