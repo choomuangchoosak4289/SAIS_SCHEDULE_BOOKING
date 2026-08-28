@@ -27,7 +27,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
 
       - name: Install and Build
         run: |
@@ -59,7 +59,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist'   # 📍 เปลี่ยนมาอัปโหลดเฉพาะโฟลเดอร์ dist เท่านั้น ป้องกันบัคขนาดไฟล์
+          path: './dist'   
 
       - name: Deploy to GitHub Pages
         id: deployment
