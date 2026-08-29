@@ -1,0 +1,438 @@
+https://script.google.com/macros/s/AKfycbwVvKDu7QRXUWqAhGvPFs9-0T9vC1CztSe5-GU1J8OlAyUq0QViXmfbAeLmi-Lxx38eOw/exec
+
+
+1.ในส่วนของฟังก์ชั่นตรวจสอบเอกสารของแอดมิน ให้แก้ไขสถานะเป็น check box รอตรวจสอบ เมื่อมีการเพิ่มคิวงานและเเนบเอกสารไฟล์หรือรูปภาพ layout , wiring , Pre-check, แล้ว ให้สิทธิ์ admin ตรวจสอบเอกสารที่แนบมา แล้วให้ ติ๊ก check-box เป็นส่งแล้ว เพื่อเป็นการยืนยันว่าไฟล์หรือรูปภาพที่ส่งมานั้นถูกต้องจริงๆๆ
+2.เพิ่มระบบ ป้องกันข้อมูลทั้งหมดบนตาราง จากเดิมถ้าผู้ใช้งานไม่ได้ login จะสามารถดูตารางคิวงานได้เลย เปลี่ยนเป็นระบบ login เพื่อเข้าใช้งานเท่านั้น โดยผู้ที่จะเข้ามาเฉพาะดู ตารางคิวงาน จะให้ใช้ ID และ password สำหรับสิทธิ์เฉพาะดูอย่างเดียว
+3.ให้สิทธิ์เฉพาะadmin และ inspector สามารถดาวน์โหลดไฟล์และรูปภาพ layout, wiring, Pre-check ได้ เพื่อนำไฟล์หรือรูปภาพไปใช้ในการตรวจงานนั้นๆได้จริง
+4.ปรับปรุง logic การบันทึกเวลาให้ตรงกับเวลาจริงที่แสดงอยู่บนเว็บไซต์นี้ เวลาประเทศไทย  และการแสดงผลเวลาในส่วนของฟังก์ชันแจ้งเตือน และเวลาที่บันทึกลง Google sheets
+
+
+
+
+
+// =========================================================================================
+// SAIS BOOKING SYSTEM - BACKEND (Enterprise V5 - Complete & Restored)
+// =========================================================================================
+
+var SPREADSHEET_ID = '1zxSShgLbH9B_K0B1-IDagYrCp05ayEOW2BlB4yCGwxc';
+var IMAGE_FOLDER_ID = '1tkvlup_CXWWJvfWyNbMbKC35IzhngRnl';
+
+// 📍 ฟังก์ชันแปลงเวลาให้เป็นเวลาประเทศไทย (GMT+7)
+function getThaiTime() {
+  return Utilities.formatDate(new Date(), "Asia/Bangkok", "yyyy-MM-dd HH:mm:ss");
+}
+
+function doGet(e) {
+  return ContentService.createTextOutput('SAIS Enterprise API - Core Engine Running').setMimeType(ContentService.MimeType.TEXT);
+}
+
+function doPost(e) {
+  if (!e || !e.postData || !e.postData.contents) return respond({ status: 'error', message: 'No payload' });
+
+  var lock = LockService.getScriptLock();
+  try {
+    lock.waitLock(10000);
+    var data = JSON.parse(e.postData.contents);
+    var action = data.action;
+    var ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+
+    // 📍 1. API ระบบปฏิทิน: โหลดไวสุดแบบ Delta Sync
+    if (action === 'sync_core') {
+      var allBookings = getSheetDataAsObjects(ss.getSheetByName('Bookings'));
+      var now = new Date();
+      now.setHours(0,0,0,0);
+      var endOfNextMonth = new Date(now.getFullYear(), now.getMonth() + 2, 0);
+
+      var coreBookings = [];
+      var pastBookings = [];
+      var fetchPast = data.fetch_past === true;
+
+      for (var i = 0; i < allBookings.length; i++) {
+        var b = allBookings[i];
+        if (!b.date) continue;
+        var bDate = new Date(b.date);
+
+        if (bDate >= now && bDate <= endOfNextMonth) {
+          coreBookings.push(b);
+        }
+        else if (b.layout_doc == 'true' || b.wiring_doc == 'true' || b.precheck_doc == 'true' || b.layout_doc == 'pending' || b.wiring_doc == 'pending' || b.precheck_doc == 'pending') {
+          coreBookings.push(b);
+        }
+        else if (fetchPast && bDate < now) {
+          pastBookings.push(b);
+        }
+      }
+
+      if (fetchPast) {
+        coreBookings = coreBookings.concat(pastBookings);
+      }
+
+      var inspectors = getSheetDataAsObjects(ss.getSheetByName('Inspectors'));
+      var notifications = getSheetDataAsObjects(ss.getSheetByName('Notifications')).slice(-30);
+
+      return respond({
+        status: 'ok',
+        data: { bookings: coreBookings, inspectors: inspectors, notifications: notifications }
+      });
+    }
+
+    // 📍 2. API สำหรับหน้า Admin
+    if (action === 'sync_admin') {
+      return respond({
+        status: 'ok',
+        data: {
+          users: getSheetDataAsObjects(ss.getSheetByName('Users')),
+          logs: getSheetDataAsObjects(ss.getSheetByName('Logs')).slice(-200),
+          all_bookings: getSheetDataAsObjects(ss.getSheetByName('Bookings'))
+        }
+      });
+    }
+
+    // 📍 3. ระบบจัดการผู้ใช้ (Register / Login / Reset Password / จัดการผู้ใช้)
+    if (action === 'register') {
+      var sheet = ss.getSheetByName('Users');
+      var values = sheet.getDataRange().getValues();
+      var headers = values[0];
+      for (var i = 1; i < values.length; i++) {
+        if (String(values[i][headers.indexOf('username')]).toLowerCase() === String(data.username).toLowerCase()) {
+          return respond({ status: 'error', message: 'Username นี้มีในระบบแล้ว' });
+        }
+      }
+
+      var rowData = [];
+      for (var i = 0; i < headers.length; i++) {
+        var h = headers[i];
+        if (h === 'created_at' || h === 'timestamp') rowData.push(getThaiTime());
+        else if (h === 'role') rowData.push('user');
+        else if (h === 'status') rowData.push('pending');
+        else if (data[h] !== undefined) {
+          if (h === 'phone' || h === 'tel') rowData.push("'" + data[h]);
+          else rowData.push(data[h]);
+        }
+        else rowData.push('');
+      }
+      sheet.appendRow(rowData);
+      logAction('system', 'REGISTER', 'ผู้ใช้ใหม่สมัครสมาชิก: ' + data.username);
+      createNotification('ALL_ADMIN', 'มีผู้สมัครสมาชิกใหม่: ' + (data.full_name || data.username) + ' รอการยืนยัน');
+      SpreadsheetApp.flush();
+      return respond({ status: 'ok' });
+    }
+
+    if (action === 'login') {
+      var sheet = ss.getSheetByName('Users'); var users = getSheetDataAsObjects(sheet);
+      for (var i = 0; i < users.length; i++) {
+        if (String(users[i].username).toLowerCase() === String(data.username).toLowerCase() && String(users[i].password) === String(data.password)) {
+          if (users[i].status === 'pending') return respond({ status: 'error', message: 'บัญชีของคุณกำลังรอแอดมินอนุมัติครับ' });
+          if (users[i].status === 'blocked') return respond({ status: 'error', message: 'บัญชีถูกระงับ' });
+          delete users[i].password;
+          return respond({ status: 'ok', user: users[i] });
+        }
+      }
+      return respond({ status: 'error', message: 'Username หรือ Password ไม่ถูกต้อง' });
+    }
+
+    if (action === 'reset_password') {
+      var sheet = ss.getSheetByName('Users');
+      if (!sheet) return respond({ status: 'error', message: 'ไม่พบชีต Users' });
+
+      var sheetValues = sheet.getDataRange().getValues();
+      var headers = sheetValues[0];
+
+      var userIdx = headers.indexOf("username");
+      var nameIdx = headers.indexOf("full_name");
+      var phoneIdx = headers.indexOf("phone");
+      var passIdx = headers.indexOf("password");
+
+      if (userIdx === -1 || nameIdx === -1 || phoneIdx === -1 || passIdx === -1) {
+        return respond({ status: 'error', message: 'หัวคอลัมน์ใน Google Sheets ไม่ตรง' });
+      }
+
+      var foundRow = -1;
+      var recoveredUsername = "";
+      for (var i = 1; i < sheetValues.length; i++) {
+        if (String(sheetValues[i][nameIdx]).trim() === String(data.full_name).trim() &&
+            String(sheetValues[i][phoneIdx]).trim() === String(data.phone).trim()) {
+          foundRow = i + 1;
+          recoveredUsername = String(sheetValues[i][userIdx]);
+          break;
+        }
+      }
+
+      if (foundRow > -1) {
+        sheet.getRange(foundRow, passIdx + 1).setValue(data.new_password);
+        logAction('system', 'RESET_PASSWORD', 'ผู้ใช้ ' + recoveredUsername + ' กู้คืนบัญชีและรีเซ็ตรหัสผ่านสำเร็จ');
+        SpreadsheetApp.flush();
+        return respond({ status: 'ok', message: 'รีเซ็ตรหัสผ่านสำเร็จ', username: recoveredUsername });
+      } else {
+        return respond({ status: 'error', message: 'ไม่พบข้อมูลที่ตรงกับ ชื่อ-นามสกุล และ เบอร์โทรศัพท์ นี้ในระบบ\nโปรดตรวจสอบตัวสะกดให้ถูกต้อง' });
+      }
+    }
+
+    if (action === 'update_user_status') {
+      var sheet = ss.getSheetByName('Users'); var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+      var foundCell = sheet.createTextFinder(String(data.target_user)).matchEntireCell(true).findNext();
+      if(foundCell) {
+        sheet.getRange(foundCell.getRow(), headers.indexOf('status') + 1).setValue(data.new_status);
+        var updatedIdx = headers.indexOf('updated_at');
+        if (updatedIdx !== -1) {
+          sheet.getRange(foundCell.getRow(), updatedIdx + 1).setValue(getThaiTime());
+        }
+
+        logAction(data.admin_user, 'UPDATE_USER', 'เปลี่ยนสถานะ ' + data.target_user + ' เป็น ' + data.new_status);
+        createNotification(data.target_user, 'บัญชีของคุณได้รับการ ' + (data.new_status === 'approved' ? 'อนุมัติแล้ว' : 'ระงับการใช้งาน'));
+        SpreadsheetApp.flush();
+        return respond({ status: 'ok' });
+      }
+      return respond({ status: 'error', message: 'ไม่พบผู้ใช้' });
+    }
+
+    if (action === 'delete_user') {
+      var sheet = ss.getSheetByName('Users');
+      var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+      var foundCell = sheet.createTextFinder(String(data.target_user)).matchEntireCell(true).findNext();
+      if(foundCell) {
+        sheet.deleteRow(foundCell.getRow());
+        logAction(data.admin_user, 'DELETE_USER', 'ลบบัญชีผู้ใช้: ' + data.target_user);
+        SpreadsheetApp.flush();
+        return respond({ status: 'ok' });
+      }
+      return respond({ status: 'error', message: 'ไม่พบผู้ใช้' });
+    }
+
+    if (action === 'update_user_details') {
+      var sheet = ss.getSheetByName('Users');
+      var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+      var foundCell = sheet.createTextFinder(String(data.target_user)).matchEntireCell(true).findNext();
+      if (foundCell) {
+        var row = foundCell.getRow();
+        for (var key in data) {
+          if (key !== 'action' && key !== 'target_user' && key !== 'admin_user') {
+            var colIndex = headers.indexOf(key);
+            if (colIndex !== -1) {
+              var valToSave = data[key];
+              if (key === 'phone' || key === 'tel') valToSave = "'" + valToSave;
+              sheet.getRange(row, colIndex + 1).setValue(valToSave);
+            }
+          }
+        }
+        var updatedIdx = headers.indexOf('updated_at');
+        if (updatedIdx !== -1) {
+          sheet.getRange(row, updatedIdx + 1).setValue(getThaiTime());
+        }
+        logAction(data.admin_user, 'UPDATE_USER', 'แก้ไขข้อมูล/สิทธิ์ผู้ใช้: ' + data.target_user);
+        SpreadsheetApp.flush();
+        return respond({ status: 'ok' });
+      }
+      return respond({ status: 'error', message: 'ไม่พบผู้ใช้' });
+    }
+
+    // 📍 4. ระบบจัดการข้อมูล (เพิ่ม/แก้ไข/ลบ) โดยอิงจากหัวคอลัมน์
+    if (action === 'delete_multiple') {
+      var idsToDelete = data.ids; var sheet = ss.getSheetByName('Bookings');
+      var values = sheet.getDataRange().getValues(); var deletedCount = 0;
+      var headers = values[0];
+      var idIdx = headers.indexOf('id');
+      if (idIdx !== -1) {
+        for (var i = values.length - 1; i >= 1; i--) { 
+          if (idsToDelete.indexOf(String(values[i][idIdx])) !== -1) { 
+            sheet.deleteRow(i + 1); deletedCount++; 
+          } 
+        }
+        logAction(data.user, 'DELETE_MULTIPLE', 'ลบข้อมูลจำนวน ' + deletedCount + ' รายการ');
+        SpreadsheetApp.flush();
+        return respond({ status: 'ok', deleted: deletedCount });
+      } else {
+        return respond({ status: 'error', message: 'ไม่พบคอลัมน์ id' });
+      }
+    }
+
+    if (action === 'create_multiple_bookings') {
+      var sheet = ss.getSheetByName('Bookings'); var dates = data.dates; var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+      for (var i = 0; i < dates.length; i++) {
+        var rowData = []; var uniqueId = Utilities.getUuid();
+        for (var j = 0; j < headers.length; j++) {
+          var h = headers[j];
+          if (h === 'id') rowData.push(uniqueId);
+          else if (h === 'date') rowData.push(dates[i]);
+          else if (h === 'timestamp' || h === 'created_at') rowData.push(getThaiTime());
+          else if (h === 'created_by') rowData.push(data.user);
+          else if (h === 'status') rowData.push('active');
+          else if (data[h] !== undefined) {
+            if (h === 'phone' || h === 'tel') rowData.push("'" + data[h]);
+            else rowData.push(data[h]);
+          }
+          else rowData.push('');
+        }
+        sheet.appendRow(rowData);
+      }
+      logAction(data.user, 'CREATE_MULTIPLE', 'สร้างรายการ ' + data.job_type + ' จำนวน ' + dates.length + ' วัน (ให้ ' + data.inspector_name + ')');
+      var typeName = "วันลา/กิจกรรม/วันหยุด";
+      if (String(data.job_type).indexOf('leave') > -1) typeName = "วันลา";
+      else if (String(data.job_type).indexOf('event') > -1) typeName = "กิจกรรม";
+      else if (String(data.job_type).indexOf('holiday') > -1) typeName = "วันหยุดนักขัตฤกษ์";
+      createNotification('ALL_ADMIN', 'มี' + typeName + 'ใหม่: ' + data.site_name + ' โดย ' + data.user);
+      SpreadsheetApp.flush();
+      return respond({ status: 'ok' });
+    }
+
+    if (action === 'upload_image') {
+      var folder = DriveApp.getFolderById(IMAGE_FOLDER_ID); 
+      var base64Data = data.base64.split(',')[1]; 
+      var blob = Utilities.newBlob(Utilities.base64Decode(base64Data), data.mimeType, data.fileName); 
+      var file = folder.createFile(blob); 
+      file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW); 
+      var directUrl = 'https://drive.google.com/file/d/' + file.getId() + '/preview';
+      return respond({ status: 'ok', fileUrl: directUrl });
+    }
+
+    if (action === 'create_booking') {
+      var sheet = ss.getSheetByName('Bookings'); var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0]; var rowData = []; var newId = Utilities.getUuid();
+      for (var i = 0; i < headers.length; i++) {
+        var h = headers[i];
+        if (h === 'id') rowData.push(newId);
+        else if (h === 'timestamp' || h === 'created_at') rowData.push(getThaiTime());
+        else if (h === 'status') rowData.push('active');
+        else if (data[h] !== undefined) {
+          if (h === 'phone' || h === 'tel') rowData.push("'" + data[h]);
+          else rowData.push(data[h]);
+        }
+        else rowData.push('');
+      }
+      sheet.appendRow(rowData);
+      logAction(data.user, 'CREATE_BOOKING', 'จองคิวงาน Eq: ' + data.equipment_no + ' ให้ ' + data.inspector_name + ' \nวันที่ ' + data.date);
+      var isSpecial = String(data.job_type).indexOf('leave') > -1 || String(data.job_type).indexOf('event') > -1 || String(data.job_type).indexOf('holiday') > -1;
+      if (isSpecial) {
+        var typeName = String(data.job_type).indexOf('leave') > -1 ? "วันลา" : (String(data.job_type).indexOf('event') > -1 ? "กิจกรรม" : "วันหยุดนักขัตฤกษ์");
+        createNotification('ALL_ADMIN', 'มี' + typeName + 'ใหม่: ' + data.site_name + ' โดย ' + data.user);
+      } else {
+        createNotification('ALL_ADMIN', 'มีคิวงานใหม่ Eq: ' + data.equipment_no + ' โดย ' + data.user);
+      }
+      SpreadsheetApp.flush();
+      return respond({ status: 'ok', id: newId });
+    }
+
+    if (action === 'update_booking' || action === 'delete_booking') {
+      var sheet = ss.getSheetByName('Bookings'); var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0]; var foundCell = sheet.createTextFinder(String(data.id)).matchEntireCell(true).findNext();
+      
+      if (foundCell) {
+        var rowIndex = foundCell.getRow();
+        if (action === 'delete_booking') {
+          sheet.deleteRow(rowIndex);
+          logAction(data.user, 'DELETE_BOOKING', (data.reason || 'ลบรายการงาน'));
+        } else {
+          for (var key in data) {
+            if (key !== 'action' && key !== 'id' && key !== 'user') {
+              var colIndex = headers.indexOf(key);
+              if (colIndex !== -1) {
+                var valToSave = data[key];
+                if (key === 'phone' || key === 'tel') valToSave = "'" + valToSave;
+                sheet.getRange(rowIndex, colIndex + 1).setValue(valToSave);
+              }
+            }
+          }
+          var timeColIndex = headers.indexOf('updated_at') !== -1 ? headers.indexOf('updated_at') : (headers.indexOf('timestamp') !== -1 ? headers.indexOf('timestamp') : headers.indexOf('created_at'));
+          if (timeColIndex !== -1) {
+            sheet.getRange(rowIndex, timeColIndex + 1).setValue(getThaiTime());
+          }
+          logAction(data.user, 'UPDATE_BOOKING', (data.reason || 'แก้ไขข้อมูลงาน'));
+        }
+        SpreadsheetApp.flush();
+        return respond({ status: 'ok' });
+      }
+      return respond({ status: 'error', message: 'ไม่พบ ID งานที่ระบุ' });
+    }
+
+    if (action === 'read_notification') {
+      var sheet = ss.getSheetByName('Notifications'); var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0]; var foundCell = sheet.createTextFinder(String(data.id)).matchEntireCell(true).findNext();
+      if(foundCell) { 
+        var isReadCol = headers.indexOf('isRead');
+        if (isReadCol !== -1) {
+          sheet.getRange(foundCell.getRow(), isReadCol + 1).setValue('true'); 
+          return respond({ status: 'ok' }); 
+        }
+      }
+      return respond({ status: 'error' });
+    }
+
+    // =========================================================
+    // 📍 5. เพิ่มระบบจัดการผู้ตรวจ (Inspector CRUD & Certificate)
+    // =========================================================
+    if (action === 'manage_inspector') {
+      var sheet = ss.getSheetByName("Inspectors");
+      var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+      var nameIdx = headers.indexOf("name");
+      var prodIdx = headers.indexOf("product_lines");
+      if (nameIdx === -1) return respond({status: 'error', message: 'ไม่พบคอลัมน์ name ในชีต Inspectors'});
+
+      if (data.sub_action === 'add') {
+        var rowData = new Array(headers.length).fill("");
+        rowData[nameIdx] = data.new_name;
+        if (prodIdx !== -1) rowData[prodIdx] = data.product_lines || "";
+        sheet.appendRow(rowData);
+      } 
+      else if (data.sub_action === 'update' || data.sub_action === 'delete') {
+        var range = sheet.getDataRange();
+        var values = range.getValues();
+        for (var i = 1; i < values.length; i++) {
+          if (String(values[i][nameIdx]) === String(data.old_name)) {
+            if (data.sub_action === 'delete') {
+              sheet.deleteRow(i + 1);
+            } else {
+              sheet.getRange(i + 1, nameIdx + 1).setValue(data.new_name);
+              if (prodIdx !== -1) sheet.getRange(i + 1, prodIdx + 1).setValue(data.product_lines || "");
+            }
+            break;
+          }
+        }
+      }
+      SpreadsheetApp.flush();
+      return respond({status: 'ok'});
+    }
+
+    return respond({ status: 'error', message: 'Unknown action' });
+  } catch (err) {
+    return respond({ status: 'error', message: err.toString() });
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+function respond(obj) { return ContentService.createTextOutput(JSON.stringify(obj)).setMimeType(ContentService.MimeType.JSON); }
+
+function getSheetDataAsObjects(sheet) {
+  if (!sheet) return []; var data = sheet.getDataRange().getValues(); if (data.length < 2) return []; var headers = data[0]; var result = [];
+  for (var i = 1; i < data.length; i++) { var obj = {}; for (var j = 0; j < headers.length; j++) { obj[headers[j]] = data[i][j]; } result.push(obj); }
+  return result;
+}
+
+function logAction(user, action, details) {
+  var sheet = SpreadsheetApp.openById(SPREADSHEET_ID).getSheetByName("Logs");
+  if (!sheet) return;
+  var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+  var rowData = new Array(headers.length).fill("");
+  for (var i = 0; i < headers.length; i++) {
+    var h = headers[i];
+    if (h === 'timestamp' || h === 'created_at') rowData[i] = getThaiTime();
+    else if (h === 'user') rowData[i] = user;
+    else if (h === 'action') rowData[i] = action;
+    else if (h === 'details') rowData[i] = details;
+  }
+  sheet.appendRow(rowData);
+}
+
+function createNotification(target, message) {
+  var sheet = SpreadsheetApp.openById(SPREADSHEET_ID).getSheetByName("Notifications");
+  if (!sheet) return;
+  var headers = sheet.getRange(1, 1, 1, sheet.getLastCode ? sheet.getLastCode() : sheet.getLastColumn()).getValues()[0];
+  var rowData = new Array(headers.length).fill("");
+  for (var i = 0; i < headers.length; i++) {
+    var h = headers[i];
+    if (h === 'id') rowData[i] = Utilities.getUuid();
+    else if (h === 'target') rowData[i] = target;
+    else if (h === 'message') rowData[i] = message;
+    else if (h === 'timestamp' || h === 'created_at') rowData[i] = getThaiTime();
+    else if (h === 'isRead') rowData[i] = 'false';
+    else if (h === 'title') rowData[i] = 'แจ้งเตือนระบบ';
+  }
+  sheet.appendRow(rowData);
+}
