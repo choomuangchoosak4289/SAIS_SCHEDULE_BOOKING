@@ -1,6 +1,6 @@
 // config.js
 window.SAIS_CONFIG = {
-    SCRIPT_URL: "https://script.google.com/macros/s/AKfycbxFy3XoXPZACB90DoC3mcF0yRO28uYArMYcakcl_CwsC86xPxFhd0vp6uyYAxv4E-zaTw/exec",
+    SCRIPT_URL: "https://script.google.com/macros/s/AKfycbxUKeUB_QMdkcisPWkQN-ysEg2ggYloaGQQaByu6MXeyJk-PHCXgUa9qe_ae2-ttkos/exec",
     ADMIN_USERNAME: "jirapong",
     API_KEY: "SAIS_SECURE_KEY_2026"
 };
