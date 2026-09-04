@@ -305,6 +305,8 @@ const App = () => {
     const [modal, setModal] = useState(null); 
     const [db, setDb] = useState({ bookings: [], inspectors: [], notifications: [], settings: {} });
     const [adminDb, setAdminDb] = useState({ users: [], logs: [], all_bookings: [] });
+// 👇 เพิ่มบรรทัดนี้ลงไป 1 บรรทัดครับ 👇
+    const [hasLoadedAdmin, setHasLoadedAdmin] = useState(false);
     
     // สถานะสำหรับการโหลด
     const [initialLoad, setInitialLoad] = useState(true);
