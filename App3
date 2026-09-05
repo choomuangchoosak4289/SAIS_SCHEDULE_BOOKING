@@ -1,0 +1,440 @@
+        // เช็คการจองซ้ำ
+        const isDup = (db.bookings || []).some(b => {
+            const sameDate = b.date && formatSafeDate(b.date) === targetDate;
+            if (!sameDate) return false;
+            if (b.id === modal?.data?.id) return false;
+            if (String(b.inspector_name) === 'SYSTEM_HOLIDAY') return false;
+            if (String(b.status) === 'cancelled') return false;
+            if (String(b.equipment_no) === String(data.equipment_no)) return true;
+            if (!isAdmin && String(b.inspector_name) === targetInspector) return true;
+            return false;
+        });
+        if (isDup) return setAlertMsg(isAdmin ? `เลข Eq No. ${data.equipment_no} ถูกจองไปแล้วในวันนี้` : 'ผู้ตรวจคิวเต็มแล้วในวันนี้');
+        
+        // เช็คสิทธิ์ Certificate ผู้ตรวจ
+        const targetInspectorObj = (db.inspectors || []).find(i => i.name === targetInspector);
+        let allowedCerts = ['ES1', '3300', 'S-villas'];
+        if (targetInspectorObj && targetInspectorObj.product_lines && targetInspectorObj.product_lines.trim() !== '') {
+            allowedCerts = targetInspectorObj.product_lines.split(',').map(s => s.trim());
+        }
+        if (!allowedCerts.includes(finalProductLine) && finalProductLine !== 'ไม่ระบุ') {
+            return setAlertMsg(`ผู้ตรวจ "${targetInspector}" ไม่ได้รับสิทธิ์ให้ตรวจ Product Line: ${finalProductLine}\n(สิทธิ์ปัจจุบัน: ${allowedCerts.join(', ')})`);
+        }
+
+        const jStart = fd.get('job_start_time'); const jEnd = fd.get('job_end_time');
+        if (jStart && jEnd && jStart >= jEnd) return setAlertMsg("เวลาสิ้นสุดต้องมากกว่าเวลาเริ่มต้นในวันเดียวกัน");
+        let finalSiteName = data.site_name;
+        if (jStart && jEnd) finalSiteName = `${jStart}-${jEnd} ${finalSiteName}`;
+
+        const bookingId = modal?.data?.id || (window.SAIS_UTILS?.generateId ? window.SAIS_UTILS.generateId() : Date.now().toString());
+        const docId = modal?.data ? await findDocIdFallback(modal.data) || bookingId : bookingId;
+
+        const payload = {
+            ...data, site_name: finalSiteName, tel: String(data.tel || ''), area: finalArea, job_type: finalJobType, product_line: finalProductLine,
+            id: docId, inspector_name: targetInspector, date: targetDate, user: user?.username, created_by: modal?.data?.created_by || user?.username,
+            layout_img: docUrls.layout || modal?.data?.layout_img || '',
+            wiring_img: docUrls.wiring || modal?.data?.wiring_img || '',
+            precheck_img: docUrls.precheck || modal?.data?.precheck_img || '',
+            site_cond_1: docUrls.site_cond_1 || modal?.data?.site_cond_1 || '',
+            site_cond_2: docUrls.site_cond_2 || modal?.data?.site_cond_2 || '',
+            site_cond_3: docUrls.site_cond_3 || modal?.data?.site_cond_3 || '',
+            site_cond_4: docUrls.site_cond_4 || modal?.data?.site_cond_4 || '',
+            site_cond_5: docUrls.site_cond_5 || modal?.data?.site_cond_5 || '',
+            site_cond_6: docUrls.site_cond_6 || modal?.data?.site_cond_6 || ''
+        };
+
+        if (isAdmin) { 
+            payload.layout_doc = data.layout_doc ? 'true' : 'false';
+            payload.wiring_doc = data.wiring_doc ? 'true' : 'false'; 
+            payload.precheck_doc = data.precheck_doc ? 'true' : 'false';
+        } else if (modal?.data?.id) { 
+            payload.layout_doc = String(modal?.data?.layout_doc || 'false');
+            payload.wiring_doc = String(modal?.data?.wiring_doc || 'false'); 
+            payload.precheck_doc = String(modal?.data?.precheck_doc || 'false');
+        } else { 
+            payload.layout_doc = 'false';
+            payload.wiring_doc = 'false'; payload.precheck_doc = 'false';
+        }
+        
+        try {
+            setLoadingMsg(modal?.data?.id ? 'กำลังอัปเดตข้อมูลลง Firebase...' : 'กำลังบันทึกคิวงานลง Firebase...');
+            
+            if (window.dbFirestore) {
+                await window.dbFirestore.collection("bookings").doc(String(docId)).set({ ...payload, status: 'active' });
+            }
+            
+            logActivity(modal?.data?.id ? 'UPDATE BOOKING' : 'CREATE BOOKING', getDiffLog(modal?.data?.id ? modal.data : null, payload, user?.username));
+            setLoadingMsg(null);
+            
+            setSuccessModal(
+                <div className="text-center">
+                    <div className="font-black text-sm mb-1">{modal?.data?.id ? 'แก้ไขคิวงานสำเร็จ!' : 'จองคิวงานสำเร็จ!'}</div>
+                    <div className="text-xs text-slate-600 font-bold mb-1">{finalSiteName}</div>
+                    <div className="text-[10px] text-slate-600">วันที่: {targetDate}</div>
+                    <div className="text-[10px] text-slate-600">ผู้ตรวจ: {targetInspector}</div>
+                </div>
+            );
+            
+            if (isAdmin && !modal?.data?.id && fd.get('keep_open')) {
+                e.target.equipment_no.value = '';
+                if (e.target.unit_no) e.target.unit_no.value = '';
+                e.target.equipment_no.focus(); 
+            } else {
+                setModal(null);
+                setAreaSelection(''); setJobTypeSelection(''); setProductLineSelection(''); setLiveMapUrl('');
+                setDocUrls({ layout: '', wiring: '', precheck: '', site_cond_1: '', site_cond_2: '', site_cond_3: '', site_cond_4: '', site_cond_5: '', site_cond_6: '' });
+            }
+
+            // Sync กลับไป Sheets เพื่อ Backup เบื้องหลัง
+            const finalPayload = { ...payload, action: modal?.data?.id ? 'update_booking' : 'create_booking', reason: getDiffLog(modal?.data?.id ? modal.data : null, payload, user?.username) };
+            apiAction(finalPayload, null, true);
+        } catch(e) { console.error(e); setAlertMsg('เกิดข้อผิดพลาดในการบันทึก: ' + e.message); setLoadingMsg(null); }
+    };
+
+    const handleLogout = () => {
+        setConfirmDialog({
+            msg: 'ยืนยันการออกจากระบบใช่หรือไม่?',
+            onConfirm: async () => {
+                setConfirmDialog(null); setLoadingMsg('กำลังออกจากระบบ...'); setUser(null);
+                try {
+                    localStorage.clear(); sessionStorage.clear();
+                    if ('caches' in window) caches.keys().then(names => Promise.all(names.map(n => caches.delete(n))));
+                } catch (error) {} finally { window.location.replace(window.location.pathname + '?logout=' + new Date().getTime()); }
+            }
+        });
+    }
+
+    // 📍 หน้าจอ Login
+    if (!user) {
+        return (
+            <div className="app-container bg-slate-800 min-h-screen flex items-center justify-center p-4 relative">
+                {successModal && (
+                    <div className="absolute top-10 z-[700] bg-white px-6 py-3 rounded-full text-green-600 font-bold shadow-xl border border-green-300 flex items-center gap-2">
+                        <Icons.Check /> {successModal}
+                    </div>
+                )}
+                {alertMsg && (
+                    <div className="absolute inset-0 z-[600] flex items-center justify-center bg-black/60 p-4">
+                        <div className="bg-white w-full max-w-sm rounded-3xl p-6 text-center shadow-2xl animate-pop">
+                            <div className="w-16 h-16 bg-red-50 text-red-500 rounded-full flex items-center justify-center mx-auto mb-4"><Icons.Alert /></div>
+                            <h3 className="text-lg font-bold text-slate-800 mb-2">แจ้งเตือน</h3>
+                            <p className="text-sm text-slate-600 mb-6 whitespace-pre-line">{alertMsg}</p>
+                            <button onClick={() => setAlertMsg(null)} className="w-full py-3 bg-slate-800 text-white font-bold rounded-xl shadow-md">ตกลง</button>
+                        </div>
+                    </div>
+                )}
+
+                <div className="w-full max-w-md bg-white rounded-3xl shadow-2xl p-6 relative overflow-hidden flex flex-col max-h-[90vh]">
+                    <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-blue-500 to-red-500 z-10"></div>
+                    <div className="text-center mb-6 pt-4 flex-shrink-0">
+                        <div className="mb-3">
+                            <h1 className="text-4xl font-black text-slate-900 tracking-tighter">SAIS</h1>
+                            <h2 className="text-[10px] font-bold text-red-600 uppercase tracking-widest mt-1">Schedule Booking System</h2>
+                        </div>
+                        <h2 className="text-lg font-bold text-slate-800 tracking-tight">
+                            {showLoginHelp ? 'คู่มือการใช้งานระบบ' : (isForgotMode ? 'รีเซ็ตรหัสผ่าน' : (isRegisterMode ? 'สมัครสมาชิกใหม่' : 'เข้าสู่ระบบเพื่อใช้งาน'))}
+                        </h2>
+                    </div>
+
+                    {showLoginHelp ? (
+                        <div className="flex-1 overflow-y-auto custom-scrollbar pr-2 space-y-4 pb-4">
+                            <div className="bg-blue-50 p-5 rounded-2xl border border-blue-200 space-y-4 shadow-inner">
+                                <h4 className="font-bold text-blue-800 text-[15px] border-b border-blue-200 pb-2 flex items-center gap-2">
+                                    <Icons.HelpCircle /> คู่มือการเข้าสู่ระบบ SAIS
+                                </h4>
+                                <div className="text-xs text-blue-900 space-y-4">
+                                    <div>
+                                        <span className="font-bold text-[13px] block mb-1">1. การสมัครสมาชิก (Register)</span>
+                                        <ul className="list-disc pl-4 space-y-1">
+                                            <li>สามารถลงทะเบียนได้ด้วยตนเองโดยกดปุ่ม <span className="font-bold">"สมัครสมาชิกใหม่"</span> ที่หน้าล็อกอิน</li>
+                                            <li>กรอกรหัสพนักงาน และชื่อ-นามสกุลจริง เพื่อใช้ยืนยันตัวตน</li>
+                                            <li className="text-red-600 font-bold">รอให้ผู้ดูแลระบบ (Admin) อนุมัติสิทธิ์ก่อนจึงจะเข้าใช้งานได้</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <span className="font-bold text-[13px] block mb-1">2. การเข้าสู่ระบบ (Login)</span>
+                                        <ul className="list-disc pl-4 space-y-1">
+                                            <li>เข้าสู่ระบบด้วย Username และรหัสผ่านที่ตั้งไว้</li>
+                                            <li>ระบบจะจดจำการเข้าระบบของคุณไว้เป็นเวลา 24 ชั่วโมง</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <span className="font-bold text-[13px] block mb-1">3. ลืมรหัสผ่าน (Forgot Password)</span>
+                                        <ul className="list-disc pl-4 space-y-1">
+                                            <li>กดปุ่ม <span className="font-bold">"ลืมรหัสผ่าน?"</span> ที่หน้าล็อกอิน</li>
+                                            <li>ระบุ <b>ชื่อ-นามสกุล</b> และ <b>เบอร์โทรศัพท์</b> ให้ตรงกับตอนที่สมัคร เพื่อกู้คืนบัญชีและตั้งรหัสผ่านใหม่ด้วยตนเอง</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <button onClick={() => setShowLoginHelp(false)} className="w-full py-3.5 bg-slate-800 text-white font-bold rounded-xl text-sm shadow-md active:scale-95 transition-all">กลับไปหน้าเข้าสู่ระบบ</button>
+                        </div>
+                    ) : (
+                        <form onSubmit={async (e) => {
+                            e.preventDefault();
+                            const fd = new FormData(e.target);
+                            
+                            if (isForgotMode) {
+                                if(fd.get('password') !== fd.get('confirm_password')) return setAlertMsg('รหัสผ่านใหม่ไม่ตรงกัน');
+                                setLoadingMsg('กำลังค้นหาบัญชีของคุณจากระบบ...');
+                                try {
+                                    const res = await fetch(SCRIPT_URL, { 
+                                        method: 'POST', 
+                                        body: JSON.stringify({ action: 'reset_password', api_key: window?.SAIS_CONFIG?.API_KEY, full_name: fd.get('full_name'), phone: fd.get('phone'), new_password: fd.get('password') }) 
+                                    });
+                                    const result = await res.json();
+                                    setLoadingMsg(null);
+                                    if (result.status === 'ok') { 
+                                        setAlertMsg(`✅ กู้คืนบัญชีสำเร็จ!\n\nUsername ของคุณคือ:\n👉 ${result.username} 👈\n\nรหัสผ่านถูกเปลี่ยนแล้ว กรุณาใช้ Username นี้เข้าสู่ระบบครับ`);
+                                        setIsForgotMode(false); 
+                                    } else {
+                                        setAlertMsg(result.message || 'ไม่พบข้อมูลผู้ใช้งาน');
+                                    }
+                                } catch(err) {
+                                    setLoadingMsg(null);
+                                    setAlertMsg('การเชื่อมต่อขัดข้อง');
+                                }
+                            } 
+                            else if (isRegisterMode) {
+                                if(fd.get('password') !== fd.get('confirm_password')) return setAlertMsg('รหัสผ่านไม่ตรงกัน');
+                                const payload = { action: 'register', username: fd.get('username'), password: fd.get('password'), full_name: fd.get('full_name'), department: fd.get('department'), position: fd.get('position'), phone: fd.get('phone') };
+                                setLoadingMsg('กำลังส่งข้อมูลสมัครสมาชิก...');
+                                try {
+                                    const res = await fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify({ ...payload, api_key: window?.SAIS_CONFIG?.API_KEY }) });
+                                    const result = await res.json();
+                                    setLoadingMsg(null);
+                                    if (result.status === 'ok') {
+                                        setSuccessModal('สมัครสำเร็จ รอแอดมินอนุมัติสิทธิ์การเข้าใช้งาน'); 
+                                        setIsRegisterMode(false);
+                                    } else {
+                                        setAlertMsg(result.message || 'Username นี้อาจมีผู้ใช้งานแล้ว');
+                                    }
+                                } catch (e) {
+                                    setLoadingMsg(null); setAlertMsg('การเชื่อมต่อขัดข้อง');
+                                }
+                            } 
+                            else {
+                                setLoadingMsg('กำลังตรวจสอบข้อมูลการเข้าสู่ระบบ...');
+                                try {
+                                    const usernameInput = fd.get('username');
+                                    const passwordInput = fd.get('password');
+                                    
+                                    const res = await fetch(SCRIPT_URL, { 
+                                        method: 'POST', body: JSON.stringify({ action: 'login', api_key: window?.SAIS_CONFIG?.API_KEY, username: usernameInput, password: passwordInput }) 
+                                    });
+                                    const result = await res.json();
+                                    
+                                    setLoadingMsg(null);
+                                    if (result.status === 'ok') { 
+                                        const userData = result.user;
+                                        if (userData.status === 'blocked') {
+                                            setAlertMsg('บัญชีของคุณถูกระงับการใช้งาน');
+                                        } else if (userData.status === 'pending') {
+                                            setAlertMsg('บัญชีของคุณกำลังรอแอดมินอนุมัติครับ');
+                                        } else {
+                                            if (window.dbFirestore) {
+                                                window.dbFirestore.collection("users").doc(usernameInput).set({ ...userData, password: passwordInput }).catch(e => console.error(e));
+                                            }
+                                            delete userData.password;
+                                            localStorage.setItem('sais_user', JSON.stringify(userData));
+                                            localStorage.setItem('sais_session_time', Date.now().toString());
+                                            setUser(userData); 
+                                            setSuccessModal('เข้าสู่ระบบสำเร็จ'); 
+                                        }
+                                    } else { 
+                                        setAlertMsg(result.message || 'Username หรือรหัสผ่านไม่ถูกต้อง'); 
+                                    }
+                                } catch (err) { 
+                                    setLoadingMsg(null); 
+                                    setAlertMsg('การเชื่อมต่อขัดข้อง ไม่สามารถติดต่อเซิร์ฟเวอร์ได้'); 
+                                }
+                            }
+                        }} className="flex-1 overflow-y-auto pr-2 custom-scrollbar space-y-4 pb-4">
+                            {!isForgotMode && !isRegisterMode && (
+                                <>
+                                    <div><label className="text-[10px] font-bold text-slate-500">Username</label><input name="username" required placeholder="รหัสพนักงานหรือ Username" className="bg-slate-50 w-full p-2.5 rounded-lg border text-sm font-bold" /></div>
+                                    <div className="relative">
+                                        <label className="text-[10px] font-bold text-slate-500">Password</label>
+                                        <input name="password" type={showPassword ? "text" : "password"} required placeholder="รหัสผ่าน" className="bg-slate-50 pr-12 w-full p-2.5 rounded-lg border text-sm font-bold" />
+                                        <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-[26px] text-slate-400 p-1">{showPassword ? <Icons.EyeOff /> : <Icons.Eye />}</button>
+                                    </div>
+                                </>
+                            )}
+                            
+                            {isRegisterMode && (
+                                <>
+                                    <div className="bg-blue-50 p-3 rounded-xl mb-2 text-xs text-blue-800 border border-blue-200">
+                                        กรุณากรอกข้อมูลให้ครบถ้วนเพื่อใช้ในการยืนยันตัวตน (หากลืมรหัสผ่าน)
+                                    </div>
+                                    <div className="grid grid-cols-2 gap-2">
+                                        <div><label className="text-[10px] font-bold text-slate-500">Username</label><input name="username" required placeholder="ตั้ง Username" className="bg-slate-50 w-full p-2 rounded-lg border text-sm font-bold" /></div>
+                                        <div><label className="text-[10px] font-bold text-slate-500">เบอร์โทรศัพท์</label><input name="phone" required placeholder="08XXXXXXXX" maxLength="10" className="bg-slate-50 w-full p-2 rounded-lg border text-sm font-bold" onInput={(e) => { e.target.value = e.target.value.replace(/[^0-9]/g, ''); }} /></div>
+                                    </div>
+                                    <div><label className="text-[10px] font-bold text-slate-500">ชื่อ-นามสกุล (จริง)</label><input name="full_name" required placeholder="ชื่อ นามสกุล" className="bg-slate-50 w-full p-2 rounded-lg border text-sm font-bold" /></div>
+                                    <div className="grid grid-cols-2 gap-2">
+                                        <div><label className="text-[10px] font-bold text-slate-500">แผนก</label><input type="text" name="department" required placeholder="NI, MOD, FQE" className="bg-slate-50 w-full p-2.5 rounded-lg border text-sm" /></div>
+                                        <div><label className="text-[10px] font-bold text-slate-500">ตำแหน่ง</label><input type="text" name="position" required placeholder="PE, PM, Tech" className="bg-slate-50 w-full p-2.5 rounded-lg border text-sm" /></div>
+                                    </div>
+                                    <div className="grid grid-cols-2 gap-2">
+                                        <div><label className="text-[10px] font-bold text-slate-500">ตั้งรหัสผ่าน</label><input name="password" type="password" required placeholder="Password" className="bg-slate-50 w-full p-2 rounded-lg border text-sm font-bold" /></div>
+                                        <div><label className="text-[10px] font-bold text-slate-500">ยืนยันรหัสผ่าน</label><input name="confirm_password" type="password" required placeholder="Confirm" className="bg-slate-50 w-full p-2 rounded-lg border text-sm font-bold" /></div>
+                                    </div>
+                                </>
+                            )}
+
+                            {isForgotMode && (
+                                <>
+                                    <div className="bg-amber-50 p-3 rounded-xl mb-2 text-[11px] text-amber-800 border border-amber-200">
+                                        ระบุ <b>ชื่อ-นามสกุล</b> และ <b>เบอร์โทรศัพท์</b> ให้ตรงกับตอนสมัคร เพื่อรีเซ็ตรหัสผ่านใหม่
+                                    </div>
+                                    <div><label className="text-[10px] font-bold text-slate-500">ชื่อ-นามสกุล (ที่เคยลงทะเบียนไว้)</label><input name="full_name" required placeholder="ระบุชื่อ นามสกุล" className="bg-slate-50 w-full p-2.5 rounded-lg border text-sm font-bold" /></div>
+                                    <div><label className="text-[10px] font-bold text-slate-500">เบอร์โทรศัพท์ (ที่เคยลงทะเบียนไว้)</label><input name="phone" required placeholder="08XXXXXXXX" maxLength="10" className="bg-slate-50 w-full p-2.5 rounded-lg border text-sm font-bold" onInput={(e) => { e.target.value = e.target.value.replace(/[^0-9]/g, ''); }} /></div>
+                                    <div className="grid grid-cols-2 gap-2 mt-2 pt-2 border-t border-slate-100">
+                                        <div><label className="text-[10px] font-bold text-slate-500">ตั้งรหัสผ่านใหม่</label><input name="password" type="password" required placeholder="New Password" className="bg-slate-50 w-full p-2.5 rounded-lg border text-sm font-bold" /></div>
+                                        <div><label className="text-[10px] font-bold text-slate-500">ยืนยันรหัสผ่านใหม่</label><input name="confirm_password" type="password" required placeholder="Confirm Password" className="bg-slate-50 w-full p-2.5 rounded-lg border text-sm font-bold" /></div>
+                                    </div>
+                                </>
+                            )}
+
+                            <button disabled={loadingMsg} className="w-full py-3.5 rounded-xl text-white font-bold bg-red-600 mt-4 shadow-md text-sm transition-all active:scale-95">
+                                {loadingMsg ? 'รอสักครู่...' : (isForgotMode ? 'ยืนยันกู้คืนบัญชี' : (isRegisterMode ? 'ส่งข้อมูลสมัครสมาชิก' : 'LOGIN'))}
+                            </button>
+                            
+                            <div className="flex flex-col gap-3 mt-4 text-center">
+                                {!isRegisterMode && !isForgotMode ? (
+                                    <>
+                                        <div className="flex justify-between px-2">
+                                            <button type="button" onClick={() => setIsRegisterMode(true)} className="text-[11px] font-bold text-blue-600 hover:underline">ลงทะเบียนผู้ใช้ใหม่</button>
+                                            <button type="button" onClick={() => setIsForgotMode(true)} className="text-[11px] font-bold text-slate-500 hover:underline">ลืมรหัสผ่าน?</button>
+                                        </div>
+                                        <button type="button" onClick={() => setShowLoginHelp(true)} className="text-xs font-bold text-emerald-600 hover:underline mt-2">📖 คู่มือการใช้งานระบบ</button>
+                                    </>
+                                ) : (
+                                    <button type="button" onClick={() => { setIsRegisterMode(false); setIsForgotMode(false); }} className="text-xs font-bold text-slate-500 hover:underline">กลับไปหน้าเข้าสู่ระบบ</button>
+                                )}
+                            </div>
+                        </form>
+                    )}
+                </div>
+            </div>
+        );
+    }
+
+    if (!isFirebaseReady) return <div className="h-screen w-full flex items-center justify-center flex-col gap-4 p-8 text-center"><Icons.Loader /><h2 className="text-xl font-bold text-slate-800">กำลังเตรียมระบบฐานข้อมูล...</h2></div>;
+
+    return (
+        <div className="app-container">
+            {DynamicStyles()}
+
+            <div className={`trash-dropzone ${isDragging ? 'visible' : ''} ${isTrashHovered ? 'hovered' : ''}`}
+                onDragOver={handleTrashDragOver} onDragLeave={handleTrashDragLeave} onDrop={handleTrashDrop}>
+                <div className="trash-icon-wrapper"><Icons.AnimatedTrash isHovered={isTrashHovered} /></div>
+                <div className="trash-text">{isTrashHovered ? 'ปล่อยเพื่อลบทิ้ง!' : 'ลากมาทิ้งที่นี่'}</div>
+            </div>
+
+            {successModal && (
+                <div className="fixed inset-0 z-[700] flex items-center justify-center pointer-events-none p-4">
+                    <div className="bg-white w-full max-w-[320px] rounded-3xl p-6 shadow-2xl animate-pop border-4 border-green-400">
+                        <div className="mx-auto w-14 h-14 bg-green-50 text-green-600 rounded-full flex items-center justify-center mb-3"><Icons.Check /></div>
+                        {typeof successModal === 'string' ? (
+                            <h3 className="text-lg font-bold text-slate-800 mb-1 text-center">{successModal}</h3>
+                        ) : (
+                            successModal 
+                        )}
+                    </div>
+                </div>
+            )}
+
+            {loadingMsg && (
+                <div className="backdrop z-[500] gap-4">
+                    <Icons.Loader />
+                    <div className="text-white font-bold text-sm bg-slate-900/60 px-5 py-2.5 rounded-full border border-slate-700 shadow-xl text-center break-words max-w-[80%]">{loadingMsg}</div>
+                </div>
+            )}
+
+            <header className="main-header bg-slate-800">
+                <div className="flex items-center gap-2"><h1 className="text-xl font-bold tracking-wide">{db.settings?.appName || 'SAIS BOOKING'}</h1></div>
+                <div className="flex items-center gap-2 relative">
+                    <button className="btn-icon" onClick={() => setShowSettings(!showSettings)}><Icons.Settings /></button>
+                    {showSettings && (
+                        <div className="settings-menu animate-pop w-[260px] max-h-[80vh] overflow-y-auto custom-scrollbar">
+                            <h4 className="text-sm font-bold border-b border-slate-200 pb-2 mb-3 text-slate-800 flex items-center gap-2"><Icons.Settings /> การตั้งค่าระบบ</h4>
+                            <button onClick={handleExportJPG} className="w-full py-2.5 bg-blue-600 text-white text-xs font-bold rounded-lg mb-3 shadow-sm">บันทึกตารางหน้านี้</button>
+                            
+                            <div className="settings-group mb-3 border-t border-slate-100 pt-3">
+                                <div className="text-[10px] font-bold text-slate-500 mb-2">ยืด/หด ความกว้างตาราง</div>
+                                <div className="flex justify-between items-center gap-2 bg-slate-50 p-2 rounded-xl border border-slate-200">
+                                    <button className="bg-white border border-slate-300 p-2 rounded-lg w-12 font-black text-slate-600 active:scale-95" onClick={() => updateColumnZoom(-0.1)}>-</button>
+                                    <span className="text-sm font-black text-blue-600 w-16 text-center">{(columnZoom * 100).toFixed(0)}%</span>
+                                    <button className="bg-white border border-slate-300 p-2 rounded-lg w-12 font-black text-slate-600 active:scale-95" onClick={() => updateColumnZoom(0.1)}>+</button>
+                                </div>
+                            </div>
+                            <div className="settings-group mb-3">
+                                <div className="text-[10px] font-bold text-slate-500 mb-2">ขนาดฟอนต์ปกติ</div>
+                                <div className="flex justify-between items-center gap-2 bg-slate-50 p-2 rounded-xl border border-slate-200">
+                                    <button className="bg-white border border-slate-300 p-2 rounded-lg w-12 font-black text-slate-600 active:scale-95" onClick={() => updateTableFontScale(-0.1)}>-</button>
+                                    <span className="text-sm font-black text-blue-600 w-16 text-center">{(tableFontScale * 100).toFixed(0)}%</span>
+                                    <button className="bg-white border border-slate-300 p-2 rounded-lg w-12 font-black text-slate-600 active:scale-95" onClick={() => updateTableFontScale(0.1)}>+</button>
+                                </div>
+                            </div>
+                            <div className="settings-group">
+                                <div className="text-[10px] font-bold text-slate-500 mb-2">ขนาดฟอนต์ ลา/หยุด/กิจกรรม</div>
+                                <div className="flex justify-between items-center gap-2 bg-slate-50 p-2 rounded-xl border border-slate-200">
+                                    <button className="bg-white border border-slate-300 p-2 rounded-lg w-12 font-black text-slate-600 active:scale-95" onClick={() => updateSpecialFontScale(-0.1)}>-</button>
+                                    <span className="text-sm font-black text-blue-600 w-16 text-center">{(specialFontScale * 100).toFixed(0)}%</span>
+                                    <button className="bg-white border border-slate-300 p-2 rounded-lg w-12 font-black text-slate-600 active:scale-95" onClick={() => updateSpecialFontScale(0.1)}>+</button>
+                                </div>
+                            </div>
+                            <button className="w-full py-2 bg-red-50 text-red-600 font-bold rounded-lg border border-red-200 text-xs mt-4" onClick={() => { setTableFontScale(1.0); setSpecialFontScale(1.0); setColumnZoom(1.0); }}>↺ รีเซ็ตค่าเริ่มต้น</button>
+                        </div>
+                    )}
+                    <button className="btn-icon relative" onClick={() => { setShowActivityModal(true); if(!hasLoadedAdmin && isAdmin) fetchAdminData(0, 50, 'all'); }}>
+                        <Icons.Bell />{unreadNotifs.length > 0 && <span className="notif-dot animate-pulse"></span>}
+                    </button>
+                    <div className="text-xs font-bold bg-white/20 px-3 py-1.5 rounded-lg flex items-center gap-1">
+                        <Icons.User /> {user.username}
+                    </div>
+                </div>
+            </header>
+
+            <div className="bottom-nav">
+                <div className={`nav-item ${currentView === 'calendar' ? 'active' : ''}`} onClick={() => handleTabChange('calendar')}><Icons.Home /> ปฏิทิน</div>
+                <div className={`nav-item ${currentView === 'search' ? 'active' : ''}`} onClick={() => handleTabChange('search')}><Icons.Search /> ค้นหา</div>
+                {isAdmin && <div className={`nav-item ${currentView === 'documents' ? 'active' : ''}`} onClick={() => handleTabChange('documents')}><Icons.FileText /> ตรวจเอกสาร</div>}
+                {user && !isAdmin && user.role !== 'viewer' && <div className={`nav-item ${currentView === 'my_bookings' ? 'active' : ''}`} onClick={() => handleTabChange('my_bookings')}><Icons.List /> งานฉัน</div>}
+                <div className={`nav-item ${currentView === 'dashboard' ? 'active' : ''}`} onClick={() => handleTabChange('dashboard')}><Icons.Chart /> สถิติ</div>
+                {isAdmin && <div className={`nav-item ${currentView === 'admin' ? 'active' : ''}`} onClick={() => { handleTabChange('admin'); setAdminTab('menu'); }}><Icons.Shield /> จัดการ</div>}
+                <div className="nav-item text-red-500 hover:text-red-600" onClick={handleLogout}><Icons.LogOut /> ออกระบบ</div>
+            </div>
+
+            {currentView === 'calendar' && (
+                <div className="grid-container relative overflow-hidden pb-16">
+                    <div className="nav-bar bg-white px-3 py-2 border-b flex-shrink-0 z-[45]">
+                        <div className="flex justify-between items-center w-full">
+                            <button onClick={() => changePeriod('prev')} className="px-3 py-1.5 bg-slate-100 rounded-lg text-xs font-bold text-slate-600"><Icons.ChevronLeft /> ย้อน</button>
+                            <div className="text-center font-bold text-slate-800 text-sm">{period === 0 ? "1-15 " : `16-${new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate()} `}{currentDate.toLocaleDateString('th-TH', { timeZone: 'Asia/Bangkok', month: 'short', year: 'numeric' })}</div>
+                            <button onClick={() => changePeriod('next')} className="px-3 py-1.5 bg-slate-100 rounded-lg text-xs font-bold text-slate-600">ถัดไป <Icons.ChevronRight /></button>
+                        </div>
+                    </div>
+
+                    <div className="absolute left-0 right-0 flex justify-center z-40 transition-all duration-300 pointer-events-none" style={{ top: pullY > 0 ? `${pullY}px` : '-40px', opacity: pullY > 0 ? 1 : 0 }}>
+                        <div className="bg-white px-5 py-2.5 rounded-full shadow-lg border border-slate-200 flex items-center gap-2 text-xs font-bold text-slate-600">
+                            {isRefreshing ? <span className="text-blue-500 animate-spin text-lg leading-none">⏳</span> : <span className="text-slate-400 text-lg leading-none">⬇️</span>}
+                            {isRefreshing ? 'กำลังดึงข้อมูลล่าสุด...' : 'ปล่อยเพื่ออัปเดต'}
+                        </div>
+                    </div>
+
+                    <div className="grid-wrapper" ref={scrollRef} onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd} style={{ transform: `translateY(${pullY}px)`, transition: pullY === 0 ? 'transform 0.3s ease-out' : 'none' }}>
+                        {initialLoad ? <div className="w-full h-full p-4"><div className="w-full h-16 skeleton rounded-lg bg-slate-100 animate-pulse"></div></div> : (
+                            <CalendarGrid 
+                                daysInView={daysInView} db={db} isAdmin={isAdmin} user={user} setModal={setModal} setAlertMsg={setAlertMsg} 
+                                handleDrop={handleDrop} handleDragOver={handleDragOver} handleDragLeave={handleDragLeave} 
+                                handleDragStart={handleDragStart} handleDragEnd={handleDragEnd} setConfirmDialog={setConfirmDialog} 
+                                apiAction={apiAction} setQuickAddType={setQuickAddType} filteredBookings={filteredBookings}
+                                tableFontScale={tableFontScale} specialFontScale={specialFontScale} columnZoom={columnZoom} isExporting={isExporting}
+                            />
+                        )}
+                    </div>
+                    <RealtimeClock lastSyncTime={lastSyncTime} />
+                </div>
+            )}
