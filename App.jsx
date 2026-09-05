@@ -1503,8 +1503,8 @@ const App = () => {
                 } catch (error) {} finally { window.location.replace(window.location.pathname + '?logout=' + new Date().getTime()); }
             }
         });
-    };
-    // 📍 หน้าจอ Login (ระบบ Firebase 100% ถอด Google Sheets ออกอย่างสมบูรณ์)
+    }
+    // 📍 หน้าจอ Login (สลับกลับมาใช้ Google Sheets เป็นหลัก เพื่อแก้ปัญหาล็อคอินไม่ได้)
     if (!user) {
         return (
             <div className="app-container bg-slate-800 min-h-screen flex items-center justify-center p-4 relative">
@@ -1574,88 +1574,84 @@ const App = () => {
                             e.preventDefault();
                             const fd = new FormData(e.target);
                             
-                            // 📍 โหมดกู้รหัสผ่าน (Firebase 100%)
+                            // 📍 โหมดกู้รหัสผ่าน (สลับกลับมาใช้ Google Sheets)
                             if (isForgotMode) {
                                 if(fd.get('password') !== fd.get('confirm_password')) return setAlertMsg('รหัสผ่านใหม่ไม่ตรงกัน');
-                                setLoadingMsg('กำลังค้นหาบัญชีของคุณ...');
+                                setLoadingMsg('กำลังค้นหาบัญชีของคุณจากระบบ...');
                                 try {
-                                    if (window.dbFirestore) {
-                                        const usersRef = window.dbFirestore.collection("users");
-                                        const snapshot = await usersRef.where("full_name", "==", fd.get('full_name')).where("phone", "==", fd.get('phone')).get();
-                                        if (!snapshot.empty) {
-                                            const userDoc = snapshot.docs[0];
-                                            await window.dbFirestore.collection("users").doc(userDoc.id).update({ password: fd.get('password') });
-                                            setAlertMsg(`✅ กู้คืนบัญชีสำเร็จ!\n\nUsername ของคุณคือ:\n👉 ${userDoc.id} 👈\n\nรหัสผ่านถูกเปลี่ยนแล้ว กรุณาใช้ Username นี้เข้าสู่ระบบครับ`);
-                                            setIsForgotMode(false);
-                                        } else {
-                                            setAlertMsg('ไม่พบข้อมูลผู้ใช้งานที่ตรงกับชื่อและเบอร์โทรนี้ในฐานข้อมูล');
-                                        }
-                                    } else {
-                                        setAlertMsg('ระบบฐานข้อมูล Firebase ยังไม่พร้อมใช้งาน กรุณาลองใหม่');
-                                    }
+                                    const res = await fetch(SCRIPT_URL, { 
+                                        method: 'POST', 
+                                        body: JSON.stringify({ action: 'reset_password', api_key: window?.SAIS_CONFIG?.API_KEY, full_name: fd.get('full_name'), phone: fd.get('phone'), new_password: fd.get('password') }) 
+                                    });
+                                    const result = await res.json();
                                     setLoadingMsg(null);
-                                } catch(err) { setLoadingMsg(null); setAlertMsg('การเชื่อมต่อขัดข้อง: ' + err.message); }
+                                    if (result.status === 'ok') { 
+                                        setAlertMsg(`✅ กู้คืนบัญชีสำเร็จ!\n\nUsername ของคุณคือ:\n👉 ${result.username} 👈\n\nรหัสผ่านถูกเปลี่ยนแล้ว กรุณาใช้ Username นี้เข้าสู่ระบบครับ`);
+                                        setIsForgotMode(false); 
+                                    } else {
+                                        setAlertMsg(result.message || 'ไม่พบข้อมูลผู้ใช้งาน');
+                                    }
+                                } catch(err) {
+                                    setLoadingMsg(null);
+                                    setAlertMsg('การเชื่อมต่อขัดข้อง');
+                                }
                             } 
-                            // 📍 โหมดสมัครสมาชิกใหม่ (Firebase 100%)
+                            // 📍 โหมดสมัครสมาชิกใหม่ (สลับกลับมาใช้ Google Sheets)
                             else if (isRegisterMode) {
                                 if(fd.get('password') !== fd.get('confirm_password')) return setAlertMsg('รหัสผ่านไม่ตรงกัน');
-                                setLoadingMsg('กำลังส่งข้อมูลสมัคร...');
+                                const payload = { action: 'register', username: fd.get('username'), password: fd.get('password'), full_name: fd.get('full_name'), department: fd.get('department'), position: fd.get('position'), phone: fd.get('phone') };
+                                setLoadingMsg('กำลังส่งข้อมูลสมัครสมาชิก...');
                                 try {
-                                    const usernameInput = fd.get('username');
-                                    if (window.dbFirestore) {
-                                        const docSnap = await window.dbFirestore.collection("users").doc(usernameInput).get();
-                                        if (docSnap.exists) {
-                                            setLoadingMsg(null);
-                                            return setAlertMsg('Username นี้มีผู้ใช้งานแล้ว โปรดใช้ชื่ออื่น');
-                                        }
-
-                                        const payload = { 
-                                            username: usernameInput, password: fd.get('password'), full_name: fd.get('full_name'), 
-                                            department: fd.get('department'), position: fd.get('position'), phone: fd.get('phone'),
-                                            role: 'user', status: 'pending', created_at: getThaiTime().toISOString()
-                                        };
-                                        
-                                        await window.dbFirestore.collection("users").doc(usernameInput).set(payload);
-                                        setSuccessModal('สมัครสำเร็จ กรุณารอแอดมินอนุมัติสิทธิ์'); 
-                                        setIsRegisterMode(false); 
-                                    } else {
-                                        setAlertMsg('ระบบฐานข้อมูล Firebase ยังไม่พร้อมใช้งาน');
-                                    }
+                                    const res = await fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify({ ...payload, api_key: window?.SAIS_CONFIG?.API_KEY }) });
+                                    const result = await res.json();
                                     setLoadingMsg(null);
-                                } catch (err) { setLoadingMsg(null); setAlertMsg('สมัครไม่สำเร็จ: ' + err.message); }
+                                    if (result.status === 'ok') {
+                                        setSuccessModal('สมัครสำเร็จ รอแอดมินอนุมัติสิทธิ์การเข้าใช้งาน'); 
+                                        setIsRegisterMode(false);
+                                    } else {
+                                        setAlertMsg(result.message || 'Username นี้อาจมีผู้ใช้งานแล้ว');
+                                    }
+                                } catch (e) {
+                                    setLoadingMsg(null); setAlertMsg('การเชื่อมต่อขัดข้อง');
+                                }
                             } 
-                            // 📍 โหมดล็อกอินเข้าสู่ระบบ (Firebase 100%)
+                            // 📍 โหมดล็อกอินเข้าสู่ระบบ (สลับกลับมาใช้ Google Sheets เป็นหลัก)
                             else {
-                                setLoadingMsg('กำลังตรวจสอบข้อมูล...');
+                                setLoadingMsg('กำลังตรวจสอบข้อมูลการเข้าสู่ระบบ...');
                                 try {
                                     const usernameInput = fd.get('username');
                                     const passwordInput = fd.get('password');
                                     
-                                    if (window.dbFirestore) {
-                                        const userDoc = await window.dbFirestore.collection("users").doc(usernameInput).get();
-                                        if (userDoc.exists && userDoc.data().password === passwordInput) {
-                                            const userData = userDoc.data();
-                                            if (userData.status === 'blocked') {
-                                                setAlertMsg('บัญชีของคุณถูกระงับการใช้งาน');
-                                            } else if (userData.status === 'pending') {
-                                                setAlertMsg('บัญชีของคุณกำลังรอแอดมินอนุมัติครับ');
-                                            } else {
-                                                delete userData.password; // ลบรหัสผ่านทิ้งก่อนบันทึกลง LocalStorage
-                                                localStorage.setItem('sais_user', JSON.stringify(userData));
-                                                localStorage.setItem('sais_session_time', Date.now().toString());
-                                                setUser(userData); 
-                                                setSuccessModal('เข้าสู่ระบบสำเร็จ'); 
-                                            }
-                                        } else {
-                                            setAlertMsg('Username หรือรหัสผ่านไม่ถูกต้อง'); 
-                                        }
-                                    } else {
-                                        setAlertMsg('ระบบฐานข้อมูล Firebase ยังไม่พร้อมใช้งาน กรุณารอสักครู่');
-                                    }
+                                    const res = await fetch(SCRIPT_URL, { 
+                                        method: 'POST', body: JSON.stringify({ action: 'login', api_key: window?.SAIS_CONFIG?.API_KEY, username: usernameInput, password: passwordInput }) 
+                                    });
+                                    const result = await res.json();
+                                    
                                     setLoadingMsg(null);
+                                    if (result.status === 'ok') { 
+                                        const userData = result.user;
+                                        if (userData.status === 'blocked') {
+                                            setAlertMsg('บัญชีของคุณถูกระงับการใช้งาน');
+                                        } else if (userData.status === 'pending') {
+                                            setAlertMsg('บัญชีของคุณกำลังรอแอดมินอนุมัติครับ');
+                                        } else {
+                                            // นำข้อมูลผู้ใช้ที่ล็อกอินสำเร็จ เขียนทับลง Firebase ให้ด้วย เผื่ออนาคต
+                                            if (window.dbFirestore) {
+                                                window.dbFirestore.collection("users").doc(usernameInput).set({ ...userData, password: passwordInput }).catch(e => console.error(e));
+                                            }
+                                            
+                                            delete userData.password;
+                                            localStorage.setItem('sais_user', JSON.stringify(userData));
+                                            localStorage.setItem('sais_session_time', Date.now().toString());
+                                            setUser(userData); 
+                                            setSuccessModal('เข้าสู่ระบบสำเร็จ'); 
+                                        }
+                                    } else { 
+                                        setAlertMsg(result.message || 'Username หรือรหัสผ่านไม่ถูกต้อง'); 
+                                    }
                                 } catch (err) { 
                                     setLoadingMsg(null); 
-                                    setAlertMsg('การเชื่อมต่อขัดข้อง: ' + err.message); 
+                                    setAlertMsg('การเชื่อมต่อขัดข้อง ไม่สามารถติดต่อเซิร์ฟเวอร์ได้'); 
                                 }
                             }
                         }} className="flex-1 overflow-y-auto pr-2 custom-scrollbar space-y-4 pb-4">
@@ -1681,7 +1677,6 @@ const App = () => {
                                     </div>
                                     <div><label className="text-[10px] font-bold text-slate-500">ชื่อ-นามสกุล (จริง)</label><input name="full_name" required placeholder="ชื่อ นามสกุล" className="bg-slate-50 w-full p-2 rounded-lg border text-sm font-bold" /></div>
                                     <div className="grid grid-cols-2 gap-2">
-                                        {/* 📍 ช่องแผนก กลับมาใช้ Input Text พิมพ์อิสระ */}
                                         <div><label className="text-[10px] font-bold text-slate-500">แผนก</label><input type="text" name="department" required placeholder="NI, MOD, FQE" className="bg-slate-50 w-full p-2.5 rounded-lg border text-sm" /></div>
                                         <div><label className="text-[10px] font-bold text-slate-500">ตำแหน่ง</label><input type="text" name="position" required placeholder="PE, PM, Tech" className="bg-slate-50 w-full p-2.5 rounded-lg border text-sm" /></div>
                                     </div>
@@ -1730,7 +1725,7 @@ const App = () => {
         );
     }
 
-    // 📍 ระบบรอฐานข้อมูล Firebase ก่อนเรนเดอร์ (ป้องกันหน้าจอขาว)
+    // 📍 ระบบรอฐานข้อมูล Firebase ก่อนเรนเดอร์ (ป้องกันหน้าจอขาวตอนเข้าตาราง)
     if (!isFirebaseReady) return <div className="h-screen w-full flex items-center justify-center flex-col gap-4 p-8 text-center"><Icons.Loader /><h2 className="text-xl font-bold text-slate-800">กำลังเตรียมระบบฐานข้อมูล...</h2></div>;
 
     return (
