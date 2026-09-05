@@ -191,7 +191,6 @@ const CalendarGrid = React.memo(({ daysInView, db, isAdmin, user, setModal, setA
                                     onDrop={user?.role === 'viewer' ? undefined : ((e) => handleDrop(e, d.full, ins.name))}
                                     className={cellClassName}
                                     onClick={() => {
-                                        // 📍 ป้องกันหน้าจอค้างด้วย try-catch 100%
                                         try {
                                             if (!user) return typeof setAlertMsg === 'function' && setAlertMsg('กรุณาเข้าสู่ระบบก่อนทำรายการจองคิวตรวจครับ');
                                             if (user.role === 'viewer') return; 
@@ -201,10 +200,10 @@ const CalendarGrid = React.memo(({ daysInView, db, isAdmin, user, setModal, setA
                                             if (d.full < todayLocalString && !isAdmin) return typeof setAlertMsg === 'function' && setAlertMsg('ไม่สามารถจองคิวงานย้อนหลังได้ครับ');
                                             
                                             if (isAdmin) {
-                                                if (typeof setModal === 'function') setModal({ type: 'admin_cell_action', data: { date: d.full, inspector_name: ins.name } });
+                                                if(typeof setModal === 'function') setModal({ type: 'admin_cell_action', data: { date: d.full, inspector_name: ins.name } });
                                             } else {
-                                                if (typeof setQuickAddType === 'function') setQuickAddType('job');
-                                                if (typeof setModal === 'function') setModal({ type: 'booking', data: { date: d.full, inspector_name: ins.name } });
+                                                if(typeof setQuickAddType === 'function') setQuickAddType('job');
+                                                if(typeof setModal === 'function') setModal({ type: 'booking', data: { date: d.full, inspector_name: ins.name } });
                                             }
                                         } catch (error) {
                                             console.error("Calendar click error:", error);
