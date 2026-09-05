@@ -1,0 +1,547 @@
+    const handleVerifyDoc = async (booking, docField, isChecked) => {
+        if (!isAdmin) return;
+        const val = isChecked ? 'true' : 'pending';
+        const docName = docField.replace('_doc', '').toUpperCase();
+        const logDetail = `[อัปเดตเอกสาร]\nเอกสาร: ${docName} -> ${isChecked ? 'ตรวจสอบแล้ว' : 'รอตรวจสอบ'}\nโครงการ: ${booking.site_name}`;
+        
+        try {
+            setLoadingMsg(`กำลังอัปเดตสถานะ ${docName}...`);
+            const docId = await findDocIdFallback(booking);
+            if (docId && window.dbFirestore) {
+                await window.dbFirestore.collection("bookings").doc(docId).update({ [docField]: val });
+            }
+            
+            logActivity('VERIFY DOCUMENT', logDetail);
+            setLoadingMsg(null);
+            
+            setSuccessModal(
+                <div className="text-center">
+                    <div className="font-black text-sm mb-1 text-green-600">อัปเดตเอกสารสำเร็จ!</div>
+                    <div className="text-xs text-slate-600">เอกสาร: <span className="font-bold">{docName}</span></div>
+                    <div className="text-xs text-slate-600">โครงการ: {booking.site_name || booking.equipment_no}</div>
+                </div>
+            );
+
+            apiAction({ ...booking, action: 'update_booking', id: docId || booking.id, [docField]: val, reason: logDetail }, null, true);
+        } catch(e) { setAlertMsg('อัปเดตสถานะไม่สำเร็จ: ' + e.message); setLoadingMsg(null); }
+    };
+
+    const handleDownloadFile = async (url, filename) => {
+        try {
+            const response = await fetch(url);
+            const blob = await response.blob();
+            const blobUrl = window.URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.style.display = 'none';
+            link.href = blobUrl;
+            link.download = filename || 'SAIS_Document';
+            document.body.appendChild(link);
+            link.click();
+            window.URL.revokeObjectURL(blobUrl);
+            document.body.removeChild(link);
+        } catch (e) {
+            window.open(url, '_blank');
+        }
+    };
+
+    // 📍 ระบบอัปโหลดไฟล์ลง Firebase Storage โดยตรง 100%
+    const handleFileUpload = async (e, docType, isMultiple = false) => {
+        const files = e.target.files;
+        if (!files || files.length === 0) return;
+        
+        setUploadingDoc(prev => ({ ...prev, [docType]: true })); 
+        setLoadingMsg('กำลังอัปโหลดเอกสารขึ้น Firebase Storage...');
+        
+        try {
+            let uploadedUrls = [];
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                let mimeType = file.type;
+                let downloadUrl = "";
+
+                if (window.dbStorage) {
+                    const storageRef = window.dbStorage.ref();
+                    const fileName = `sais_documents/${docType}_${Date.now()}_${i}`;
+
+                    if (mimeType.startsWith('image/')) {
+                        const base64Data = await utils.compressImage(file);
+                        const fileRef = storageRef.child(`${fileName}.jpg`);
+                        await fileRef.putString(base64Data, 'data_url');
+                        downloadUrl = await fileRef.getDownloadURL();
+                    } else if (mimeType === 'application/pdf') {
+                        const fileRef = storageRef.child(`${fileName}.pdf`);
+                        await fileRef.put(file);
+                        downloadUrl = await fileRef.getDownloadURL();
+                    } else {
+                        setAlertMsg('ระบบรองรับเฉพาะไฟล์รูปภาพและ PDF เท่านั้นครับ');
+                        continue;
+                    }
+                    if (downloadUrl) uploadedUrls.push(downloadUrl);
+                } else {
+                    throw new Error("ไม่สามารถเชื่อมต่อ Firebase Storage ได้ในขณะนี้");
+                }
+            }
+            
+            if (uploadedUrls.length > 0) {
+                if (isMultiple) {
+                    setDocUrls(prev => ({
+                        ...prev,
+                        [docType]: prev[docType] ? prev[docType] + ',' + uploadedUrls.join(',') : uploadedUrls.join(',')
+                    }));
+                } else {
+                    setDocUrls(prev => ({ ...prev, [docType]: uploadedUrls[0] }));
+                }
+                
+                setSuccessModal(
+                    <div className="text-center">
+                        <div className="font-black text-sm mb-1">อัปโหลดไฟล์สำเร็จ!</div>
+                        <div className="text-xs text-slate-600">แนบไฟล์จำนวน {uploadedUrls.length} ไฟล์ เรียบร้อยแล้ว</div>
+                    </div>
+                );
+            }
+        } catch(err) { 
+            console.error(err);
+            setAlertMsg('เกิดข้อผิดพลาดในการอัปโหลดไฟล์: ' + err.message); 
+        }
+        
+        setLoadingMsg(null); 
+        setUploadingDoc(prev => ({ ...prev, [docType]: false }));
+    };
+
+    // 📍 ฟังก์ชันสำหรับการลากและวาง (Drag & Drop) กลับมาครบสมบูรณ์ 100%
+    const handleDragStart = (e, taskId) => { 
+        e.dataTransfer.setData('taskId', taskId);
+        setDraggingTask(db.bookings.find(b => String(b.id) === String(taskId) || String(b.equipment_no) === String(taskId))); 
+        setIsDragging(true); 
+    };
+
+    const handleDragOver = (e) => { 
+        e.preventDefault(); 
+        e.currentTarget.classList.add('bg-blue-50/60', 'border-2', 'border-blue-400', 'border-dashed'); 
+    };
+
+    const handleDragLeave = (e) => { 
+        e.currentTarget.classList.remove('bg-blue-50/60', 'border-2', 'border-blue-400', 'border-dashed'); 
+    };
+
+    const handleDragEnd = (e) => {
+        setIsDragging(false);
+        setIsTrashHovered(false);
+        setDraggingTask(null);
+    };
+
+    const handleTrashDragOver = (e) => {
+        e.preventDefault();
+        if (!isTrashHovered) setIsTrashHovered(true);
+    };
+
+    const handleTrashDragLeave = (e) => {
+        setIsTrashHovered(false);
+    };
+
+    const handleTrashDrop = async (e) => {
+        e.preventDefault();
+        setIsDragging(false);
+        setIsTrashHovered(false);
+        
+        if (!isAdmin) return;
+        const taskId = e.dataTransfer.getData('taskId');
+        const task = draggingTask || db.bookings.find(b => String(b.id) === String(taskId) || String(b.equipment_no) === String(taskId));
+        
+        if (!task) return setAlertMsg('ไม่พบข้อมูลการ์ดที่ต้องการลบทิ้ง');
+        
+        setConfirmDialog({
+            msg: `คุณกำลังลากการ์ดทิ้งลงถังขยะ\nยืนยันลบข้อมูลนี้ใช่หรือไม่?\n\n📌 รายการ: ${task.site_name || task.equipment_no}`,
+            onConfirm: async () => {
+                setConfirmDialog(null);
+                setDraggingTask(null);
+                
+                try {
+                    setLoadingMsg('กำลังลบทิ้ง...');
+                    const docId = await findDocIdFallback(task);
+                    if (docId && window.dbFirestore) {
+                        await window.dbFirestore.collection("bookings").doc(docId).delete();
+                    }
+                    
+                    logActivity('DELETE VIA TRASH', `[ลบรายการด้วย Drag & Drop]\nรายการ: ${task.site_name || task.equipment_no}`);
+                    setLoadingMsg(null);
+                    
+                    setSuccessModal(
+                        <div className="text-center">
+                            <div className="font-black text-sm mb-1 text-red-600">ทิ้งรายการลงถังขยะสำเร็จ!</div>
+                            <div className="text-xs text-slate-600">รายการ: {task.site_name || task.equipment_no}</div>
+                        </div>
+                    );
+
+                    const isSpecial = String(task.job_type).includes('leave') || String(task.job_type).includes('event') || String(task.job_type).includes('holiday');
+                    let logDetail = '';
+                    if (isSpecial) {
+                        logDetail = `เหตุผล: [ลบรายการ (Drag & Drop)]\nโดย: ${user?.username || 'admin'}\nประเภทงาน: ${task.job_type || '-'}\nวันที่: ${task.date ? formatSafeDate(task.date) : '-'}`;
+                    } else {
+                        logDetail = `[ลบรายการด้วย Drag & Drop ถังขยะ]\nโดย: ${user?.username || 'admin'}\nโครงการ: ${task.site_name || '-'}\nEq No.: ${task.equipment_no || '-'}`;
+                    }
+                    apiAction({ action: 'delete_booking', id: docId || task.id, user: user?.username || 'admin', reason: logDetail, job_type: task.job_type, equipment_no: task.equipment_no }, null, true);
+
+                } catch(e) { setAlertMsg('เกิดข้อผิดพลาดในการลบทิ้ง: ' + e.message); setLoadingMsg(null); }
+            }
+        });
+    };
+
+    const handleDrop = async (e, targetDate, targetInspector) => {
+        e.preventDefault();
+        e.currentTarget.classList.remove('bg-blue-50/60', 'border-2', 'border-blue-400', 'border-dashed');
+        if (!isAdmin) return setAlertMsg('เฉพาะแอดมินที่สามารถลากย้ายคิวได้ครับ');
+        
+        const taskId = e.dataTransfer.getData('taskId');
+        const task = draggingTask || db.bookings.find(b => String(b.id) === String(taskId) || String(b.equipment_no) === String(taskId));
+        
+        if (!task) return setAlertMsg('เกิดข้อผิดพลาด ไม่พบข้อมูลการ์ด กรุณาลองลากใหม่อีกครั้ง');
+        
+        const jobTypeLower = String(task.job_type).toLowerCase();
+        const isSpecial = jobTypeLower.includes('leave') || jobTypeLower.includes('event') || jobTypeLower.includes('holiday');
+        
+        let finalInspector = targetInspector;
+        if (task.inspector_name === 'SYSTEM_EVENT') finalInspector = 'SYSTEM_EVENT';
+        if (task.inspector_name === 'SYSTEM_HOLIDAY') finalInspector = 'SYSTEM_HOLIDAY';
+
+        const oldDate = task.date ? formatSafeDate(task.date) : 'ไม่ระบุ';
+        const oldInspector = task.inspector_name;
+
+        if (oldDate === targetDate && oldInspector === finalInspector) return setDraggingTask(null);
+        
+        if (!isSpecial) {
+            const isDup = db.bookings.some(b => formatSafeDate(b.date) === targetDate && String(b.equipment_no) === String(task.equipment_no) && String(b.id) !== String(task.id) && String(b.status) !== 'cancelled');
+            if (isDup) return setAlertMsg('ไม่สามารถย้ายได้ เนื่องจาก Eq No. นี้ถูกจองไปแล้วในวันที่คุณเลือก');
+        }
+
+        let confirmMsgNode = (
+            <div className="text-left mt-2">
+                <div className="text-sm font-black text-slate-800 mb-3 text-center bg-slate-100 p-2 rounded-lg">
+                    📌 {task.site_name || task.equipment_no}
+                </div>
+                <div className="space-y-2">
+                    {oldDate !== targetDate && (
+                        <div className="flex items-center justify-between text-xs bg-white p-2 border border-slate-200 rounded-lg shadow-sm">
+                            <span className="text-slate-500 font-bold">📅 เลื่อนวันที่:</span>
+                            <div className="flex items-center gap-2">
+                                <span className="text-red-500 line-through decoration-red-300">{oldDate}</span>
+                                <span>➡️</span>
+                                <span className="text-green-600 font-black">{targetDate}</span>
+                            </div>
+                        </div>
+                    )}
+                    {oldInspector !== finalInspector && finalInspector !== 'SYSTEM_EVENT' && finalInspector !== 'SYSTEM_HOLIDAY' && (
+                        <div className="flex items-center justify-between text-xs bg-white p-2 border border-slate-200 rounded-lg shadow-sm">
+                            <span className="text-slate-500 font-bold">👤 ย้ายผู้ตรวจ:</span>
+                            <div className="flex items-center gap-2">
+                                <span className="text-red-500 line-through decoration-red-300">{oldInspector}</span>
+                                 <span>➡️</span>
+                                <span className="text-blue-600 font-black">{finalInspector}</span>
+                            </div>
+                        </div>
+                     )}
+                </div>
+                <div className="mt-3 text-[10px] text-red-500 text-center font-bold">
+                    *โปรดตรวจสอบข้อมูลก่อนกดยืนยันการย้าย*
+                </div>
+            </div>
+        );
+        
+        setConfirmDialog({
+            msg: confirmMsgNode,
+            onConfirm: async () => {
+                setConfirmDialog(null);
+                setDraggingTask(null);
+                
+                try {
+                    setLoadingMsg('กำลังย้ายข้อมูล...');
+                    const docId = await findDocIdFallback(task);
+                    if (docId && window.dbFirestore) {
+                        await window.dbFirestore.collection("bookings").doc(docId).update({ date: targetDate, inspector_name: finalInspector });
+                    }
+                    
+                    logActivity('MOVE BOOKING (Drag Drop)', `[ย้ายคิวงาน]\nรายการ: ${task.site_name || task.equipment_no}\nวันที่: [${oldDate}] ➡️ [${targetDate}]\nผู้ตรวจ: [${oldInspector}] ➡️ [${finalInspector}]`);
+                    setLoadingMsg(null);
+                    
+                    setSuccessModal(
+                        <div className="text-center">
+                            <div className="font-black text-sm mb-1 text-green-600">ย้ายรายการสำเร็จ!</div>
+                            <div className="text-xs text-slate-600 font-bold mb-1">{task.site_name || task.equipment_no}</div>
+                            {oldDate !== targetDate && <div className="text-[10px] text-slate-600">วันที่: {oldDate} ➡️ {targetDate}</div>}
+                            {oldInspector !== finalInspector && <div className="text-[10px] text-slate-600">ผู้ตรวจ: {oldInspector} ➡️ {finalInspector}</div>}
+                        </div>
+                    );
+
+                    const logDetail = `[ย้ายคิวงานด้วยวิธีลากวางบนตาราง]\nโดย: ${user?.username || '-'}\nรายการ: ${task.site_name || task.equipment_no}\nวันที่: [${oldDate}] ➡️ [${targetDate}]\nผู้ตรวจ: [${oldInspector}] ➡️ [${finalInspector}]`;
+                    apiAction({ 
+                        action: 'update_booking', id: docId || task.id, date: targetDate, inspector_name: finalInspector, 
+                        user: user?.username || 'admin', reason: logDetail, job_type: task.job_type, equipment_no: task.equipment_no
+                    }, null, true);
+                } catch(e) { setAlertMsg('เกิดข้อผิดพลาดในการย้าย: ' + e.message); setLoadingMsg(null); }
+            }
+        });
+    };
+
+    const filteredBookings = useMemo(() => { 
+        return (db.bookings || []).filter(b => { 
+            if (filterArea === 'All') return true; 
+            return String(b.area || '') === filterArea; 
+        }); 
+    }, [db.bookings, filterArea]);
+
+    const handleEditSpecialSubmit = async (e) => {
+        e.preventDefault();
+        const fd = new FormData(e.target);
+        const newTitle = fd.get('site_name'); const newInspector = fd.get('inspector_name'); const newDate = fd.get('date');
+        
+        try {
+            setLoadingMsg('กำลังอัปเดตข้อมูล...');
+            if (modal.returnTo) setModal({ type: modal.returnTo }); else setModal(null);
+            
+            const docId = await findDocIdFallback(modal.data);
+            if (docId && window.dbFirestore) {
+                await window.dbFirestore.collection("bookings").doc(docId).update({ site_name: newTitle, inspector_name: newInspector, date: newDate });
+            }
+            
+            logActivity('EDIT SPECIAL', `[แก้ไขข้อมูลพิเศษ]\nหัวข้อ: ${newTitle}\nวันที่: ${newDate}\nผู้ตรวจ: ${newInspector}`);
+            setLoadingMsg(null);
+            
+            setSuccessModal(
+                <div className="text-center">
+                    <div className="font-black text-sm mb-1">อัปเดตข้อมูลสำเร็จ!</div>
+                    <div className="text-xs text-slate-600">รายการ: {newTitle}</div>
+                    <div className="text-xs text-slate-600">วันที่: {newDate}</div>
+                </div>
+            );
+
+            const logDetail = `[แก้ไขคิวพิเศษ]\nโดย: ${user?.username}\nเปลี่ยนวันที่เป็น ${newDate}\nผู้ตรวจ: ${newInspector}\nหัวข้อ: ${newTitle}`;
+            const payload = { 
+                ...modal.data, action: 'update_booking', id: docId || modal.data.id, 
+                site_name: newTitle, inspector_name: newInspector, date: newDate, 
+                user: user?.username, reason: logDetail, job_type: modal.data.job_type, equipment_no: modal.data.equipment_no 
+            };
+            apiAction(payload, null, true);
+        } catch (e) { console.error(e); setAlertMsg('เกิดข้อผิดพลาด: ' + e.message); setLoadingMsg(null); }
+    };
+
+    // 📍 ฟังก์ชันจัดการการ Submit ฟอร์มจองคิวงาน
+    const handleBookingSubmit = async (e) => {
+        e.preventDefault();
+        const fd = new FormData(e.target);
+        const data = Object.fromEntries(fd);
+        if (!user?.username) return setAlertMsg('กรุณาเข้าสู่ระบบก่อนทำรายการ');
+        
+        let finalArea = areaSelection === 'other' ? (fd.get('custom_area') || 'ไม่ระบุ') : (fd.get('area') || areaSelection);
+        let finalProductLine = productLineSelection === 'อื่นๆโปรดระบุ' ? (fd.get('custom_product_line') || 'ไม่ระบุ') : (fd.get('product_line') || productLineSelection);
+        let finalJobType = fd.get('job_type') || jobTypeSelection;
+
+        const isAdminOverride = fd.get('isAdminOverride') === 'true' || modal?.data?.isAdminOverride === true || (isAdmin && modal?.data?.id);
+        const targetInspector = isAdminOverride ? fd.get('admin_inspector_target') : modal?.data?.inspector_name;
+        const targetDate = isAdminOverride ? fd.get('admin_date_target') : modal?.data?.date;
+        
+        const isPastDate = targetDate < todayLocalString;
+        if (isPastDate && !isAdmin && modal?.data?.id && quickAddType === 'job') {
+            return setAlertMsg('🔒 ไม่อนุญาตให้แก้ไขข้อมูลงานที่ผ่านมาแล้วครับ (ติดต่อ Admin หากจำเป็น)');
+        }
+
+        // 📍 กรณีเพิ่มวันหยุด/วันลา/กิจกรรม (ข้ามการเช็ค Validation เอกสาร)
+        if (quickAddType !== 'job') {
+            let p_jobType = '', p_siteName = fd.get('site_name'), p_eq = '';
+            const sTime = fd.get('start_time'); const eTime = fd.get('end_time');
+            if (sTime && eTime && sTime >= eTime) return setAlertMsg("เวลาสิ้นสุดต้องมากกว่าเวลาเริ่มต้นในวันเดียวกัน");
+            if (sTime && eTime) p_siteName = `${sTime}-${eTime} ${p_siteName}`;
+
+            if (quickAddType === 'leave') {
+                p_jobType = 'leave';
+                if (fd.get('leave_type') === 'อื่นๆโปรดระบุ') p_siteName = (sTime && eTime ? `${sTime}-${eTime} ` : '') + fd.get('custom_leave');
+                else p_siteName = (sTime && eTime ? `${sTime}-${eTime} ` : '') + fd.get('leave_type');
+                p_eq = `LEAVE_${Date.now()}`;
+            } else if (quickAddType === 'event') {
+                p_jobType = 'company_event';
+                p_eq = `EVENT_${Date.now()}_${eventColor}`;
+            } else if (quickAddType === 'holiday') {
+                p_jobType = 'public_holiday';
+                p_eq = `HLD_${Date.now()}`;
+            }
+
+            try {
+                setLoadingMsg(`กำลังบันทึกข้อมูล${quickAddType}ลง Firebase...`);
+                const newId = modal?.data?.id || (window.SAIS_UTILS?.generateId ? window.SAIS_UTILS.generateId() : Date.now().toString());
+                const docId = modal?.data ? await findDocIdFallback(modal.data) || newId : newId;
+                setModal(null);
+                
+                if (window.dbFirestore) {
+                    await window.dbFirestore.collection("bookings").doc(String(docId)).set({
+                        id: docId, date: targetDate, inspector_name: quickAddType === 'holiday' ? 'SYSTEM_HOLIDAY' : targetInspector,
+                        job_type: p_jobType, site_name: p_siteName, equipment_no: p_eq, created_by: user?.username, status: 'active'
+                    });
+                }
+                
+                logActivity(`CREATE ${quickAddType.toUpperCase()}`, `[บันทึก${quickAddType}]\nวันที่: ${targetDate}\nหัวข้อ: ${p_siteName}\nผู้ตรวจ: ${targetInspector}`);
+                setLoadingMsg(null);
+                
+                setSuccessModal(
+                    <div className="text-center">
+                        <div className="font-black text-sm mb-1">บันทึกข้อมูลสำเร็จ!</div>
+                        <div className="text-xs text-slate-600">รายการ: {p_siteName}</div>
+                        <div className="text-xs text-slate-600">วันที่: {targetDate}</div>
+                    </div>
+                );
+
+                const logDetail = `[บันทึก${quickAddType}]\nโดย: ${user?.username}\nวันที่: ${targetDate}\nหัวข้อ: ${p_siteName}\nผู้ตรวจ: ${targetInspector}`;
+                apiAction({ action: 'create_multiple_bookings', dates: [targetDate], inspector_name: quickAddType === 'holiday' ? 'SYSTEM_HOLIDAY' : targetInspector, job_type: p_jobType, site_name: p_siteName, equipment_no: p_eq, user: user?.username, reason: logDetail }, null, true);
+
+            } catch(e) { console.error(e); setAlertMsg('ข้อผิดพลาดในการบันทึก: ' + e.message); setLoadingMsg(null); }
+            return;
+        }
+
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        // 📍 1. ตรวจสอบข้อมูลในช่อง Text Fields ว่ากรอกครบหรือไม่
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        const missingFields = [];
+        if (!data.site_name || String(data.site_name).trim() === '') missingFields.push('• ชื่อโครงการ / รายการ');
+        if (!data.equipment_no || String(data.equipment_no).trim() === '') missingFields.push('• หมายเลข Eq No.');
+        if (!data.unit_no || String(data.unit_no).trim() === '') missingFields.push('• หมายเลข Unit');
+        if (!finalProductLine || finalProductLine === '' || finalProductLine === 'ไม่ระบุ') missingFields.push('• Product Line');
+        if (!finalJobType || finalJobType === '') missingFields.push('• ประเภทงาน (Job Type)');
+        if (!finalArea || finalArea === '' || finalArea === 'ไม่ระบุ') missingFields.push('• พื้นที่หน้างาน');
+        if (!targetDate) missingFields.push('• วันที่ต้องการจอง (Date)');
+        if (!targetInspector) missingFields.push('• ผู้ตรวจ (Inspector)');
+        if (!isAdmin && (!data.tel || String(data.tel).trim() === '')) missingFields.push('• เบอร์โทรศัพท์ติดต่อหน้างาน');
+
+        if (missingFields.length > 0) {
+            return setAlertMsg(`❌ กรุณากรอกข้อมูลในช่องต่อไปนี้ให้ครบถ้วน:\n\n${missingFields.join('\n')}`);
+        }
+
+        if (!isAdmin && !/^\d{10}$/.test(data.tel)) return setAlertMsg('กรุณากรอกเบอร์โทรศัพท์ให้ครบ 10 หลัก (เฉพาะตัวเลข)');
+        if (isAdmin && data.tel && !/^\d{10}$/.test(data.tel)) return setAlertMsg('เบอร์โทรศัพท์ต้องมี 10 หลัก (หรือเว้นว่างไว้)');
+
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        // 📍 2. ตรวจสอบการแนบเอกสาร และ รูปถ่ายหน้างาน ให้ครบ 100%
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        const missingDocs = [];
+        if (!(docUrls.layout || modal?.data?.layout_img)) missingDocs.push('• เอกสาร Layout');
+        if (!(docUrls.wiring || modal?.data?.wiring_img)) missingDocs.push('• เอกสาร Wiring');
+        if (!(docUrls.precheck || modal?.data?.precheck_img)) missingDocs.push('• เอกสาร Precheck');
+        
+        if (!(docUrls.site_cond_1 || modal?.data?.site_cond_1)) missingDocs.push('• รูปถ่ายจุดที่ 1. หน้าตู้คอนโทรล');
+        if (!(docUrls.site_cond_2 || modal?.data?.site_cond_2)) missingDocs.push('• รูปถ่ายจุดที่ 2. บนหลังคาลิฟต์');
+        if (!(docUrls.site_cond_3 || modal?.data?.site_cond_3)) missingDocs.push('• รูปถ่ายจุดที่ 3. ด้านบนปล่อง');
+        if (!(docUrls.site_cond_4 || modal?.data?.site_cond_4)) missingDocs.push('• รูปถ่ายจุดที่ 4. ก้นบ่อลิฟต์');
+        if (!(docUrls.site_cond_5 || modal?.data?.site_cond_5)) missingDocs.push('• รูปถ่ายจุดที่ 5. ภายในตู้ลิฟต์');
+        if (!(docUrls.site_cond_6 || modal?.data?.site_cond_6)) missingDocs.push('• รูปถ่ายจุดที่ 6. หน้าชั้นและรอบวงกบประตูนอก');
+
+        if (missingDocs.length > 0) {
+            return setAlertMsg(`❌ กรุณาแนบเอกสารและรูปภาพหน้างานให้ครบ 100%\nขาดรายการดังนี้:\n\n${missingDocs.join('\n')}`);
+        }
+
+        if (Object.values(uploadingDoc).some(status => status === true)) {
+            return setAlertMsg('⏳ ระบบกำลังอัปโหลดไฟล์...\nกรุณารอให้ระบบอัปโหลดไฟล์เสร็จสมบูรณ์ 100% ก่อนกดยืนยันครับ');
+        }
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        // เช็คการจองซ้ำ
+        const isDup = (db.bookings || []).some(b => {
+            const sameDate = b.date && formatSafeDate(b.date) === targetDate;
+            if (!sameDate) return false;
+            if (b.id === modal?.data?.id) return false;
+            if (String(b.inspector_name) === 'SYSTEM_HOLIDAY') return false;
+            if (String(b.status) === 'cancelled') return false;
+            if (String(b.equipment_no) === String(data.equipment_no)) return true;
+            if (!isAdmin && String(b.inspector_name) === targetInspector) return true;
+            return false;
+        });
+        if (isDup) return setAlertMsg(isAdmin ? `เลข Eq No. ${data.equipment_no} ถูกจองไปแล้วในวันนี้` : 'ผู้ตรวจคิวเต็มแล้วในวันนี้');
+        
+        // เช็คสิทธิ์ Certificate ผู้ตรวจ
+        const targetInspectorObj = (db.inspectors || []).find(i => i.name === targetInspector);
+        let allowedCerts = ['ES1', '3300', 'S-villas'];
+        if (targetInspectorObj && targetInspectorObj.product_lines && targetInspectorObj.product_lines.trim() !== '') {
+            allowedCerts = targetInspectorObj.product_lines.split(',').map(s => s.trim());
+        }
+        if (!allowedCerts.includes(finalProductLine) && finalProductLine !== 'ไม่ระบุ') {
+            return setAlertMsg(`ผู้ตรวจ "${targetInspector}" ไม่ได้รับสิทธิ์ให้ตรวจ Product Line: ${finalProductLine}\n(สิทธิ์ปัจจุบัน: ${allowedCerts.join(', ')})`);
+        }
+
+        const jStart = fd.get('job_start_time'); const jEnd = fd.get('job_end_time');
+        if (jStart && jEnd && jStart >= jEnd) return setAlertMsg("เวลาสิ้นสุดต้องมากกว่าเวลาเริ่มต้นในวันเดียวกัน");
+        let finalSiteName = data.site_name;
+        if (jStart && jEnd) finalSiteName = `${jStart}-${jEnd} ${finalSiteName}`;
+
+        const bookingId = modal?.data?.id || (window.SAIS_UTILS?.generateId ? window.SAIS_UTILS.generateId() : Date.now().toString());
+        const docId = modal?.data ? await findDocIdFallback(modal.data) || bookingId : bookingId;
+
+        const payload = {
+            ...data, site_name: finalSiteName, tel: String(data.tel || ''), area: finalArea, job_type: finalJobType, product_line: finalProductLine,
+            id: docId, inspector_name: targetInspector, date: targetDate, user: user?.username, created_by: modal?.data?.created_by || user?.username,
+            layout_img: docUrls.layout || modal?.data?.layout_img || '',
+            wiring_img: docUrls.wiring || modal?.data?.wiring_img || '',
+            precheck_img: docUrls.precheck || modal?.data?.precheck_img || '',
+            site_cond_1: docUrls.site_cond_1 || modal?.data?.site_cond_1 || '',
+            site_cond_2: docUrls.site_cond_2 || modal?.data?.site_cond_2 || '',
+            site_cond_3: docUrls.site_cond_3 || modal?.data?.site_cond_3 || '',
+            site_cond_4: docUrls.site_cond_4 || modal?.data?.site_cond_4 || '',
+            site_cond_5: docUrls.site_cond_5 || modal?.data?.site_cond_5 || '',
+            site_cond_6: docUrls.site_cond_6 || modal?.data?.site_cond_6 || ''
+        };
+
+        if (isAdmin) { 
+            payload.layout_doc = data.layout_doc ? 'true' : 'false';
+            payload.wiring_doc = data.wiring_doc ? 'true' : 'false'; 
+            payload.precheck_doc = data.precheck_doc ? 'true' : 'false';
+        } else if (modal?.data?.id) { 
+            payload.layout_doc = String(modal?.data?.layout_doc || 'false');
+            payload.wiring_doc = String(modal?.data?.wiring_doc || 'false'); 
+            payload.precheck_doc = String(modal?.data?.precheck_doc || 'false');
+        } else { 
+            payload.layout_doc = 'false';
+            payload.wiring_doc = 'false'; payload.precheck_doc = 'false';
+        }
+        
+        try {
+            setLoadingMsg(modal?.data?.id ? 'กำลังอัปเดตข้อมูลลง Firebase...' : 'กำลังบันทึกคิวงานลง Firebase...');
+            
+            if (window.dbFirestore) {
+                await window.dbFirestore.collection("bookings").doc(String(docId)).set({ ...payload, status: 'active' });
+            }
+            
+            logActivity(modal?.data?.id ? 'UPDATE BOOKING' : 'CREATE BOOKING', getDiffLog(modal?.data?.id ? modal.data : null, payload, user?.username));
+            setLoadingMsg(null);
+            
+            setSuccessModal(
+                <div className="text-center">
+                    <div className="font-black text-sm mb-1">{modal?.data?.id ? 'แก้ไขคิวงานสำเร็จ!' : 'จองคิวงานสำเร็จ!'}</div>
+                    <div className="text-xs text-slate-600 font-bold mb-1">{finalSiteName}</div>
+                    <div className="text-[10px] text-slate-600">วันที่: {targetDate}</div>
+                    <div className="text-[10px] text-slate-600">ผู้ตรวจ: {targetInspector}</div>
+                </div>
+            );
+            
+            if (isAdmin && !modal?.data?.id && fd.get('keep_open')) {
+                e.target.equipment_no.value = '';
+                if (e.target.unit_no) e.target.unit_no.value = '';
+                e.target.equipment_no.focus(); 
+            } else {
+                setModal(null);
+                setAreaSelection(''); setJobTypeSelection(''); setProductLineSelection(''); setLiveMapUrl('');
+                setDocUrls({ layout: '', wiring: '', precheck: '', site_cond_1: '', site_cond_2: '', site_cond_3: '', site_cond_4: '', site_cond_5: '', site_cond_6: '' });
+            }
+
+            // Sync กลับไป Sheets เพื่อ Backup เบื้องหลัง
+            const finalPayload = { ...payload, action: modal?.data?.id ? 'update_booking' : 'create_booking', reason: getDiffLog(modal?.data?.id ? modal.data : null, payload, user?.username) };
+            apiAction(finalPayload, null, true);
+        } catch(e) { console.error(e); setAlertMsg('เกิดข้อผิดพลาดในการบันทึก: ' + e.message); setLoadingMsg(null); }
+    };
+
+    const handleLogout = () => {
+        setConfirmDialog({
+            msg: 'ยืนยันการออกจากระบบใช่หรือไม่?',
+            onConfirm: async () => {
+                setConfirmDialog(null); setLoadingMsg('กำลังออกจากระบบ...'); setUser(null);
+                try {
+                    localStorage.clear(); sessionStorage.clear();
+                    if ('caches' in window) caches.keys().then(names => Promise.all(names.map(n => caches.delete(n))));
+                } catch (error) {} finally { window.location.replace(window.location.pathname + '?logout=' + new Date().getTime()); }
+            }
+        });
+    }
