@@ -108,7 +108,7 @@
         setUploadingDoc(prev => ({ ...prev, [docType]: false }));
     };
 
-    // 📍 ฟังก์ชันสำหรับการลากและวาง (Drag & Drop) กลับมาครบสมบูรณ์ 100%
+    // 📍 ระบบลากวาง (Drag & Drop) และถังขยะ
     const handleDragStart = (e, taskId) => { 
         e.dataTransfer.setData('taskId', taskId);
         setDraggingTask(db.bookings.find(b => String(b.id) === String(taskId) || String(b.equipment_no) === String(taskId))); 
@@ -324,7 +324,7 @@
         } catch (e) { console.error(e); setAlertMsg('เกิดข้อผิดพลาด: ' + e.message); setLoadingMsg(null); }
     };
 
-    // 📍 ฟังก์ชันจัดการการ Submit ฟอร์มจองคิวงาน
+    // 📍 ฟังก์ชันจัดการการ Submit ฟอร์มจองคิวงาน และเพิ่มระบบ Validation บังคับ 100%
     const handleBookingSubmit = async (e) => {
         e.preventDefault();
         const fd = new FormData(e.target);
