@@ -35,7 +35,7 @@ const Icons = {
     Edit: () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>,
     FileText: () => <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>,
     Image: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>,
-    Settings: () => <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l.06.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2 2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06-.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>,
+    Settings: () => <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1 0-2.83 2 2 0 0 1 0 2.83l.06.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2 2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06-.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>,
     HelpCircle: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>,
     Info: () => <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>,
     UserPlus: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>,
@@ -116,7 +116,6 @@ const RealtimeClock = React.memo(({ lastSyncTime }) => {
     );
 });
 
-// 📍 CalendarGrid
 const CalendarGrid = React.memo(({ daysInView, db, isAdmin, user, setModal, setAlertMsg, handleDrop, handleDragOver, handleDragLeave, handleDragStart, handleDragEnd, setConfirmDialog, apiAction, setQuickAddType, filteredBookings, tableFontScale, columnZoom, specialFontScale, isExporting }) => {
     const taskMap = useMemo(() => {
         const map = {};
@@ -303,6 +302,126 @@ const CalendarGrid = React.memo(({ daysInView, db, isAdmin, user, setModal, setA
         </div>
     );
 });
+
+// 📍 COMPONENT หลักของระบบ
+const App = () => {
+    const SCRIPT_URL = window?.SAIS_CONFIG?.SCRIPT_URL || "";
+    const ADMIN_USERNAME = window?.SAIS_CONFIG?.ADMIN_USERNAME || "jiraphong2227";
+    const utils = window?.SAIS_UTILS || {};
+
+    const [modal, setModal] = useState(null); 
+    const [db, setDb] = useState({ bookings: [], inspectors: [], notifications: [], settings: {} });
+    const [adminDb, setAdminDb] = useState({ users: [], logs: [], all_bookings: [] });
+    const [hasLoadedAdmin, setHasLoadedAdmin] = useState(false);
+    
+    const dbRef = useRef(db);
+    useEffect(() => { dbRef.current = db; }, [db]);
+
+    const [currentDate, setCurrentDate] = useState(getThaiTime());
+    const [period, setPeriod] = useState(getThaiTime().getDate() > 15 ? 1 : 0); 
+    const todayLocalString = window?.SAIS_UTILS?.getLocalDateString(getThaiTime()) || getThaiTime().toISOString().split('T')[0];
+    const [lastSyncTime, setLastSyncTime] = useState(getThaiTime());
+    
+    const [isRefreshing, setIsRefreshing] = useState(false);
+    const [pullY, setPullY] = useState(0);
+    const touchStartY = useRef(0);
+    
+    const [isExporting, setIsExporting] = useState(false);
+    const [viewFileUrl, setViewFileUrl] = useState(null);
+    const [docUrls, setDocUrls] = useState({ layout: '', wiring: '', precheck: '', site_cond_1: '', site_cond_2: '', site_cond_3: '', site_cond_4: '', site_cond_5: '', site_cond_6: '' });
+
+    const [isDragging, setIsDragging] = useState(false);
+    const [isTrashHovered, setIsTrashHovered] = useState(false);
+    const [draggingTask, setDraggingTask] = useState(null);
+    const lastActivityTime = useRef(Date.now());
+
+    const [showBookingHelp, setShowBookingHelp] = useState(false);
+    const [showLoginHelp, setShowLoginHelp] = useState(false);
+    const [showAdminHelp, setShowAdminHelp] = useState(false);
+    const [showRoleHelp, setShowRoleHelp] = useState(false);
+
+    const [dashYear, setDashYear] = useState(getThaiTime().getFullYear().toString());
+    const [dashMonth, setDashMonth] = useState((getThaiTime().getMonth() + 1).toString()); 
+    const [dashArea, setDashArea] = useState('All');
+    const [dashJobType, setDashJobType] = useState('All');
+
+    const [isFirebaseReady, setIsFirebaseReady] = useState(false);
+    const [initialLoad, setInitialLoad] = useState(true);
+    const [loadingMsg, setLoadingMsg] = useState(null);
+    const [uploadingDoc, setUploadingDoc] = useState({ layout: false, wiring: false, precheck: false, site_cond_1: false, site_cond_2: false, site_cond_3: false, site_cond_4: false, site_cond_5: false, site_cond_6: false });
+    const [alertMsg, setAlertMsg] = useState(null);
+    const [confirmDialog, setConfirmDialog] = useState(null);
+    const [promptDialog, setPromptDialog] = useState(null);
+    const [successModal, setSuccessModal] = useState(null);
+    const [currentView, setCurrentView] = useState('calendar');
+    
+    const [isRegisterMode, setIsRegisterMode] = useState(false);
+    const [isForgotMode, setIsForgotMode] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+    const [showActivityModal, setShowActivityModal] = useState(false);
+    const [activityTab, setActivityTab] = useState('notif');
+    const [showSettings, setShowSettings] = useState(false);
+    
+    const [tableFontScale, setTableFontScale] = useState(() => { try { const saved = localStorage.getItem('sais_table_font_scale'); return saved ? parseFloat(saved) : 1.0; } catch(e) { return 1.0; } });
+    const [specialFontScale, setSpecialFontScale] = useState(() => { try { const saved = localStorage.getItem('sais_special_font_scale'); return saved ? parseFloat(saved) : 1.0; } catch(e) { return 1.0; } });
+    const [columnZoom, setColumnZoom] = useState(() => { try { const saved = localStorage.getItem('sais_column_zoom'); return saved ? parseFloat(saved) : 1.0; } catch(e) { return 1.0; } });
+    
+    const [filterArea, setFilterArea] = useState('All');
+    const [areaSelection, setAreaSelection] = useState('');
+    const [jobTypeSelection, setJobTypeSelection] = useState('');
+    const [productLineSelection, setProductLineSelection] = useState('');
+    const [adminTab, setAdminTab] = useState('menu'); 
+    const [adminBookingsLimit, setAdminBookingsLimit] = useState(20);
+    const [myBookingsTab, setMyBookingsTab] = useState('pending');
+    const [myBookingsLimit, setMyBookingsLimit] = useState(20);
+    const [actionMenuId, setActionMenuId] = useState(null); 
+    const [logsLimit, setLogsLimit] = useState(20);
+    const [quickAddType, setQuickAddType] = useState('job');
+
+    const [searchQuery, setSearchQuery] = useState('');
+    const [localSearchQuery, setLocalSearchQuery] = useState('');
+    const [searchInspector, setSearchInspector] = useState('All');
+
+    const [logSearchQuery, setLogSearchQuery] = useState('');
+    const [localLogSearchQuery, setLocalLogSearchQuery] = useState('');
+
+    const [leaveStartDate, setLeaveStartDate] = useState('');
+    const [leaveEndDate, setLeaveEndDate] = useState('');
+    const [leaveInspectors, setLeaveInspectors] = useState([]); 
+    const [showLeaveDropdown, setShowLeaveDropdown] = useState(false);
+    const [leaveType, setLeaveType] = useState('ลาพักร้อน');
+    const [customLeaveType, setCustomLeaveType] = useState(''); 
+    
+    const [eventStartDate, setEventStartDate] = useState('');
+    const [eventEndDate, setEventEndDate] = useState('');
+    const [eventInspectors, setEventInspectors] = useState([]);
+    const [showEventDropdown, setShowEventDropdown] = useState(false);
+    const [eventColor, setEventColor] = useState('#22c55e');
+    
+    const [holidayStartDate, setHolidayStartDate] = useState('');
+    const [holidayEndDate, setHolidayEndDate] = useState('');
+
+    const [selectedLeavesToDelete, setSelectedLeavesToDelete] = useState([]);
+    const [selectedEventsToDelete, setSelectedEventsToDelete] = useState([]);
+    const [selectedHolidaysToDelete, setSelectedHolidaysToDelete] = useState([]);
+
+    const [liveMapUrl, setLiveMapUrl] = useState('');
+    const scrollRef = useRef(null);
+
+    const [user, setUser] = useState(() => { 
+        try { 
+            const saved = localStorage.getItem('sais_user'); 
+            const savedTime = localStorage.getItem('sais_session_time');
+            if (saved && savedTime) {
+                if (Date.now() - parseInt(savedTime) > 86400000) {
+                    localStorage.removeItem('sais_user'); localStorage.removeItem('sais_session_time');
+                    return null;
+                }
+                return JSON.parse(saved); 
+            }
+            return null;
+        } catch(e) { return null; } 
+    });
 // 📍 COMPONENT หลักของระบบ
 const App = () => {
     const SCRIPT_URL = window?.SAIS_CONFIG?.SCRIPT_URL || "";
@@ -423,7 +542,7 @@ const App = () => {
             return null;
         } catch(e) { return null; } 
     });
-    // 📍 2. โหลด Firebase อย่างปลอดภัย (แก้บัคโหลด Script ชนกัน)
+    // 📍 2. โหลด Firebase อย่างปลอดภัย
     useEffect(() => {
         const loadScript = (src) => {
             return new Promise((resolve, reject) => {
@@ -508,7 +627,6 @@ const App = () => {
 
     const isAdmin = useMemo(() => user?.role === 'admin', [user]);
     
-    // 📍 จุดนี้คือตัวแก้ปัญหา "ReferenceError: unreadNotifs is not defined" ที่แท้จริง (จัดลำดับถูกต้องแล้ว 100%)
     const unreadNotifs = useMemo(() => {
         return (db.notifications || []).filter(n => {
             const isTargeted = n.target === user?.username || (isAdmin && n.target === 'ALL_ADMIN');
@@ -614,7 +732,12 @@ const App = () => {
         }
     }, [modal, areaSelection]);
 
-    // 📍 4. ระบบบันทึกประวัติการใช้งาน (Log) ลง Firebase 100%
+    // 📍 4. ตัวกรองคิวงานในตารางปฏิทิน
+    const filteredBookings = useMemo(() => { 
+        return (db.bookings || []).filter(b => filterArea === 'All' ? true : String(b.area || '') === filterArea); 
+    }, [db.bookings, filterArea]);
+
+    // 📍 5. ระบบบันทึกประวัติการใช้งาน (Log) ลง Firebase 100%
     const logActivity = async (action, details) => {
         if (!window.dbFirestore || !user) return;
         try {
@@ -753,9 +876,6 @@ const App = () => {
                 await fetchPromise;
                 setLoadingMsg(null);
             }
-            if (!disableAutoSync && hasLoadedAdmin) {
-                fetchAdminData(0, 50, 'all'); 
-            }
             return true;
         } catch (e) { 
             if (customLoadMsg) setLoadingMsg(null);
@@ -765,7 +885,6 @@ const App = () => {
 
     const handleTabChange = (view) => {
         setCurrentView(view);
-        if ((view === 'admin' || view === 'search') && !hasLoadedAdmin) fetchAdminData(0, 50, 'all');
     };
 
     const findDocIdFallback = async (booking) => {
@@ -1022,7 +1141,8 @@ const App = () => {
         setLoadingMsg(null); 
         setUploadingDoc(prev => ({ ...prev, [docType]: false }));
     };
-    // 📍 9. ระบบ Drag & Drop ย้ายวันบนตาราง และ ทิ้งลงถังขยะ
+
+    // 📍 10. ระบบ Drag & Drop ทิ้งลงถังขยะ และ ย้ายวัน
     const handleDragStart = (e, taskId) => { 
         e.dataTransfer.setData('taskId', taskId);
         setDraggingTask(db.bookings.find(b => String(b.id) === String(taskId) || String(b.equipment_no) === String(taskId))); 
@@ -1186,11 +1306,7 @@ const App = () => {
             }
         });
     };
-
-    const filteredBookings = useMemo(() => { 
-        return (db.bookings || []).filter(b => filterArea === 'All' ? true : String(b.area || '') === filterArea); 
-    }, [db.bookings, filterArea]);
-
+    // 📍 11. ฟังก์ชันแก้ไขข้อมูลพิเศษ (วันลา วันหยุด กิจกรรม)
     const handleEditSpecialSubmit = async (e) => {
         e.preventDefault();
         const fd = new FormData(e.target);
@@ -1226,7 +1342,7 @@ const App = () => {
         } catch (e) { console.error(e); setAlertMsg('เกิดข้อผิดพลาด: ' + e.message); setLoadingMsg(null); }
     };
 
-    // 📍 10. ฟังก์ชันการบันทึกจองคิวงาน
+    // 📍 12. ฟังก์ชัน Submit การจองคิวงาน และเพิ่มคิวพิเศษ (The Core Function)
     const handleBookingSubmit = async (e) => {
         e.preventDefault();
         const fd = new FormData(e.target);
@@ -1246,6 +1362,7 @@ const App = () => {
             return setAlertMsg('🔒 ไม่อนุญาตให้แก้ไขข้อมูลงานที่ผ่านมาแล้วครับ (ติดต่อ Admin หากจำเป็น)');
         }
 
+        // กรณีเพิ่มวันหยุด/วันลา/กิจกรรม (ข้ามการเช็ค Validation เอกสาร)
         if (quickAddType !== 'job') {
             let p_jobType = '', p_siteName = fd.get('site_name'), p_eq = '';
             const sTime = fd.get('start_time'); const eTime = fd.get('end_time');
@@ -1296,6 +1413,7 @@ const App = () => {
             return;
         }
 
+        // กรณีจองคิวงานปกติ (Validation 100%)
         const missingFields = [];
         if (!data.site_name || String(data.site_name).trim() === '') missingFields.push('• ชื่อโครงการ / รายการ');
         if (!data.equipment_no || String(data.equipment_no).trim() === '') missingFields.push('• หมายเลข Eq No.');
@@ -1419,7 +1537,8 @@ const App = () => {
                 setDocUrls({ layout: '', wiring: '', precheck: '', site_cond_1: '', site_cond_2: '', site_cond_3: '', site_cond_4: '', site_cond_5: '', site_cond_6: '' });
             }
 
-            apiAction({ ...payload, action: modal?.data?.id ? 'update_booking' : 'create_booking', reason: getDiffLog(modal?.data?.id ? modal.data : null, payload, user?.username) }, null, true);
+            const finalPayload = { ...payload, action: modal?.data?.id ? 'update_booking' : 'create_booking', reason: getDiffLog(modal?.data?.id ? modal.data : null, payload, user?.username) };
+            apiAction(finalPayload, null, true);
         } catch(e) { console.error(e); setAlertMsg('เกิดข้อผิดพลาดในการบันทึก: ' + e.message); setLoadingMsg(null); }
     };
 
@@ -1571,7 +1690,6 @@ const App = () => {
         );
     }
 
-    // 📍 ป้องกันจอขาวระหว่างโหลด Firebase
     if (!isFirebaseReady) return <div className="h-screen w-full flex items-center justify-center flex-col gap-4 p-8 text-center"><Icons.Loader /><h2 className="text-xl font-bold text-slate-800">กำลังเตรียมระบบฐานข้อมูล...</h2></div>;
 
     // 📍 15. MAIN UI LAYOUT
@@ -1639,7 +1757,7 @@ const App = () => {
                             <button className="w-full py-2 bg-red-50 text-red-600 font-bold rounded-lg border border-red-200 text-xs mt-4" onClick={() => { setTableFontScale(1.0); setSpecialFontScale(1.0); setColumnZoom(1.0); }}>↺ รีเซ็ตค่าเริ่มต้น</button>
                         </div>
                     )}
-                    <button className="btn-icon relative" onClick={() => { setShowActivityModal(true); if(!hasLoadedAdmin && isAdmin) fetchAdminData(0, 50, 'all'); }}>
+                    <button className="btn-icon relative" onClick={() => setShowActivityModal(true)}>
                         <Icons.Bell />{unreadNotifs.length > 0 && <span className="notif-dot animate-pulse"></span>}
                     </button>
                     <div className="text-xs font-bold bg-white/20 px-3 py-1.5 rounded-lg flex items-center gap-1">
@@ -1648,7 +1766,7 @@ const App = () => {
                 </div>
             </header>
 
-            {/* แถบเมนูด้านล่าง (Bottom Nav) ล็อคติดล่างเสมอ */}
+            {/* 📍 แถบเมนูด้านล่าง (Bottom Nav) ล็อคติดล่างเสมอ */}
             <div className="bottom-nav">
                 <div className={`nav-item ${currentView === 'calendar' ? 'active' : ''}`} onClick={() => handleTabChange('calendar')}><Icons.Home /> ปฏิทิน</div>
                 <div className={`nav-item ${currentView === 'search' ? 'active' : ''}`} onClick={() => handleTabChange('search')}><Icons.Search /> ค้นหา</div>
@@ -1831,7 +1949,6 @@ const App = () => {
                     </div>
                 </div>
             )}
-
             {/* 4. หน้างานของฉัน (สำหรับ User และ Inspector) */}
             {currentView === 'my_bookings' && !isAdmin && user?.role !== 'viewer' && (
                 <div className="page-view relative pb-20">
@@ -1853,19 +1970,20 @@ const App = () => {
                             {user?.role === 'inspector' ? (
                                 <ul className="list-disc pl-4 space-y-1.5 text-slate-200">
                                     <li><b>⏳ คิวรอตรวจ:</b> แสดงคิวงานที่ถูกจองชื่อคุณไว้ แต่แอดมินยังตรวจเอกสาร (Layout/Wiring/Precheck) ไม่ครบ 100%</li>
-                                    <li><b>✅ เอกสารครบแล้ว:</b> งานที่พร้อมดำเนินการ (แอดมินยืนยันเอกสารครบแล้ว)</li>
-                                    <li><b>🌴 วันลาของฉัน:</b> จัดการวันหยุดพักผ่อน, ลาป่วย, ลากิจ ของคุณได้เองที่แท็บนี้</li>
+                                    <li><b>✅ เอกสารครบแล้ว:</b> งานที่พร้อมดำเนินการ (แอดมินยืนยันเอกสารครบแล้ว)[span_0](start_span)[span_0](end_span)</li>
+                                    <li><b>🌴 วันลาของฉัน:</b> จัดการวันหยุดพักผ่อน, ลาป่วย, ลากิจ ของคุณได้เองที่แท็บนี้[span_1](start_span)[span_1](end_span)</li>
                                 </ul>
                             ) : (
                                 <ul className="list-disc pl-4 space-y-1.5 text-slate-200">
-                                    <li><b>⏳ รอดำเนินการ:</b> คิวงานที่คุณกดจองไว้ และระบบกำลังรอให้ Admin ทำการตรวจสอบเอกสารแนบของคุณ</li>
-                                    <li><b>✅ อนุมัติแล้ว:</b> คิวงานที่ Admin ตรวจตรวจสอบเอกสารครบถ้วนแล้ว (คิวสมบูรณ์)</li>
-                                    <li><b>แก้ไข/ยกเลิก:</b> กดปุ่มจุดสามจุด (⋮) มุมขวาบนของการ์ด เพื่อแก้ไขรายละเอียด หรือยกเลิกคิวงาน <span className="text-red-400">(เฉพาะคิวที่ยังไม่ถึงวันตรวจจริง)</span></li>
+                                    <li><b>⏳ รอดำเนินการ:</b> คิวงานที่คุณกดจองไว้ และระบบกำลังรอให้ Admin ทำการตรวจสอบเอกสารแนบของคุณ[span_2](start_span)[span_2](end_span)</li>
+                                    <li><b>✅ อนุมัติแล้ว:</b> คิวงานที่ Admin ตรวจตรวจสอบเอกสารครบถ้วนแล้ว (คิวสมบูรณ์)[span_3](start_span)[span_3](end_span)</li>
+                                    <li><b>แก้ไข/ยกเลิก:</b> กดปุ่มจุดสามจุด (⋮) มุมขวาบนของการ์ด เพื่อแก้ไขรายละเอียด หรือยกเลิกคิวงาน <span className="text-red-400">(เฉพาะคิวที่ยังไม่ถึงวันตรวจจริง)</span>[span_4](start_span)[span_4](end_span)</li>
                                 </ul>
                             )}
                         </div>
                     )}
 
+                    {/* แท็บเมนูย่อยของหน้างานฉัน */}
                     <div className="flex gap-2 mb-4 bg-slate-100 p-1 rounded-lg overflow-x-auto custom-scrollbar">
                         <button onClick={() => setMyBookingsTab('pending')} className={`flex-1 py-2 text-xs font-bold rounded-md whitespace-nowrap px-2 ${myBookingsTab === 'pending' ? 'bg-white shadow-sm text-amber-600' : 'text-slate-500'}`}>
                             {user?.role === 'inspector' ? '⏳ คิวรอตรวจ' : '⏳ รอดำเนินการ'}
@@ -1981,7 +2099,7 @@ const App = () => {
                 </div>
             )}
 
-            {/* 5. หน้าต่าง Dashboard วิเคราะห์ข้อมูลอัจฉริยะ */}
+            {/* 5. หน้า Dashboard */}
             {currentView === 'dashboard' && (
                 <div className="page-view relative pb-20 animate-pop">
                     <div className="sticky top-0 bg-[#f1f5f9] z-10 pb-4 pt-2 border-b border-slate-200 mb-4">
@@ -1995,196 +2113,53 @@ const App = () => {
                         </div>
                     ) : (
                         <div className="space-y-4 pb-10">
-                            {/* 📍 Filters กรองสถิติแบบละเอียด */}
                             <div className="bg-white p-4 rounded-xl shadow-sm border border-slate-200 grid grid-cols-2 gap-3">
                                 <div>
                                     <label className="text-[10px] font-bold text-slate-500 block mb-1">ปี (Year)</label>
                                     <select className="w-full text-xs p-2.5 border rounded-lg bg-slate-50 font-bold outline-none text-slate-700" value={dashYear} onChange={e=>setDashYear(e.target.value)}>
-                                        <option value="All">ทุกปี</option>
-                                        <option value="2024">2024</option>
-                                        <option value="2025">2025</option>
-                                        <option value="2026">2026</option>
-                                        <option value="2027">2027</option>
+                                        <option value="All">ทุกปี</option><option value="2025">2025</option><option value="2026">2026</option><option value="2027">2027</option>
                                     </select>
                                 </div>
                                 <div>
                                     <label className="text-[10px] font-bold text-slate-500 block mb-1">เดือน (Month)</label>
                                     <select className="w-full text-xs p-2.5 border rounded-lg bg-slate-50 font-bold outline-none text-slate-700" value={dashMonth} onChange={e=>setDashMonth(e.target.value)}>
-                                        <option value="All">ทุกเดือน</option>
-                                        <option value="1">มกราคม</option>
-                                        <option value="2">กุมภาพันธ์</option>
-                                        <option value="3">มีนาคม</option>
-                                        <option value="4">เมษายน</option>
-                                        <option value="5">พฤษภาคม</option>
-                                        <option value="6">มิถุนายน</option>
-                                        <option value="7">กรกฎาคม</option>
-                                        <option value="8">สิงหาคม</option>
-                                        <option value="9">กันยายน</option>
-                                        <option value="10">ตุลาคม</option>
-                                        <option value="11">พฤศจิกายน</option>
-                                        <option value="12">ธันวาคม</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label className="text-[10px] font-bold text-slate-500 block mb-1">พื้นที่ (Area)</label>
-                                    <select className="w-full text-xs p-2.5 border rounded-lg bg-slate-50 font-bold outline-none text-slate-700" value={dashArea} onChange={e=>setDashArea(e.target.value)}>
-                                        <option value="All">ทุกพื้นที่</option>
-                                        <option value="กรุงเทพและปริมณฑล">กทม. และปริมณฑล</option>
-                                        <option value="เชียงใหม่">เชียงใหม่</option>
-                                        <option value="ภูเก็ต">ภูเก็ต</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label className="text-[10px] font-bold text-slate-500 block mb-1">ประเภทงาน (Job Type)</label>
-                                    <select className="w-full text-xs p-2.5 border rounded-lg bg-slate-50 font-bold outline-none text-slate-700" value={dashJobType} onChange={e=>setDashJobType(e.target.value)}>
-                                        <option value="All">ทุกประเภท</option>
-                                        <option value="New">New</option>
-                                        <option value="MOD">MOD</option>
-                                        <option value="Re-ins temporary power supply">Re-ins temporary</option>
-                                        <option value="Re-ins builder lift">Re-ins builder lift</option>
+                                        <option value="All">ทุกเดือน</option><option value="1">มกราคม</option><option value="2">กุมภาพันธ์</option><option value="3">มีนาคม</option><option value="4">เมษายน</option><option value="5">พฤษภาคม</option><option value="6">มิถุนายน</option><option value="7">กรกฎาคม</option><option value="8">สิงหาคม</option><option value="9">กันยายน</option><option value="10">ตุลาคม</option><option value="11">พฤศจิกายน</option><option value="12">ธันวาคม</option>
                                     </select>
                                 </div>
                             </div>
 
                             {(() => {
-                                // Data Processing
                                 const sourceData = isAdmin ? (adminDb.all_bookings || []) : (db.bookings || []);
-                                
                                 const allTasks = sourceData.filter(b => {
                                     if (String(b.status) === 'cancelled') return false;
                                     if (['leave', 'company_event', 'public_holiday'].includes(String(b.job_type).toLowerCase())) return false;
                                     if (String(b.equipment_no).startsWith('LEAVE_') || String(b.equipment_no).startsWith('EVENT_') || String(b.equipment_no).startsWith('HLD_')) return false;
-                                    
                                     const d = b.date ? new Date(b.date) : null;
                                     if (!d || isNaN(d.getTime())) return false;
-                                    
                                     if (dashYear !== 'All' && d.getFullYear().toString() !== dashYear) return false;
                                     if (dashMonth !== 'All' && (d.getMonth() + 1).toString() !== dashMonth) return false;
-                                    if (dashArea !== 'All' && b.area !== dashArea && (dashArea !== 'other' || ['กรุงเทพและปริมณฑล', 'เชียงใหม่', 'ภูเก็ต'].includes(b.area))) return false;
-                                    if (dashJobType !== 'All' && b.job_type !== dashJobType) return false;
-                                    
                                     return true;
                                 });
-                                
                                 const totalJobs = allTasks.length;
-                                
-                                // Group By Job Type
-                                const jobTypeCounts = allTasks.reduce((acc, task) => {
-                                    const type = task.job_type || 'ไม่ระบุ';
-                                    acc[type] = (acc[type] || 0) + 1;
-                                    return acc;
-                                }, {});
-
-                                // Document Completeness
                                 const docStats = allTasks.reduce((acc, task) => {
                                     const isComplete = String(task.layout_doc)==='true' && String(task.wiring_doc)==='true' && String(task.precheck_doc)==='true';
                                     if (isComplete) acc.complete++; else acc.pending++;
                                     return acc;
                                 }, { complete: 0, pending: 0 });
-
                                 const successRate = totalJobs > 0 ? Math.round((docStats.complete / totalJobs) * 100) : 0;
 
-                                // Inspector Counts
-                                const inspectorCounts = allTasks.reduce((acc, task) => {
-                                    const name = task.inspector_name || 'ไม่ระบุ';
-                                    acc[name] = (acc[name] || 0) + 1;
-                                    return acc;
-                                }, {});
-                                
-                                const sortedInspectors = (db.inspectors || []).map(ins => {
-                                    return { name: ins.name, count: inspectorCounts[ins.name] || 0 };
-                                }).sort((a,b) => b.count - a.count);
-
-                                // Top Sites
-                                const siteCounts = allTasks.reduce((acc, task) => {
-                                    if(task.site_name) {
-                                        acc[task.site_name] = (acc[task.site_name] || 0) + 1;
-                                    }
-                                    return acc;
-                                }, {});
-                                const topSites = Object.entries(siteCounts).sort((a,b)=>b[1]-a[1]).slice(0, 3);
-
                                 return (
-                                    <>
-                                        {/* Summary Cards */}
-                                        <div className="grid grid-cols-2 gap-3">
-                                            <div className="bg-gradient-to-br from-blue-600 to-blue-800 p-4 rounded-2xl shadow-sm text-white">
-                                                <div className="text-[10px] font-bold text-blue-100 mb-1">คิวงานตามเงื่อนไข</div>
-                                                <div className="text-3xl font-black">{totalJobs} <span className="text-xs font-normal opacity-80">งาน</span></div>
-                                            </div>
-                                            <div className="bg-gradient-to-br from-emerald-500 to-emerald-700 p-4 rounded-2xl shadow-sm text-white relative overflow-hidden">
-                                                <div className="text-[10px] font-bold text-emerald-100 mb-1">อัตราเอกสารผ่าน</div>
-                                                <div className="text-3xl font-black">{successRate}%</div>
-                                                <div className="text-[9px] font-normal opacity-80 mt-1">({docStats.complete} จาก {totalJobs} งาน)</div>
-                                                <Icons.FileCheck /> 
-                                                <div className="absolute -right-4 -bottom-4 opacity-20 transform scale-[3]">
-                                                    <Icons.FileCheck />
-                                                </div>
-                                            </div>
+                                    <div className="grid grid-cols-2 gap-3">
+                                        <div className="bg-gradient-to-br from-blue-600 to-blue-800 p-4 rounded-2xl shadow-sm text-white">
+                                            <div className="text-[10px] font-bold text-blue-100 mb-1">คิวงานตามเงื่อนไข</div>
+                                            <div className="text-3xl font-black">{totalJobs} <span className="text-xs font-normal opacity-80">งาน</span></div>
                                         </div>
-
-                                        {/* Top Sites */}
-                                        {topSites.length > 0 && (
-                                            <div className="bg-white p-5 rounded-2xl shadow-sm border border-slate-200">
-                                                <h3 className="text-sm font-bold text-slate-800 mb-4 flex items-center gap-2"><Icons.MapPin /> โครงการที่มีงานตรวจมากที่สุด</h3>
-                                                <div className="space-y-3">
-                                                    {topSites.map(([site, count], idx) => (
-                                                        <div key={site} className="flex items-center justify-between border-b border-slate-100 pb-2 last:border-0 last:pb-0">
-                                                            <div className="flex items-center gap-3">
-                                                                <span className={`w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs ${idx === 0 ? 'bg-amber-100 text-amber-600' : idx === 1 ? 'bg-slate-100 text-slate-600' : 'bg-orange-100 text-orange-600'}`}>{idx + 1}</span>
-                                                                <span className="font-bold text-slate-700 text-xs truncate max-w-[200px]">{site}</span>
-                                                            </div>
-                                                            <div className="font-black text-slate-800 text-xs bg-slate-50 px-2 py-1 rounded-md">{count} คิว</div>
-                                                        </div>
-                                                    ))}
-                                                </div>
-                                            </div>
-                                        )}
-
-                                        {/* Top Inspectors Leaderboard */}
-                                        <div className="bg-white p-5 rounded-2xl shadow-sm border border-slate-200">
-                                            <h3 className="text-sm font-bold text-slate-800 mb-4 flex items-center gap-2"><Icons.Award /> สถิติงานแยกตามผู้ตรวจ</h3>
-                                            <div className="space-y-2">
-                                                {sortedInspectors.map((ins, idx) => (
-                                                    <div key={ins.name} className="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-100 hover:border-blue-200 transition-colors">
-                                                        <div className="flex items-center gap-3">
-                                                            <div className="w-8 h-8 rounded-full flex items-center justify-center font-black text-sm bg-indigo-100 text-indigo-600 border border-indigo-200 shadow-sm">
-                                                                {idx + 1}
-                                                            </div>
-                                                            <span className="font-bold text-slate-700 text-xs">{ins.name}</span>
-                                                        </div>
-                                                        <div className="font-black text-blue-600 text-sm">{ins.count} <span className="text-[10px] font-normal text-slate-400">คิว</span></div>
-                                                    </div>
-                                                ))}
-                                                {sortedInspectors.length === 0 && <div className="text-xs text-slate-400 text-center py-4 bg-slate-50 rounded-xl border-2 border-dashed">ไม่มีรายชื่อผู้ตรวจ</div>}
-                                            </div>
+                                        <div className="bg-gradient-to-br from-emerald-500 to-emerald-700 p-4 rounded-2xl shadow-sm text-white relative overflow-hidden">
+                                            <div className="text-[10px] font-bold text-emerald-100 mb-1">อัตราเอกสารผ่าน</div>
+                                            <div className="text-3xl font-black">{successRate}%</div>
+                                            <div className="text-[9px] font-normal opacity-80 mt-1">({docStats.complete} จาก {totalJobs} งาน)</div>
                                         </div>
-
-                                        {/* Job Type Breakdown Bar */}
-                                        {totalJobs > 0 && (
-                                            <div className="bg-white p-5 rounded-2xl shadow-sm border border-slate-200">
-                                                <h3 className="text-sm font-bold text-slate-800 mb-4 flex items-center gap-2"><Icons.Chart /> สัดส่วนประเภทงาน</h3>
-                                                <div className="space-y-3">
-                                                    {Object.entries(jobTypeCounts).sort((a,b)=>b[1]-a[1]).map(([type, count], idx) => {
-                                                        const percent = totalJobs > 0 ? Math.round((count / totalJobs) * 100) : 0;
-                                                        const colors = ['bg-blue-500', 'bg-indigo-500', 'bg-purple-500', 'bg-pink-500', 'bg-slate-400'];
-                                                        const colorClass = colors[idx % colors.length];
-                                                        return (
-                                                            <div key={type} className="relative">
-                                                                <div className="flex justify-between text-xs font-bold text-slate-700 mb-1">
-                                                                    <span>{type}</span>
-                                                                    <span>{count} งาน ({percent}%)</span>
-                                                                </div>
-                                                                <div className="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
-                                                                    <div className={`${colorClass} h-2 rounded-full`} style={{ width: `${percent}%` }}></div>
-                                                                </div>
-                                                            </div>
-                                                        )
-                                                    })}
-                                                </div>
-                                            </div>
-                                        )}
-                                    </>
+                                    </div>
                                 )
                             })()}
                         </div>
@@ -2192,1033 +2167,364 @@ const App = () => {
                 </div>
             )}
 
-            {/* 6. หน้า Admin Panel จัดการทุกอย่าง */}
+            {/* 6. หน้า Admin Panel */}
             {currentView === 'admin' && isAdmin && (
                 <div className="page-view relative pb-20">
                     <div className="sticky top-0 bg-[#f1f5f9] z-10 pb-4 pt-2 border-b border-slate-200 mb-4">
                         <div className="flex justify-between items-center">
-                            <h2 className="text-xl font-bold text-slate-800 flex items-center gap-2">
-                                <Icons.Shield /> Admin Panel
-                            </h2>
+                            <h2 className="text-xl font-bold text-slate-800 flex items-center gap-2"><Icons.Shield /> Admin Panel</h2>
                             <div className="flex gap-2">
-                                <button onClick={() => setShowAdminHelp(!showAdminHelp)} className="text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1.5 rounded-lg border border-blue-200 flex items-center gap-1 active:scale-95">
-                                    <Icons.HelpCircle /> คู่มือแอดมิน
-                                </button>
-                                {adminTab !== 'menu' && (
-                                    <button onClick={() => setAdminTab('menu')} className="text-xs font-bold text-slate-500 bg-white px-3 py-1.5 rounded-lg border shadow-sm active:scale-95 flex items-center gap-1">
-                                        <Icons.ChevronLeft /> กลับเมนู
-                                    </button>
-                                )}
+                                <button onClick={handleMigrateToFirestore} className="text-[11px] font-bold text-white bg-red-600 px-3 py-1.5 rounded-lg shadow-sm">🔥 ย้ายเข้า Firebase</button>
+                                {adminTab !== 'menu' && <button onClick={() => setAdminTab('menu')} className="text-xs font-bold text-slate-500 bg-white px-3 py-1.5 rounded-lg border">กลับเมนู</button>}
                             </div>
                         </div>
                     </div>
 
-                    {showAdminHelp && (
-                        <div className="bg-blue-50 p-5 rounded-2xl border border-blue-200 mb-4 shadow-sm text-sm animate-pop">
-                            <div className="flex justify-between items-center border-b border-blue-200 pb-2 mb-3">
-                                <h3 className="font-bold text-blue-800 flex items-center gap-2"><Icons.Shield /> คู่มือการใช้งานสำหรับ Admin</h3>
-                                <button onClick={() => setShowAdminHelp(false)} className="text-blue-500 hover:text-blue-700"><Icons.X /></button>
-                            </div>
-                            <div className="space-y-4 text-blue-900 text-xs leading-relaxed">
-                                <div><b>👥 จัดการผู้ใช้งาน:</b> สามารถกด "สร้างผู้ใช้งานใหม่" หรือ อนุมัติสิทธิ์พนักงาน (Pending ➡️ Approved) และรีเซ็ตรหัสผ่าน <br/><span className="text-red-600 font-bold">จุดสำคัญ:</span> สำหรับผู้ตรวจ (Inspector) แอดมินต้อง <b>"ผูกชื่อในตาราง (Mapping Name)"</b> ให้ตรงกับชื่อในปฏิทินเสมอ เพื่อให้งานเด้งไปที่หน้า "งานฉัน" ของผู้ตรวจท่านนั้น</div>
-                                <div><b>📋 ผู้ตรวจ & Certificate:</b> กำหนดว่า Inspector แต่ละท่านสามารถตรวจ Product Line ใดได้บ้าง (เช่น ES1, 3300) หากไม่ได้เลือกไว้ ระบบจะไม่ให้ User จองคิวนั้น</div>
-                                <div><b>🗓️ จัดการวันพิเศษ (ลาก/ย้ายคิว):</b> แอดมินสามารถกำหนดวันหยุดบริษัท, กิจกรรม (แสดงแถบสีเขียว), และวันลา (แสดงแถบสีเหลือง) พร้อมทั้งลบแบบกลุ่มได้ <br/> แอดมินสามารถ <b>คลิกค้างที่การ์ดแล้วลาก (Drag & Drop)</b> เพื่อย้ายคิวงานข้ามวันหรือเปลี่ยนคนตรวจได้ทันที</div>
-                                <div><b>✅ ตรวจสอบเอกสาร:</b> ไปที่แท็บ "ตรวจเอกสาร" ด้านล่าง เพื่อกดยืนยัน (Check) ว่าได้รับ Layout, Wiring, Precheck เรียบร้อยแล้ว (สถานะจะเปลี่ยนเป็นตรวจแล้ว)</div>
-                                <div><b>🎨 ตั้งค่าสีเว็บไซต์:</b> ปรับแต่งสีสัน, ความกว้างตาราง, และขนาดฟอนต์ได้ด้วยตนเองผ่านเมนู <b>"ตั้งค่าสีเว็บไซต์ / ตาราง"</b> โดยไม่ต้องแก้โค้ด</div>
-                            </div>
-                        </div>
-                    )}
-
                     {adminTab === 'menu' && (
                         <div className="grid grid-cols-2 gap-4 animate-pop pb-10">
-                            <button onClick={() => setAdminTab('users')} className="p-5 bg-white rounded-2xl shadow-sm border border-slate-200 flex flex-col items-center gap-3 hover:border-blue-400 transition-all">
-                                <div className="w-12 h-12 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center"><Icons.User /></div>
-                                <span className="font-bold text-slate-700 text-sm">จัดการผู้ใช้งาน</span>
-                            </button>
-
-                            <button onClick={() => setAdminTab('inspectors')} className="p-5 bg-white rounded-2xl shadow-sm border border-slate-200 flex flex-col items-center gap-3 hover:border-indigo-400 transition-all">
-                                <div className="w-12 h-12 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center"><Icons.FileCheck /></div>
-                                <span className="font-bold text-slate-700 text-sm">ผู้ตรวจ & Certificate</span>
-                            </button>
-
-                            <button onClick={() => setAdminTab('special_management')} className="p-5 bg-white rounded-2xl shadow-sm border border-slate-200 flex flex-col items-center gap-3 hover:border-amber-400 transition-all col-span-2">
-                                <div className="w-12 h-12 rounded-full bg-amber-50 text-amber-600 flex items-center justify-center"><Icons.Clock /></div>
-                                <span className="font-bold text-amber-800 text-sm text-center">จัดการวันกิจกรรม/วันลา/วันหยุด</span>
-                            </button>
-
-                            <button onClick={() => setAdminTab('all_bookings')} className="p-5 bg-white rounded-2xl shadow-sm border border-slate-200 flex flex-col items-center gap-3 hover:border-slate-400 transition-all col-span-2">
-                                <div className="w-12 h-12 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center"><Icons.List /></div>
-                                <span className="font-bold text-slate-700 text-sm text-center">งานทั้งหมดในระบบ</span>
-                            </button>
-
-                            <button onClick={() => setAdminTab('web_settings')} className="p-5 bg-white rounded-2xl shadow-sm border border-slate-200 flex flex-col items-center gap-3 hover:border-pink-400 transition-all col-span-2">
-                                <div className="w-12 h-12 rounded-full bg-pink-50 text-pink-600 flex items-center justify-center"><Icons.Settings /></div>
-                                <span className="font-bold text-slate-700 text-sm text-center">ตั้งค่าสีเว็บไซต์ / ตาราง (UI Settings)</span>
-                            </button>
+                            <button onClick={() => setAdminTab('users')} className="p-5 bg-white rounded-2xl shadow-sm border flex flex-col items-center gap-2"><Icons.User /><span className="font-bold text-sm">จัดการผู้ใช้งาน</span></button>
+                            <button onClick={() => setAdminTab('inspectors')} className="p-5 bg-white rounded-2xl shadow-sm border flex flex-col items-center gap-2"><Icons.FileCheck /><span className="font-bold text-sm">ผู้ตรวจ & Certificate</span></button>
+                            <button onClick={() => setAdminTab('special_management')} className="p-5 bg-white rounded-2xl shadow-sm border flex flex-col items-center gap-2 col-span-2"><Icons.Clock /><span className="font-bold text-sm text-amber-800">จัดการวันกิจกรรม/วันลา/วันหยุด</span></button>
+                            <button onClick={() => setAdminTab('all_bookings')} className="p-5 bg-white rounded-2xl shadow-sm border flex flex-col items-center gap-2 col-span-2"><Icons.List /><span className="font-bold text-sm">งานทั้งหมดในระบบ</span></button>
+                            <button onClick={() => setAdminTab('web_settings')} className="p-5 bg-white rounded-2xl shadow-sm border flex flex-col items-center gap-2 col-span-2"><Icons.Settings /><span className="font-bold text-sm">ตั้งค่าสีเว็บไซต์ / ตาราง</span></button>
                         </div>
                     )}
 
-                    {/* 📍 Tab ปรับแต่งเว็บไซต์ */}
                     {adminTab === 'web_settings' && (
-                        <div className="space-y-4 animate-pop pb-10">
-                            <div className="flex justify-between items-center border-b pb-2">
-                                <h3 className="font-bold text-slate-800 flex items-center gap-2"><Icons.Settings /> ปรับแต่งหน้าตาเว็บไซต์ (UI Customization)</h3>
-                                <button onClick={() => {
-                                    setConfirmDialog({
-                                        msg: 'ต้องการรีเซ็ตการตั้งค่า UI ทั้งหมดให้กลับเป็นค่าเริ่มต้นหรือไม่?',
-                                        onConfirm: async () => {
-                                            setConfirmDialog(null);
-                                            setLoadingMsg('กำลังรีเซ็ตค่าเริ่มต้น...');
-                                            if (window.dbFirestore) {
-                                                await window.dbFirestore.collection("settings").doc("web_settings").set({});
-                                            }
-                                            logActivity('RESET SETTINGS', 'รีเซ็ตการตั้งค่า UI เป็นค่าเริ่มต้น');
-                                            setLoadingMsg(null);
-                                            setSuccessModal('ระบบกลับไปใช้สีและขนาดเริ่มต้น');
-                                        }
-                                    });
-                                }} className="text-[10px] bg-red-50 text-red-600 px-3 py-1.5 rounded-lg border border-red-200 font-bold active:scale-95 shadow-sm">
-                                    ↺ รีเซ็ตค่าเริ่มต้น
-                                </button>
+                        <form onSubmit={async (e) => {
+                            e.preventDefault();
+                            const fd = new FormData(e.target);
+                            const settingsObj = Object.fromEntries(fd);
+                            try {
+                                setLoadingMsg('กำลังบันทึกการตั้งค่า...');
+                                if (window.dbFirestore) await window.dbFirestore.collection("settings").doc("web_settings").set(settingsObj);
+                                setLoadingMsg(null);
+                                setSuccessModal('บันทึกการตั้งค่าสำเร็จ');
+                            } catch(err) { setLoadingMsg(null); setAlertMsg('เกิดข้อผิดพลาด: ' + err.message); }
+                        }} className="bg-white p-5 rounded-2xl border space-y-4">
+                            <div><label className="text-xs font-bold block mb-1">ชื่อระบบ (App Name)</label><input type="text" name="appName" defaultValue={db.settings?.appName || 'SAIS BOOKING'} className="w-full p-2.5 border rounded-lg text-sm font-bold bg-slate-50" /></div>
+                            <div className="grid grid-cols-3 gap-2">
+                                <div><label className="text-[10px] font-bold block mb-1">สี Header</label><input type="color" name="headerBg" defaultValue={db.settings?.headerBg || '#1e293b'} className="w-full h-10 border rounded cursor-pointer" /></div>
+                                <div><label className="text-[10px] font-bold block mb-1">สีข้อความ Header</label><input type="color" name="headerText" defaultValue={db.settings?.headerText || '#ffffff'} className="w-full h-10 border rounded cursor-pointer" /></div>
+                                <div><label className="text-[10px] font-bold block mb-1">สีพื้นหลัง App</label><input type="color" name="appBg" defaultValue={db.settings?.appBg || '#f8fafc'} className="w-full h-10 border rounded cursor-pointer" /></div>
                             </div>
-                            
-                            <form onSubmit={async (e) => {
-                                e.preventDefault();
-                                const fd = new FormData(e.target);
-                                const settingsObj = Object.fromEntries(fd);
-                                
-                                try {
-                                    setLoadingMsg('กำลังบันทึกการตั้งค่าลง Firebase...');
-                                    if (window.dbFirestore) {
-                                        await window.dbFirestore.collection("settings").doc("web_settings").set(settingsObj);
-                                    }
-                                    logActivity('UPDATE SETTINGS', 'บันทึกการตั้งค่า UI ใหม่');
-                                    setLoadingMsg(null);
-                                    setSuccessModal('อัปเดตสไตล์เว็บไซต์เรียบร้อยแล้ว');
-                                } catch(err) {
-                                    setAlertMsg('เกิดข้อผิดพลาดในการตั้งค่า: ' + err.message);
-                                    setLoadingMsg(null);
-                                }
-                            }} className="bg-white p-5 rounded-2xl border shadow-sm space-y-6">
-                                
-                                <div className="space-y-3">
-                                    <h4 className="text-sm font-bold text-blue-700 bg-blue-50 p-2 rounded-lg">1. ทั่วไปและแถบหัวเรื่อง</h4>
-                                    <div><label className="text-xs font-bold text-slate-700 block mb-1">ชื่อแถบหัวเรื่อง (App Name)</label><input type="text" name="appName" defaultValue={db.settings?.appName || 'SAIS BOOKING'} className="w-full p-3 border rounded-xl text-sm font-bold bg-slate-50" /></div>
-                                    <div className="grid grid-cols-3 gap-3">
-                                        <div><label className="text-[10px] font-bold text-slate-500 block mb-1">สีพื้นหลัง Header</label><input type="color" name="headerBg" defaultValue={db.settings?.headerBg || '#1e293b'} className="w-full h-10 border rounded cursor-pointer" /></div>
-                                        <div><label className="text-[10px] font-bold text-slate-500 block mb-1">สีตัวอักษร Header</label><input type="color" name="headerText" defaultValue={db.settings?.headerText || '#ffffff'} className="w-full h-10 border rounded cursor-pointer" /></div>
-                                        <div><label className="text-[10px] font-bold text-slate-500 block mb-1">สีพื้นหลังแอป (App BG)</label><input type="color" name="appBg" defaultValue={db.settings?.appBg || '#f8fafc'} className="w-full h-10 border rounded cursor-pointer" /></div>
-                                    </div>
-                                </div>
-
-                                <div className="space-y-3">
-                                    <h4 className="text-sm font-bold text-emerald-700 bg-emerald-50 p-2 rounded-lg">2. ขนาดและรูปแบบตาราง</h4>
-                                    
-                                    <div className="bg-slate-50 p-3 rounded-xl border border-slate-100">
-                                        <label className="text-xs font-bold text-slate-700 block mb-2">ความกว้างคอลัมน์ (px)</label>
-                                        <div className="flex items-center justify-between gap-3">
-                                            <button type="button" className="w-12 h-12 bg-white border border-slate-300 rounded-xl font-black text-xl text-slate-600 shadow-sm active:scale-95" 
-                                                onClick={(e) => {
-                                                    const input = e.target.parentElement.querySelector('input');
-                                                    const span = e.target.parentElement.querySelector('span');
-                                                    let val = parseInt(input.value) - 5; if(val < 50) val = 50;
-                                                    input.value = val; span.innerText = val;
-                                                }}>-</button>
-                                            <span className="font-black text-blue-600 text-lg">{db.settings?.gridColWidth || 115}</span>
-                                            <button type="button" className="w-12 h-12 bg-white border border-slate-300 rounded-xl font-black text-xl text-slate-600 shadow-sm active:scale-95" 
-                                                onClick={(e) => {
-                                                    const input = e.target.parentElement.querySelector('input');
-                                                    const span = e.target.parentElement.querySelector('span');
-                                                    let val = parseInt(input.value) + 5; if(val > 400) val = 400;
-                                                    input.value = val; span.innerText = val;
-                                                }}>+</button>
-                                            <input type="hidden" name="gridColWidth" defaultValue={db.settings?.gridColWidth || 115} />
-                                        </div>
-                                    </div>
-
-                                    <div className="grid grid-cols-3 gap-3">
-                                        <div><label className="text-[10px] font-bold text-slate-500 block mb-1">สีเส้นขอบตาราง</label><input type="color" name="tableBorder" defaultValue={db.settings?.tableBorder || '#cbd5e1'} className="w-full h-10 border rounded cursor-pointer" /></div>
-                                        <div><label className="text-[10px] font-bold text-slate-500 block mb-1">สีหัวตาราง</label><input type="color" name="tableHeaderBg" defaultValue={db.settings?.tableHeaderBg || '#1e293b'} className="w-full h-10 border rounded cursor-pointer" /></div>
-                                        <div><label className="text-[10px] font-bold text-slate-500 block mb-1">สีอักษรหัวตาราง</label><input type="color" name="tableHeaderText" defaultValue={db.settings?.tableHeaderText || '#ffffff'} className="w-full h-10 border rounded cursor-pointer" /></div>
-                                    </div>
-                                </div>
-
-                                <div className="space-y-3">
-                                    <h4 className="text-sm font-bold text-indigo-700 bg-indigo-50 p-2 rounded-lg">3. ขนาดและตัวอักษรภายในการ์ดงาน</h4>
-                                    
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                        <div className="bg-slate-50 p-3 rounded-xl border border-slate-100">
-                                            <label className="text-xs font-bold text-slate-700 block mb-2">ความโค้งมนของการ์ด (px)</label>
-                                            <div className="flex items-center justify-between gap-3">
-                                                <button type="button" className="w-10 h-10 bg-white border border-slate-300 rounded-lg font-black text-slate-600 shadow-sm active:scale-95" onClick={(e) => { const el = e.target.parentElement.querySelector('input'); const sp = e.target.parentElement.querySelector('span'); let v = parseInt(el.value)-1; if(v<0) v=0; el.value=v; sp.innerText=v; }}>-</button>
-                                                <span className="font-black text-blue-600">{db.settings?.cardRadius || 6}</span>
-                                                <button type="button" className="w-10 h-10 bg-white border border-slate-300 rounded-lg font-black text-slate-600 shadow-sm active:scale-95" onClick={(e) => { const el = e.target.parentElement.querySelector('input'); const sp = e.target.parentElement.querySelector('span'); let v = parseInt(el.value)+1; if(v>20) v=20; el.value=v; sp.innerText=v; }}>+</button>
-                                                <input type="hidden" name="cardRadius" defaultValue={db.settings?.cardRadius || 6} />
-                                            </div>
-                                        </div>
-                                        <div className="bg-slate-50 p-3 rounded-xl border border-slate-100">
-                                            <label className="text-xs font-bold text-slate-700 block mb-2">ระยะขอบในการ์ด (Padding px)</label>
-                                            <div className="flex items-center justify-between gap-3">
-                                                <button type="button" className="w-10 h-10 bg-white border border-slate-300 rounded-lg font-black text-slate-600 shadow-sm active:scale-95" onClick={(e) => { const el = e.target.parentElement.querySelector('input'); const sp = e.target.parentElement.querySelector('span'); let v = parseInt(el.value)-1; if(v<0) v=0; el.value=v; sp.innerText=v; }}>-</button>
-                                                <span className="font-black text-blue-600">{db.settings?.cardPadding || 4}</span>
-                                                <button type="button" className="w-10 h-10 bg-white border border-slate-300 rounded-lg font-black text-slate-600 shadow-sm active:scale-95" onClick={(e) => { const el = e.target.parentElement.querySelector('input'); const sp = e.target.parentElement.querySelector('span'); let v = parseInt(el.value)+1; if(v>15) v=15; el.value=v; sp.innerText=v; }}>+</button>
-                                                <input type="hidden" name="cardPadding" defaultValue={db.settings?.cardPadding || 4} />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                        <div className="bg-slate-50 p-3 rounded-xl border border-slate-100">
-                                            <label className="text-xs font-bold text-slate-700 block mb-2">ขนาดฟอนต์หัวข้อหลัก (px)</label>
-                                            <div className="flex items-center justify-between gap-3">
-                                                <button type="button" className="w-10 h-10 bg-white border border-slate-300 rounded-lg font-black text-slate-600 shadow-sm active:scale-95" onClick={(e) => { const el = e.target.parentElement.querySelector('input'); const sp = e.target.parentElement.querySelector('span'); let v = parseFloat(el.value)-0.5; if(v<8) v=8; el.value=v; sp.innerText=v; }}>-</button>
-                                                <span className="font-black text-indigo-600">{db.settings?.titleFontSize || 11}</span>
-                                                <button type="button" className="w-10 h-10 bg-white border border-slate-300 rounded-lg font-black text-slate-600 shadow-sm active:scale-95" onClick={(e) => { const el = e.target.parentElement.querySelector('input'); const sp = e.target.parentElement.querySelector('span'); let v = parseFloat(el.value)+0.5; if(v>24) v=24; el.value=v; sp.innerText=v; }}>+</button>
-                                                <input type="hidden" name="titleFontSize" defaultValue={db.settings?.titleFontSize || 11} />
-                                            </div>
-                                        </div>
-                                        <div className="bg-slate-50 p-3 rounded-xl border border-slate-100">
-                                            <label className="text-xs font-bold text-slate-700 block mb-2">ขนาดฟอนต์รายละเอียด (px)</label>
-                                            <div className="flex items-center justify-between gap-3">
-                                                <button type="button" className="w-10 h-10 bg-white border border-slate-300 rounded-lg font-black text-slate-600 shadow-sm active:scale-95" onClick={(e) => { const el = e.target.parentElement.querySelector('input'); const sp = e.target.parentElement.querySelector('span'); let v = parseFloat(el.value)-0.5; if(v<6) v=6; el.value=v; sp.innerText=v; }}>-</button>
-                                                <span className="font-black text-indigo-600">{db.settings?.subFontSize || 10}</span>
-                                                <button type="button" className="w-10 h-10 bg-white border border-slate-300 rounded-lg font-black text-slate-600 shadow-sm active:scale-95" onClick={(e) => { const el = e.target.parentElement.querySelector('input'); const sp = e.target.parentElement.querySelector('span'); let v = parseFloat(el.value)+0.5; if(v>20) v=20; el.value=v; sp.innerText=v; }}>+</button>
-                                                <input type="hidden" name="subFontSize" defaultValue={db.settings?.subFontSize || 10} />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="space-y-3">
-                                    <h4 className="text-sm font-bold text-amber-700 bg-amber-50 p-2 rounded-lg">4. สีการ์ดแยกตามประเภทงาน</h4>
-                                    <div className="grid grid-cols-2 gap-y-3 gap-x-2">
-                                        <div className="border p-3 rounded-xl bg-slate-50"><label className="text-[10px] font-bold block mb-2 text-slate-700">งานปกติ (พื้น / อักษร)</label>
-                                            <div className="flex gap-2"><input type="color" name="normalBg" defaultValue={db.settings?.normalBg || '#e2e8f0'} className="w-1/2 h-10 border rounded cursor-pointer" /><input type="color" name="normalText" defaultValue={db.settings?.normalText || '#1e293b'} className="w-1/2 h-10 border rounded cursor-pointer" /></div>
-                                        </div>
-                                        <div className="border p-3 rounded-xl bg-slate-50"><label className="text-[10px] font-bold block mb-2 text-slate-700">งาน MOD (พื้น / อักษร)</label>
-                                            <div className="flex gap-2"><input type="color" name="modBg" defaultValue={db.settings?.modBg || '#64748b'} className="w-1/2 h-10 border rounded cursor-pointer" /><input type="color" name="modText" defaultValue={db.settings?.modText || '#ffffff'} className="w-1/2 h-10 border rounded cursor-pointer" /></div>
-                                        </div>
-                                        <div className="border p-3 rounded-xl bg-slate-50"><label className="text-[10px] font-bold block mb-2 text-slate-700">ต่างจังหวัด (พื้น / อักษร)</label>
-                                            <div className="flex gap-2"><input type="color" name="upcBg" defaultValue={db.settings?.upcBg || '#f472b6'} className="w-1/2 h-10 border rounded cursor-pointer" /><input type="color" name="upcText" defaultValue={db.settings?.upcText || '#ffffff'} className="w-1/2 h-10 border rounded cursor-pointer" /></div>
-                                        </div>
-                                        <div className="border p-3 rounded-xl bg-slate-50"><label className="text-[10px] font-bold block mb-2 text-slate-700">Re-ins/Temp (พื้น / อักษร)</label>
-                                            <div className="flex gap-2"><input type="color" name="reinsBg" defaultValue={db.settings?.reinsBg || '#fef08a'} className="w-1/2 h-10 border rounded cursor-pointer" /><input type="color" name="reinsText" defaultValue={db.settings?.reinsText || '#854d0e'} className="w-1/2 h-10 border rounded cursor-pointer" /></div>
-                                        </div>
-                                        <div className="border p-3 rounded-xl bg-red-50"><label className="text-[10px] font-bold block mb-2 text-red-600">วันหยุด (พื้น / อักษร)</label>
-                                            <div className="flex gap-2"><input type="color" name="holidayBg" defaultValue={db.settings?.holidayBg || '#D0021B'} className="w-1/2 h-10 border rounded cursor-pointer" /><input type="color" name="holidayText" defaultValue={db.settings?.holidayText || '#ffffff'} className="w-1/2 h-10 border rounded cursor-pointer" /></div>
-                                        </div>
-                                        <div className="border p-3 rounded-xl bg-amber-50"><label className="text-[10px] font-bold block mb-2 text-amber-600">วันลา (พื้น / อักษร)</label>
-                                            <div className="flex gap-2"><input type="color" name="leaveBg" defaultValue={db.settings?.leaveBg || '#eab308'} className="w-1/2 h-10 border rounded cursor-pointer" /><input type="color" name="leaveText" defaultValue={db.settings?.leaveText || '#ffffff'} className="w-1/2 h-10 border rounded cursor-pointer" /></div>
-                                        </div>
-                                        <div className="border p-3 rounded-xl bg-emerald-50 col-span-2"><label className="text-[10px] font-bold block mb-2 text-emerald-600">กิจกรรมบริษัท (พื้น / อักษร)</label>
-                                            <div className="flex gap-2"><input type="color" name="eventBg" defaultValue={db.settings?.eventBg || '#22c55e'} className="w-1/2 h-10 border rounded cursor-pointer" /><input type="color" name="eventText" defaultValue={db.settings?.eventText || '#ffffff'} className="w-1/2 h-10 border rounded cursor-pointer" /></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <button type="submit" className="w-full py-4 mt-6 bg-slate-900 text-white font-bold rounded-xl shadow-lg hover:bg-slate-800 transition-all text-sm flex items-center justify-center gap-2">
-                                    <Icons.Check /> บันทึกการตั้งค่าทั้งหมด
-                                </button>
-                            </form>
-                        </div>
+                            <button type="submit" className="w-full py-3 bg-slate-900 text-white font-bold rounded-xl shadow-md">บันทึกการตั้งค่า</button>
+                        </form>
                     )}
 
-                    {/* เมนูจัดการผู้ใช้งาน (Users) */}
                     {adminTab === 'users' && (
-                        <div className="space-y-3 mt-4 animate-pop pb-10">
-                            
-                            <div className="bg-white rounded-2xl shadow-sm border border-blue-200 overflow-hidden mb-6">
-                                <div className="bg-gradient-to-r from-blue-600 to-blue-800 p-4 text-white flex items-center gap-2">
-                                    <Icons.User /> <h3 className="font-bold text-sm">คู่มือ: การจัดการสิทธิ์ผู้ใช้งาน</h3>
-                                </div>
-                                <div className="p-4 bg-blue-50/50">
-                                    <div className="grid gap-3">
-                                        <div className="flex items-center gap-3 bg-white p-3 rounded-xl border border-blue-100 shadow-sm">
-                                            <div className="w-10 h-10 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center flex-shrink-0"><Icons.Clock /></div>
-                                            <div>
-                                                <div className="font-bold text-slate-800 text-xs">สถานะ: รออนุมัติ (Pending)</div>
-                                                <div className="text-[10px] text-slate-500 leading-tight mt-0.5">เมื่อมีผู้ใช้สมัครใหม่ จะแสดงสถานะรออนุมัติ กดแก้ไขเพื่อปรับสถานะเป็น "อนุมัติ" ผู้ใช้ถึงจะเข้าล็อกอินได้</div>
-                                            </div>
-                                        </div>
-                                        <div className="flex items-center gap-3 bg-white p-3 rounded-xl border border-blue-100 shadow-sm">
-                                            <div className="w-10 h-10 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center flex-shrink-0"><Icons.Info /></div>
-                                            <div>
-                                                <div className="font-bold text-indigo-800 text-xs">การให้สิทธิ์ Inspector (ผู้ตรวจ)</div>
-                                                <div className="text-[10px] text-slate-600 leading-tight mt-0.5">เข้าไปที่ <b>"แก้ไข/เปลี่ยนสิทธิ์"</b> เปลี่ยนสิทธิ์เป็น Inspector แล้วเลือก <b>ผูกชื่อในตาราง (Mapping Name)</b> ให้ตรงกับรายชื่อผู้ตรวจ เพื่อให้คิวงานเชื่อมโยงไปยังหน้า "งานฉัน" ของคนๆ นั้น</div>
-                                            </div>
-                                        </div>
-                                        <div className="flex items-center gap-3 bg-white p-3 rounded-xl border border-blue-100 shadow-sm">
-                                            <div className="w-10 h-10 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center flex-shrink-0"><Icons.Eye /></div>
-                                            <div>
-                                                <div className="font-bold text-emerald-800 text-xs">การให้สิทธิ์ Viewer (ผู้เข้าชม)</div>
-                                                <div className="text-[10px] text-slate-600 leading-tight mt-0.5">เหมาะสำหรับสร้างบัญชีกลางให้ช่างหน้างาน 300-500 คนเข้ามาดูตารางได้อย่างเดียว (ไม่สามารถกดเพิ่ม/ลบ/แก้ไขอะไรได้เลย)</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                        <div className="space-y-3 pb-10">
+                            <div className="flex justify-between items-center mb-3">
+                                <h3 className="font-bold text-slate-800 text-sm">ผู้ใช้งานทั้งหมด ({(adminDb.users || []).length})</h3>
+                                <button onClick={() => setModal({ type: 'edit_user', isNew: true, data: { username: '', full_name: '', department: '', position: '', phone: '', role: 'user', status: 'approved' } })} className="bg-blue-600 text-white px-3 py-1.5 rounded-lg text-xs font-bold"><Icons.Plus /> สร้างผู้ใช้งาน</button>
                             </div>
-
-                            <div className="flex justify-between items-center px-1 mb-3">
-                                <h3 className="font-bold text-slate-800 text-sm">จัดการผู้ใช้งานระบบ ({(adminDb.users || []).length})</h3>
-                                <button onClick={() => setModal({ type: 'edit_user', isNew: true, data: { username: '', full_name: '', department: '', position: '', phone: '', role: 'user', status: 'approved' } })} className="bg-blue-600 text-white px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1 shadow-sm active:scale-95">
-                                    <Icons.Plus /> สร้างผู้ใช้งาน
-                                </button>
-                            </div>
-                            
-                            {!hasLoadedAdmin ? <div className="text-center text-slate-400 p-4"><Icons.Loader /> กำลังโหลด...</div> : (adminDb.users || []).length === 0 ? <div className="text-center text-slate-400 p-8 border-2 border-dashed border-slate-200 rounded-xl">ไม่มีข้อมูลผู้ใช้</div> :
-                            (adminDb.users || []).map((u, i) => (
-                                <div key={i} className="bg-white p-4 rounded-xl shadow-sm border border-slate-200 flex flex-col gap-2 hover:border-blue-300 transition-all">
+                            {(adminDb.users || []).map((u, i) => (
+                                <div key={i} className="bg-white p-4 rounded-xl shadow-sm border flex flex-col gap-2">
                                     <div className="flex justify-between items-center">
-                                        <div className="flex items-center gap-3">
-                                            <div className="w-10 h-10 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center font-black">
-                                                {u.username.charAt(0).toUpperCase()}
-                                            </div>
-                                            <div>
-                                                <div className="font-bold text-slate-800 flex items-center gap-2">
-                                                    {u.username}
-                                                    {u.role === 'admin' && <span className="bg-red-100 text-red-600 text-[9px] px-2 py-0.5 rounded-full font-black border border-red-200 tracking-wide">ADMIN</span>}
-                                                    {u.role === 'inspector' && <span className="bg-indigo-100 text-indigo-600 text-[9px] px-2 py-0.5 rounded-full font-black border border-indigo-200 tracking-wide">INSPECTOR</span>}
-                                                    {u.role === 'viewer' && <span className="bg-emerald-100 text-emerald-600 text-[9px] px-2 py-0.5 rounded-full font-black border border-emerald-200 tracking-wide">VIEWER</span>}
-                                                </div>
-                                                <div className="text-[10px] text-slate-500 mt-1">{u.full_name || '-'} | {u.department || '-'}</div>
-                                            </div>
-                                        </div>
-                                        <div className="text-[10px] font-bold px-3 py-1.5 rounded-lg border shadow-sm flex items-center gap-1 bg-slate-50">
-                                            {u.status === 'approved' ? <span className="text-emerald-600">✅ อนุมัติแล้ว</span> : 
-                                             u.status === 'blocked' ? <span className="text-red-600">⛔ ระงับสิทธิ์</span> : 
-                                             <span className="text-amber-600">⏳ รออนุมัติ</span>}
-                                        </div>
+                                        <div><span className="font-bold text-slate-800 text-sm">{u.username}</span> <span className="text-[10px] text-slate-500">({u.full_name || '-'})</span></div>
+                                        <span className="text-[10px] font-bold text-emerald-600">{u.status}</span>
                                     </div>
-                                    
-                                    {u.inspector_mapped_name && u.role === 'inspector' && (
-                                        <div className="text-[10px] font-bold text-amber-600 bg-amber-50 px-2 py-1 rounded-md mt-1 border border-amber-100">
-                                            🔗 ผูกชื่อในตาราง: {u.inspector_mapped_name}
-                                        </div>
-                                    )}
-                                    
-                                    <div className="grid grid-cols-4 gap-2 mt-3 pt-3 border-t border-slate-100">
-                                        <button onClick={() => setModal({ type: 'edit_user', isNew: false, data: u })} className="text-[11px] bg-blue-50 text-blue-600 py-2 rounded-lg font-bold border border-blue-200 hover:bg-blue-100 flex items-center justify-center gap-1 col-span-2 shadow-sm">
-                                            <Icons.Edit /> แก้ไข/เปลี่ยนสิทธิ์
-                                        </button>
-                                        <button onClick={async () => {
-                                            const newStatus = u.status === 'approved' ? 'pending' : 'approved';
-                                            setLoadingMsg('กำลังเปลี่ยนสถานะ...');
-                                            if (window.dbFirestore) {
-                                                await window.dbFirestore.collection("users").doc(u.username).update({ status: newStatus });
-                                            }
-                                            logActivity('UPDATE USER STATUS', `ผู้ใช้: ${u.username} | สถานะใหม่: ${newStatus}`);
-                                            setLoadingMsg(null);
-                                            setSuccessModal(
-                                                <div className="text-center">
-                                                    <div className="font-black text-sm mb-1 text-green-600">เปลี่ยนสถานะสำเร็จ!</div>
-                                                    <div className="text-xs text-slate-600">ผู้ใช้: {u.username}</div>
-                                                </div>
-                                            );
-                                        }} className={`text-[11px] py-2 rounded-lg font-bold border shadow-sm col-span-1 ${u.status === 'approved' ? 'bg-amber-50 text-amber-600 border-amber-200 hover:bg-amber-100' : 'bg-emerald-50 text-emerald-600 border-emerald-200 hover:bg-emerald-100'}`}>
-                                            {u.status === 'approved' ? 'ระงับ' : 'อนุมัติ'}
-                                        </button>
+                                    <div className="flex gap-2 pt-2 border-t">
+                                        <button onClick={() => setModal({ type: 'edit_user', isNew: false, data: u })} className="text-xs bg-blue-50 text-blue-600 px-3 py-1.5 rounded-lg font-bold border">แก้ไข/เปลี่ยนสิทธิ์</button>
                                         <button onClick={() => {
                                             setConfirmDialog({
-                                                msg: `ยืนยันการลบผู้ใช้ ${u.username} ถาวร?`,
+                                                msg: `ยืนยันลบผู้ใช้ ${u.username}?`,
                                                 onConfirm: async () => {
                                                     setConfirmDialog(null);
-                                                    setLoadingMsg('กำลังลบผู้ใช้งาน...');
                                                     if (window.dbFirestore) await window.dbFirestore.collection("users").doc(u.username).delete();
-                                                    logActivity('DELETE USER', `ลบผู้ใช้งาน: ${u.username}`);
-                                                    setLoadingMsg(null);
-                                                    setSuccessModal(
-                                                        <div className="text-center">
-                                                            <div className="font-black text-sm mb-1 text-red-600">ลบผู้ใช้สำเร็จ!</div>
-                                                            <div className="text-xs text-slate-600">Username: {u.username}</div>
-                                                        </div>
-                                                    );
+                                                    setSuccessModal('ลบผู้ใช้สำเร็จ');
                                                 }
                                             });
-                                        }} className="text-[11px] bg-red-50 text-red-600 py-2 rounded-lg font-bold border border-red-200 hover:bg-red-100 col-span-1 shadow-sm">ลบ</button>
+                                        }} className="text-xs bg-red-50 text-red-600 px-3 py-1.5 rounded-lg font-bold border">ลบ</button>
                                     </div>
                                 </div>
                             ))}
                         </div>
                     )}
 
-                    {/* Modal เพิ่ม/แก้ไขผู้ตรวจ (Inspector Form) */}
+                    {adminTab === 'inspectors' && (
+                        <div className="space-y-3 pb-10">
+                            <button onClick={() => setModal({ type: 'inspector_form' })} className="w-full py-3 bg-indigo-600 text-white font-bold rounded-xl shadow-md mb-4 flex items-center justify-center gap-2"><Icons.UserPlus /> เพิ่มผู้ตรวจใหม่</button>
+                            {(db.inspectors || []).map((ins, i) => (
+                                <div key={i} className="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
+                                    <div><div className="font-black text-slate-800">{ins.name}</div><div className="text-[10px] text-slate-500">เซอร์: {ins.product_lines || 'ค่าเริ่มต้น'}</div></div>
+                                    <div className="flex gap-2">
+                                        <button onClick={() => setModal({ type: 'inspector_form', data: ins })} className="p-2 bg-blue-50 text-blue-600 rounded-lg"><Icons.Edit /></button>
+                                        <button onClick={() => {
+                                            setConfirmDialog({
+                                                msg: `ยืนยันลบผู้ตรวจ ${ins.name}?`,
+                                                onConfirm: async () => {
+                                                    setConfirmDialog(null);
+                                                    if (window.dbFirestore) await window.dbFirestore.collection("inspectors").doc(ins.name).delete();
+                                                    setSuccessModal('ลบผู้ตรวจสำเร็จ');
+                                                }
+                                            });
+                                        }} className="p-2 bg-red-50 text-red-600 rounded-lg"><Icons.Trash /></button>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+
+                    {adminTab === 'special_management' && (
+                        <div className="space-y-4 pb-10">
+                            <button onClick={() => setModal({ type: 'manage_leaves' })} className="w-full p-4 bg-white rounded-2xl border font-bold text-amber-800 flex justify-between items-center">จัดการวันลาพนักงาน <Icons.ChevronRight /></button>
+                            <button onClick={() => setModal({ type: 'manage_events' })} className="w-full p-4 bg-white rounded-2xl border font-bold text-emerald-800 flex justify-between items-center">จัดการกิจกรรมบริษัท <Icons.ChevronRight /></button>
+                            <button onClick={() => setModal({ type: 'manage_holidays' })} className="w-full p-4 bg-white rounded-2xl border font-bold text-red-800 flex justify-between items-center">จัดการวันหยุดบริษัท <Icons.ChevronRight /></button>
+                        </div>
+                    )}
+
+                    {adminTab === 'all_bookings' && (
+                        <div className="space-y-3 pb-10">
+                            {(adminDb.all_bookings || []).slice(0, adminBookingsLimit).map((h, i) => (
+                                <div key={i} className="bg-white p-4 rounded-xl shadow-sm border flex justify-between items-center">
+                                    <div>
+                                        <div className="font-bold text-sm text-slate-800">{h.site_name}</div>
+                                        <div className="text-[10px] text-slate-500">Eq: {h.equipment_no} | วันที่: {formatSafeDate(h.date)} | ผู้ตรวจ: {h.inspector_name}</div>
+                                    </div>
+                                    <button onClick={() => handleCancelBooking(h)} className="p-2 bg-red-50 text-red-600 rounded-lg"><Icons.Trash /></button>
+                                </div>
+                            ))}
+                            {adminBookingsLimit < (adminDb.all_bookings || []).length && (
+                                <button onClick={() => setAdminBookingsLimit(prev => prev + 20)} className="w-full py-3 bg-slate-100 text-slate-700 font-bold rounded-xl mt-4">โหลดเพิ่มเติม</button>
+                            )}
+                        </div>
+                    )}
+                </div>
+            )}
+
+            {/* =========================================
+                MODALS
+            ========================================= */}
+            {modal && (
+                <div className="backdrop z-[100] p-4 flex items-center justify-center">
+                    {modal?.type === 'booking' && (
+                        <div className="modal-card w-full max-w-[450px] bg-white rounded-3xl shadow-2xl p-6 relative max-h-[90vh] overflow-y-auto">
+                            <button onClick={() => setModal(null)} className="absolute top-4 right-4 bg-slate-100 p-2 rounded-full"><Icons.X /></button>
+                            <h3 className="text-lg font-bold mb-4 border-b pb-2">📝 จองคิวงานตรวจ</h3>
+                            <form onSubmit={handleBookingSubmit} className="space-y-3">
+                                <div><label className="text-xs font-bold block mb-1">ชื่อโครงการ *</label><input type="text" name="site_name" required className="w-full p-2.5 border rounded-lg text-sm font-bold" /></div>
+                                <div className="grid grid-cols-2 gap-2">
+                                    <div><label className="text-xs font-bold block mb-1">Eq No. *</label><input type="text" name="equipment_no" required className="w-full p-2.5 border rounded-lg text-sm font-bold" /></div>
+                                    <div><label className="text-xs font-bold block mb-1">Unit No. *</label><input type="text" name="unit_no" required className="w-full p-2.5 border rounded-lg text-sm font-bold" /></div>
+                                </div>
+                                <div className="grid grid-cols-2 gap-2">
+                                    <div>
+                                        <label className="text-xs font-bold block mb-1">Product Line *</label>
+                                        <select name="product_line" value={productLineSelection} onChange={e=>setProductLineSelection(e.target.value)} required className="w-full p-2.5 border rounded-lg text-sm bg-white">
+                                            <option value="">--เลือก--</option>
+                                            {Object.keys(PRODUCT_COLORS).map(k => <option key={k} value={k}>{k}</option>)}
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label className="text-xs font-bold block mb-1">ประเภทงาน *</label>
+                                        <select name="job_type" value={jobTypeSelection} onChange={e=>setJobTypeSelection(e.target.value)} required className="w-full p-2.5 border rounded-lg text-sm bg-white">
+                                            <option value="">--เลือก--</option>
+                                            <option value="New">New</option><option value="MOD">MOD</option><option value="Re-ins temporary power supply">Re-ins temporary</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div><label className="text-xs font-bold block mb-1">เบอร์โทรติดต่อ *</label><input type="tel" name="tel" required maxLength="10" placeholder="08XXXXXXXX" className="w-full p-2.5 border rounded-lg text-sm font-bold" /></div>
+                                <div className="bg-slate-50 p-3 rounded-xl border space-y-2">
+                                    <div className="text-xs font-bold">อัปโหลดเอกสาร (Layout, Wiring, Precheck) *</div>
+                                    {['layout', 'wiring', 'precheck'].map(doc => (
+                                        <label key={doc} className="flex justify-between items-center p-2 bg-white border rounded cursor-pointer text-xs font-bold">
+                                            <span>{doc} {docUrls[doc] && '✅'}</span>
+                                            <input type="file" accept="image/*,application/pdf" className="hidden" onChange={(e) => handleFileUpload(e, doc)} />
+                                        </label>
+                                    ))}
+                                </div>
+                                <button type="submit" className="w-full py-3.5 bg-blue-600 text-white font-bold rounded-xl shadow-md mt-4">ยืนยันการจองคิว</button>
+                            </form>
+                        </div>
+                    )}
+
+                    {modal?.type === 'edit_user' && (
+                        <div className="modal-card p-6 w-full max-w-md bg-white rounded-3xl shadow-2xl relative">
+                            <button onClick={() => setModal(null)} className="absolute top-4 right-4 bg-slate-100 p-2 rounded-full"><Icons.X /></button>
+                            <h3 className="text-xl font-bold mb-4 border-b pb-2">แก้ไขข้อมูลผู้ใช้</h3>
+                            <form onSubmit={async (e) => {
+                                e.preventDefault();
+                                const fd = new FormData(e.target);
+                                if (window.dbFirestore) {
+                                    await window.dbFirestore.collection("users").doc(modal.data.username).update({
+                                        full_name: fd.get('full_name'), role: fd.get('role'), status: fd.get('status'), inspector_mapped_name: fd.get('inspector_mapped_name') || ''
+                                    });
+                                    setSuccessModal('อัปเดตผู้ใช้สำเร็จ'); setModal(null);
+                                }
+                            }} className="space-y-3">
+                                <div><label className="text-xs font-bold block mb-1">ชื่อ-นามสกุล</label><input type="text" name="full_name" defaultValue={modal.data.full_name} required className="w-full p-2.5 border rounded-lg text-sm" /></div>
+                                {modal.data.role === 'inspector' && (
+                                    <div>
+                                        <label className="text-xs font-bold text-amber-800 block mb-1">🔗 ผูกชื่อในตาราง (Mapping Name)</label>
+                                        <select name="inspector_mapped_name" defaultValue={modal.data.inspector_mapped_name || ''} className="w-full p-2.5 border rounded-lg bg-white font-bold">
+                                            <option value="">-- ไม่ได้ผูกชื่อ --</option>
+                                            {availableInspectors.map(ins => <option key={ins.name} value={ins.name}>{ins.name}</option>)}
+                                        </select>
+                                    </div>
+                                )}
+                                <div className="grid grid-cols-2 gap-2">
+                                    <div><label className="text-xs font-bold block mb-1">สิทธิ์ (Role)</label><select name="role" defaultValue={modal.data.role} className="w-full p-2.5 border rounded-lg bg-white font-bold"><option value="user">User</option><option value="inspector">Inspector</option><option value="admin">Admin</option></select></div>
+                                    <div><label className="text-xs font-bold block mb-1">สถานะ</label><select name="status" defaultValue={modal.data.status} className="w-full p-2.5 border rounded-lg bg-white font-bold"><option value="approved">อนุมัติ</option><option value="pending">รอตรวจสอบ</option><option value="blocked">ระงับ</option></select></div>
+                                </div>
+                                <button type="submit" className="w-full py-3 bg-blue-600 text-white font-bold rounded-xl shadow-md mt-4">บันทึก</button>
+                            </form>
+                        </div>
+                    )}
+
                     {modal?.type === 'inspector_form' && (
-                        <div className="modal-card p-6 w-full max-w-md bg-white rounded-3xl shadow-2xl animate-pop relative">
-                            <button onClick={() => setModal(null)} className="absolute top-4 right-4 bg-slate-100 text-slate-500 p-2 rounded-full hover:bg-slate-200 active:scale-95"><Icons.X /></button>
-                            <div className="flex items-center gap-3 mb-5 border-b border-slate-100 pb-4">
-                                <div className="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center shadow-sm">
-                                    {modal.data ? <Icons.Edit /> : <Icons.UserPlus />}
-                                </div>
-                                <div>
-                                    <h3 className="text-xl font-bold text-slate-800 leading-tight">{modal.data ? 'แก้ไขสิทธิ์ผู้ตรวจ' : 'เพิ่มผู้ตรวจใหม่'}</h3>
-                                    <p className="text-[10px] text-slate-500 mt-0.5">ระบุชื่อและเลือก Product Lineที่อนุญาตให้รับงาน</p>
-                                </div>
-                            </div>
+                        <div className="modal-card p-6 w-full max-w-md bg-white rounded-3xl shadow-2xl relative">
+                            <button onClick={() => setModal(null)} className="absolute top-4 right-4 bg-slate-100 p-2 rounded-full"><Icons.X /></button>
+                            <h3 className="text-xl font-bold mb-4 border-b pb-2">จัดการผู้ตรวจ</h3>
                             <form onSubmit={async (e) => {
                                 e.preventDefault();
                                 const fd = new FormData(e.target);
                                 const name = fd.get('ins_name');
                                 const certs = Array.from(e.target.querySelectorAll('input[name="certs"]:checked')).map(cb => cb.value).join(',');
-                                
-                                try {
-                                    setLoadingMsg('กำลังบันทึกข้อมูลผู้ตรวจ...');
-                                    if (window.dbFirestore) {
-                                        await window.dbFirestore.collection("inspectors").doc(String(name)).set({ name: name, product_lines: certs });
-                                        if (modal.data && modal.data.name !== name) {
-                                            await window.dbFirestore.collection("inspectors").doc(String(modal.data.name)).delete();
-                                        }
-                                    }
-                                    
-                                    logActivity(modal.data ? 'UPDATE INSPECTOR' : 'ADD INSPECTOR', `รายชื่อผู้ตรวจ: ${name}\nสิทธิ์: ${certs || 'ES1, 3300, S-villas (Default)'}`);
-                                    setLoadingMsg(null);
-                                    setModal(null);
-                                    setSuccessModal(
-                                        <div className="text-center">
-                                            <div className="font-black text-sm mb-1 text-indigo-600">{modal.data ? 'แก้ไขผู้ตรวจสำเร็จ!' : 'เพิ่มผู้ตรวจสำเร็จ!'}</div>
-                                            <div className="text-xs text-slate-600">ชื่อผู้ตรวจ: {name}</div>
-                                            <div className="text-xs text-slate-600 mt-1">สิทธิ์: {certs || 'ES1, 3300, S-villas (ค่าเริ่มต้น)'}</div>
-                                        </div>
-                                    ); 
-                                } catch(e) {
-                                    setLoadingMsg(null);
-                                    setAlertMsg('เกิดข้อผิดพลาดในการบันทึกผู้ตรวจ');
+                                if (window.dbFirestore) {
+                                    await window.dbFirestore.collection("inspectors").doc(String(name)).set({ name: name, product_lines: certs });
+                                    setSuccessModal('บันทึกผู้ตรวจสำเร็จ'); setModal(null);
                                 }
-                            }}>
-                                <label className="text-xs font-bold text-slate-700 mb-1 block">ชื่อผู้ตรวจ <span className="text-red-500">*</span></label>
-                                <input type="text" name="ins_name" defaultValue={modal.data?.name || ''} required placeholder="ระบุชื่อ-นามสกุล หรือ รหัส..." className="w-full text-sm p-3.5 rounded-xl border border-slate-300 outline-none mb-5 font-bold bg-slate-50 focus:border-indigo-400 focus:bg-white transition-all" />
-                                
-                                <div className="bg-indigo-50/50 p-4 rounded-2xl border border-indigo-100 mb-6">
-                                    <div className="flex justify-between items-end mb-3">
-                                        <label className="text-xs font-bold text-indigo-900">กำหนดสิทธิ์ (Certificate)</label>
-                                    </div>
-                                    <p className="text-[10px] text-indigo-500 mb-3 bg-white p-2 rounded-lg border border-indigo-50 leading-relaxed">
-                                        <Icons.Info /> หากไม่ติ๊กเลือกรายการใดเลย ระบบจะกำหนดค่าเริ่มต้นเป็น <b>ES1, 3300</b> และ <b>S-villas</b> ให้โดยอัตโนมัติ
-                                    </p>
-                                    <div className="grid grid-cols-2 gap-2 max-h-48 overflow-y-auto custom-scrollbar pr-2">
-                                        {Object.keys(PRODUCT_COLORS).filter(k => k !== 'อื่นๆโปรดระบุ').map(pl => (
-                                            <label key={pl} className="flex items-center gap-2 text-xs font-bold text-slate-700 cursor-pointer p-2 bg-white border border-slate-200 hover:border-indigo-300 rounded-xl shadow-sm transition-all select-none">
-                                                <input type="checkbox" name="certs" value={pl} defaultChecked={modal.data?.product_lines?.includes(pl)} className="accent-indigo-600 w-4 h-4 flex-shrink-0" />
-                                                <span className="truncate">{pl}</span>
-                                            </label>
-                                        ))}
-                                    </div>
+                            }} className="space-y-3">
+                                <input type="text" name="ins_name" defaultValue={modal.data?.name || ''} required placeholder="ชื่อผู้ตรวจ..." className="w-full p-3 border rounded-xl font-bold" />
+                                <div className="grid grid-cols-2 gap-2 max-h-40 overflow-y-auto border p-2 rounded-xl">
+                                    {Object.keys(PRODUCT_COLORS).filter(k => k !== 'อื่นๆโปรดระบุ').map(pl => (
+                                        <label key={pl} className="flex items-center gap-2 text-xs font-bold"><input type="checkbox" name="certs" value={pl} defaultChecked={modal.data?.product_lines?.includes(pl)} className="w-4 h-4" /> {pl}</label>
+                                    ))}
                                 </div>
-                                
-                                <div className="flex gap-3">
-                                    <button type="button" onClick={() => setModal(null)} className="w-1/3 py-3.5 bg-slate-100 text-slate-600 font-bold rounded-xl shadow-sm active:scale-95 transition-all">ยกเลิก</button>
-                                    <button type="submit" disabled={loadingMsg} className="w-2/3 py-3.5 bg-indigo-600 text-white font-bold rounded-xl shadow-md active:scale-95 transition-all flex items-center justify-center gap-2">
-                                        {loadingMsg ? <Icons.Loader /> : <Icons.Check />}
-                                        {modal.data ? 'บันทึกการแก้ไข' : 'ยืนยันเพิ่มผู้ตรวจ'}
-                                    </button>
-                                </div>
+                                <button type="submit" className="w-full py-3 bg-indigo-600 text-white font-bold rounded-xl shadow-md">บันทึก</button>
                             </form>
                         </div>
                     )}
 
-                    {/* Modal กดช่องตาราง (Admin Cell Action) - แก้ไขบัคปุ่มค้างแล้ว */}
                     {modal?.type === 'admin_cell_action' && (
                         <div className="modal-card p-6 text-center animate-pop w-full max-w-sm bg-white rounded-3xl shadow-2xl relative">
-                            <button onClick={() => setModal(null)} className="absolute top-4 right-4 bg-slate-100 text-slate-500 p-2 rounded-full hover:bg-slate-200"><Icons.X /></button>
-                            <h3 className="text-lg font-bold text-slate-800 mb-2 border-b pb-3 leading-tight">จัดการคิวตรวจ / วันพิเศษ</h3>
-                            <p className="text-sm text-slate-500 mb-5 bg-slate-50 p-3 rounded-xl border border-slate-100">
-                                วันที่: <span className="font-bold text-blue-600">{modal.data?.date || '-'}</span><br/>
-                                ผู้ตรวจ: <span className="font-bold text-blue-600">{modal.data?.inspector_name || '-'}</span>
-                            </p>
+                            <button onClick={() => setModal(null)} className="absolute top-4 right-4 bg-slate-100 p-2 rounded-full"><Icons.X /></button>
+                            <h3 className="text-lg font-bold text-slate-800 mb-2 border-b pb-3">จัดการคิวตรวจ / วันพิเศษ</h3>
+                            <p className="text-sm text-slate-500 mb-5 bg-slate-50 p-3 rounded-xl border">วันที่: <span className="font-bold text-blue-600">{modal.data.date}</span><br/>ผู้ตรวจ: <span className="font-bold text-blue-600">{modal.data.inspector_name}</span></p>
                             <div className="space-y-3">
-                                <button onClick={() => { 
-                                    if(typeof setAreaSelection === 'function') setAreaSelection(''); 
-                                    if(typeof setJobTypeSelection === 'function') setJobTypeSelection(''); 
-                                    if(typeof setProductLineSelection === 'function') setProductLineSelection(''); 
-                                    setModal({ type: 'booking', data: modal.data }); 
-                                }} className="w-full py-3.5 bg-blue-600 text-white font-bold rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-95 transition-all"><Icons.Plus /> จองคิวตรวจ SAIS</button>
-                                
-                                <button onClick={() => { 
-                                    if(typeof setEventStartDate === 'function') setEventStartDate(modal.data?.date || ''); 
-                                    if(typeof setEventEndDate === 'function') setEventEndDate(modal.data?.date || ''); 
-                                    if(typeof setEventInspectors === 'function') setEventInspectors([]); 
-                                    if(typeof setEventColor === 'function') setEventColor('#22c55e'); 
-                                    setModal({ type: 'manage_events' }); 
-                                }} className="w-full py-3.5 bg-emerald-500 text-white font-bold rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-95 transition-all"><Icons.Star /> เพิ่มกิจกรรมบริษัท</button>
-                                
-                                <button onClick={() => { 
-                                    if(typeof setLeaveStartDate === 'function') setLeaveStartDate(modal.data?.date || ''); 
-                                    if(typeof setLeaveEndDate === 'function') setLeaveEndDate(modal.data?.date || ''); 
-                                    if(typeof setLeaveInspectors === 'function') setLeaveInspectors([modal.data?.inspector_name]); 
-                                    setModal({ type: 'manage_leaves' }); 
-                                }} className="w-full py-3.5 bg-amber-500 text-white font-bold rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-95 transition-all"><Icons.User /> จองวันลาให้พนักงาน</button>
-                                
-                                <button onClick={() => { 
-                                    if(typeof setHolidayStartDate === 'function') setHolidayStartDate(modal.data?.date || ''); 
-                                    if(typeof setHolidayEndDate === 'function') setHolidayEndDate(modal.data?.date || ''); 
-                                    setModal({ type: 'manage_holidays' }); 
-                                }} className="w-full py-3.5 bg-red-600 text-white font-bold rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-95 transition-all"><Icons.CalendarX /> เพิ่มวันหยุดบริษัท</button>
+                                <button onClick={() => setModal({ type: 'booking', data: modal.data })} className="w-full py-3.5 bg-blue-600 text-white font-bold rounded-xl shadow-md"><Icons.Plus /> จองคิวตรวจ</button>
+                                <button onClick={() => setModal({ type: 'manage_events' })} className="w-full py-3.5 bg-emerald-500 text-white font-bold rounded-xl shadow-md"><Icons.Star /> เพิ่มกิจกรรม</button>
+                                <button onClick={() => setModal({ type: 'manage_leaves' })} className="w-full py-3.5 bg-amber-500 text-white font-bold rounded-xl shadow-md"><Icons.User /> จองวันลา</button>
+                                <button onClick={() => setModal({ type: 'manage_holidays' })} className="w-full py-3.5 bg-red-600 text-white font-bold rounded-xl shadow-md"><Icons.CalendarX /> เพิ่มวันหยุด</button>
                             </div>
                         </div>
                     )}
 
-                    {/* 📍 MODAL DETAIL (รายละเอียดงาน) */}
                     {modal?.type === 'detail' && (
-                        <div className="modal-card p-6 w-full max-w-md animate-pop bg-white rounded-3xl shadow-2xl relative max-h-[90vh] overflow-y-auto custom-scrollbar">
-                            <button onClick={() => setModal(null)} className="absolute top-4 right-4 bg-slate-100 text-slate-500 p-2 rounded-full hover:bg-slate-200 z-50"><Icons.X /></button>
-                            <h3 className="text-lg font-bold text-slate-800 mb-4 border-b pb-2">รายละเอียดรายการ</h3>
-                            <div className="space-y-3 text-sm text-slate-700 mb-6">
-                                <div><span className="text-slate-400 text-xs block">วันที่</span><span className="font-bold">{modal.data.date ? formatSafeDate(modal.data.date) : '-'}</span></div>
-                                <div><span className="text-slate-400 text-xs block">ผู้ตรวจ</span><span className="font-bold text-blue-600">{modal.data.inspector_name === 'SYSTEM_HOLIDAY' || modal.data.inspector_name === 'SYSTEM_EVENT' ? 'ทุกคน' : modal.data.inspector_name}</span></div>
-                                <div><span className="text-slate-400 text-xs block">ชื่อรายการ / โครงการ</span><span className="font-bold">{modal.data.site_name}</span></div>
-                                
-                                {!String(modal.data.job_type).includes('leave') && !String(modal.data.job_type).includes('event') && !String(modal.data.job_type).includes('holiday') && (
-                                    <>
-                                        <div className="grid grid-cols-2 gap-2">
-                                            <div><span className="text-slate-400 text-xs block">Eq No.</span><span className="font-bold">{modal.data.equipment_no || '-'}</span></div>
-                                            <div><span className="text-slate-400 text-xs block">Unit</span><span className="font-bold">{modal.data.unit_no || '-'}</span></div>
-                                        </div>
-                                        <div className="grid grid-cols-2 gap-2">
-                                            <div><span className="text-slate-400 text-xs block">ประเภทงาน</span><span className="font-bold">{modal.data.job_type || '-'}</span></div>
-                                            <div><span className="text-slate-400 text-xs block">พื้นที่</span><span className="font-bold">{modal.data.area || '-'}</span></div>
-                                        </div>
-                                        {modal.data.tel && (
-                                            <div><span className="text-slate-400 text-xs block">เบอร์ติดต่อหน้างาน</span><span className="font-bold text-slate-800">{modal.data.tel}</span></div>
-                                        )}
-                                        <div className="grid grid-cols-1 gap-2 mt-2">
-                                            <div>
-                                                <span className="text-slate-400 text-xs block mb-1">Product Line</span>
-                                                <span className={`font-bold text-white px-3 py-1 rounded-lg inline-block shadow-sm ${PRODUCT_COLORS[modal.data.product_line] || 'bg-slate-500'}`}>{modal.data.product_line || 'ไม่ระบุ'}</span>
-                                            </div>
-                                        </div>
-
-                                        <div className="mt-4 pt-4 border-t border-slate-100">
-                                            <h4 className="text-xs font-bold text-slate-800 mb-3 flex items-center gap-1"><Icons.FileCheck /> สถานะเอกสาร</h4>
-                                            <div className="grid grid-cols-3 gap-2">
-                                                {['layout', 'wiring', 'precheck'].map(docKey => {
-                                                    const isSent = String(modal.data[`${docKey}_doc`]) === 'true';
-                                                    const fileUrl = modal.data[`${docKey}_img`];
-                                                    return (
-                                                        <div key={docKey} className={`flex flex-col items-center justify-center p-2 rounded-xl border relative ${isSent ? 'bg-green-50 border-green-200 text-green-700' : 'bg-slate-50 border-slate-200 text-slate-500'}`}>
-                                                            <div className="text-[10px] mb-1 uppercase font-bold">{docKey}</div>
-                                                            <div className="text-xs font-bold mb-1">{isSent ? '✅ ตรวจแล้ว' : '⏳ รอตรวจ'}</div>
-                                                            {fileUrl && (
-                                                                <button onClick={(e) => { e.stopPropagation(); setViewFileUrl(fileUrl); }} className="mt-auto text-[9px] bg-blue-600 text-white px-2 py-1.5 rounded w-full text-center truncate shadow-sm active:scale-95 font-bold hover:bg-blue-700 transition-colors">
-                                                                    เปิดดูไฟล์
-                                                                </button>
-                                                            )}
-                                                        </div>
-                                                    );
-                                                })}
-                                            </div>
-                                        </div>
-
-                                        {(() => {
-                                            const condLabels = {
-                                                site_cond_1: '1. หน้าตู้คอนโทรล',
-                                                site_cond_2: '2. บนหลังคาลิฟต์',
-                                                site_cond_3: '3. ด้านบนปล่อง',
-                                                site_cond_4: '4. ก้นบ่อลิฟต์',
-                                                site_cond_5: '5. ภายในตู้ลิฟต์',
-                                                site_cond_6: '6. หน้าชั้นและรอบวงกบประตูนอก'
-                                            };
-                                            const hasAnyCond = Object.keys(condLabels).some(k => Boolean(modal.data[k]));
-                                            if (!hasAnyCond) return null;
-                                            return (
-                                                <div className="mt-4 pt-4 border-t border-slate-100">
-                                                    <h4 className="text-xs font-bold text-slate-800 mb-2 flex items-center gap-1"><Icons.Image /> รูปภาพ Site Conditions</h4>
-                                                    <div className="flex flex-wrap gap-2">
-                                                        {Object.keys(condLabels).map(condKey => {
-                                                            const condUrls = modal.data[condKey];
-                                                            if (!condUrls) return null;
-                                                            return condUrls.split(',').map((url, idx) => (
-                                                                <button key={`${condKey}_${idx}`} onClick={(e) => { e.stopPropagation(); setViewFileUrl(url); }} className="text-[10px] bg-indigo-50 text-indigo-700 border border-indigo-200 px-2.5 py-1.5 rounded-lg shadow-sm font-bold hover:bg-indigo-100 active:scale-95 transition-all">
-                                                                    📷 {condLabels[condKey].split('.')[1]} ({idx + 1})
-                                                                </button>
-                                                            ));
-                                                        })}
-                                                    </div>
-                                                </div>
-                                            );
-                                        })()}
-
-                                        {modal.data.map_link && (
-                                            <div className="mt-4 pt-4 border-t border-slate-100">
-                                                <h4 className="text-xs font-bold text-slate-700 mb-2">📍 แผนที่ตำแหน่งไซต์งาน</h4>
-                                                <div className="relative rounded-xl overflow-hidden border border-slate-200 bg-slate-50 h-44 cursor-pointer shadow-sm group" onClick={() => handleMapClick(modal.data.map_link)}>
-                                                    <div className="absolute inset-0 z-10 bg-black/5 hover:bg-black/10 transition-colors"></div>
-                                                    <iframe src={utils.getMapEmbedUrl ? utils.getMapEmbedUrl(modal.data.map_link) : modal.data.map_link} className="w-full h-full pointer-events-none" allowFullScreen loading="lazy" referrerPolicy="no-referrer"></iframe>
-                                                </div>
-                                                <div className="text-xs text-blue-600 text-center mt-2 font-bold animate-pulse">
-                                                    👇 กดที่ map เพื่อเปิดการนำทาง
-                                                </div>
-                                            </div>
-                                        )}
-                                    </>
-                                )}
+                        <div className="modal-card p-6 w-full max-w-md animate-pop bg-white rounded-3xl shadow-2xl relative max-h-[90vh] overflow-y-auto">
+                            <button onClick={() => setModal(null)} className="absolute top-4 right-4 bg-slate-100 p-2 rounded-full"><Icons.X /></button>
+                            <h3 className="text-lg font-bold mb-4 border-b pb-2">รายละเอียดรายการ</h3>
+                            <div className="space-y-2 text-sm text-slate-700 mb-4">
+                                <div><b>วันที่:</b> {formatSafeDate(modal.data.date)}</div>
+                                <div><b>ผู้ตรวจ:</b> {modal.data.inspector_name}</div>
+                                <div><b>ชื่อโครงการ:</b> {modal.data.site_name}</div>
+                                {modal.data.equipment_no && <div><b>Eq No:</b> {modal.data.equipment_no}</div>}
+                                {modal.data.map_link && <button onClick={() => handleMapClick(modal.data.map_link)} className="w-full py-2 bg-blue-50 text-blue-600 font-bold rounded-xl border mt-2">📍 เปิดแผนที่นำทาง</button>}
                             </div>
-
-                            {/* 📍 ป้องกันสิทธิ์ Viewer แอบกดลบหรือแก้ไข */}
-                            {(isAdmin || (user?.role !== 'viewer' && user?.username === modal.data.created_by) || (user?.role !== 'viewer' && String(modal.data.inspector_name).toLowerCase() === String(user?.inspector_mapped_name || '').toLowerCase())) && (
-                                <div className="mt-6 pt-4 border-t border-slate-200 flex flex-col gap-3">
-                                    <button onClick={() => {
-                                        const isSpecial = String(modal.data.job_type).includes('leave') || String(modal.data.job_type).includes('event') || String(modal.data.job_type).includes('holiday');
-                                        if(isSpecial && user?.role === 'inspector' && !isAdmin) {
-                                            setModal({ type: 'inspector_leave_form', data: modal.data });
-                                        } else if(isSpecial) {
-                                            setModal({ type: 'edit_special', data: modal.data });
-                                        } else {
-                                            if(typeof setAreaSelection === 'function') setAreaSelection(modal.data.area || ''); 
-                                            if(typeof setJobTypeSelection === 'function') setJobTypeSelection(modal.data.job_type || ''); 
-                                            if(typeof setProductLineSelection === 'function') setProductLineSelection(modal.data.product_line || ''); 
-                                            setModal({ type: 'booking', data: modal.data });
-                                        }
-                                    }} className="py-3 bg-blue-50 text-blue-700 font-bold rounded-xl border border-blue-200 flex items-center justify-center gap-2"><Icons.Edit /> แก้ไขข้อมูล</button>
-
-                                    <button onClick={() => handleCancelBooking(modal.data)} className="py-3 bg-red-50 text-red-700 font-bold rounded-xl border border-red-200 flex items-center justify-center gap-2"><Icons.Trash /> ลบรายการนี้</button>
-                                </div>
+                            {(isAdmin || user?.username === modal.data.created_by) && (
+                                <button onClick={() => handleCancelBooking(modal.data)} className="w-full py-3 bg-red-50 text-red-600 font-bold rounded-xl border border-red-200">ลบรายการนี้</button>
                             )}
                         </div>
                     )}
 
-                    {/* 📍 Modal แจ้งวันลาส่วนตัว (สำหรับ Inspector ทำเอง) */}
-                    {modal?.type === 'inspector_leave_form' && (
-                        <div className="modal-card p-6 w-full max-w-sm bg-white rounded-3xl shadow-2xl animate-pop relative">
-                            <button onClick={() => setModal(null)} className="absolute top-4 right-4 bg-slate-100 text-slate-500 p-2 rounded-full"><Icons.X /></button>
-                            <h3 className="text-xl font-bold text-slate-900 mb-4 border-b pb-2 flex items-center gap-2">
-                                <Icons.User /> {modal.data?.id ? 'แก้ไขวันลาของฉัน' : 'แจ้งวันลาหยุด (ส่วนตัว)'}
-                            </h3>
-                            <form onSubmit={async (e) => {
-                                e.preventDefault();
-                                const fd = new FormData(e.target);
-                                const sDate = fd.get('start_date');
-                                const eDate = fd.get('end_date') || sDate;
-                                const lType = fd.get('leave_type') === 'อื่นๆ' ? fd.get('custom_leave') : fd.get('leave_type');
-                                const targetName = user?.inspector_mapped_name || user?.full_name || user?.username;
-
-                                if (modal.data?.id) {
-                                    setLoadingMsg('กำลังบันทึก...');
-                                    const docId = await findDocIdFallback(modal.data);
-                                    if (docId && window.dbFirestore) {
-                                        await window.dbFirestore.collection("bookings").doc(docId).update({ date: sDate, site_name: lType });
-                                    }
-                                    
-                                    logActivity('UPDATE LEAVE (INSPECTOR)', `แก้ไขวันลา: ${lType} วันที่ ${sDate}`);
-                                    setLoadingMsg(null);
-                                    setModal(null);
-                                    setSuccessModal(
-                                        <div className="text-center">
-                                            <div className="font-black text-sm mb-1 text-amber-600">อัปเดตวันลาสำเร็จ!</div>
-                                            <div className="text-xs text-slate-600">ประเภท: {lType}</div>
-                                            <div className="text-xs text-slate-600">วันที่: {sDate}</div>
-                                        </div>
-                                    );
-                                } else {
-                                    const dates = generateDates(sDate, eDate, true);
-                                    if(dates.length === 0) return setAlertMsg('วันที่ไม่ถูกต้อง');
-                                    const eqNo = `LEAVE_${Date.now()}_${Math.floor(Math.random()*1000)}`;
-                                    
-                                    setLoadingMsg('กำลังบันทึกข้อมูลลง Firebase...');
+                    {modal?.type === 'manage_leaves' && (
+                        <div className="modal-card w-full max-w-md bg-white rounded-3xl p-6 relative max-h-[90vh] overflow-y-auto">
+                            <button onClick={() => setModal(null)} className="absolute top-4 right-4 bg-slate-100 p-2 rounded-full"><Icons.X /></button>
+                            <h3 className="text-xl font-bold mb-4 border-b pb-2 text-amber-600">จัดการวันลาพนักงาน</h3>
+                            <div className="space-y-3">
+                                <div className="grid grid-cols-2 gap-2">
+                                    <div><label className="text-xs font-bold block mb-1">เริ่ม</label><input type="date" value={leaveStartDate} onChange={e=>setLeaveStartDate(e.target.value)} className="w-full p-2 border rounded-lg text-xs font-bold" /></div>
+                                    <div><label className="text-xs font-bold block mb-1">ถึง</label><input type="date" value={leaveEndDate} onChange={e=>setLeaveEndDate(e.target.value)} className="w-full p-2 border rounded-lg text-xs font-bold" /></div>
+                                </div>
+                                <select className="w-full p-2.5 border rounded-lg font-bold text-sm" value={leaveType} onChange={e=>setLeaveType(e.target.value)}>
+                                    <option value="ลาพักร้อน">ลาพักร้อน</option><option value="ลากิจ">ลากิจ</option><option value="ลาป่วย">ลาป่วย</option>
+                                </select>
+                                <button onClick={async () => {
+                                    if(!leaveStartDate || !leaveEndDate) return setAlertMsg('กรุณากรอกวันที่ให้ครบถ้วน');
+                                    setLoadingMsg('กำลังบันทึกวันลา...');
                                     if (window.dbFirestore) {
                                         const batch = window.dbFirestore.batch();
-                                        for(let date of dates) {
-                                            const newId = window.SAIS_UTILS?.generateId ? window.SAIS_UTILS.generateId() : Date.now().toString() + Math.random();
-                                            const docRef = window.dbFirestore.collection("bookings").doc(newId);
-                                            batch.set(docRef, { id: newId, date: date, inspector_name: targetName, job_type: 'leave', site_name: lType, equipment_no: eqNo, created_by: user?.username, status: 'active' });
+                                        const targets = (db.inspectors || []).map(i => i.name);
+                                        for(let target of targets) {
+                                            for(let date of leaveDates) {
+                                                const newId = Date.now().toString() + Math.random();
+                                                batch.set(window.dbFirestore.collection("bookings").doc(newId), {
+                                                    id: newId, date: date, inspector_name: target, job_type: 'leave', site_name: leaveType, equipment_no: `LEAVE_${Date.now()}`, status: 'active'
+                                                });
+                                            }
                                         }
                                         await batch.commit();
                                     }
-                                    
-                                    logActivity('CREATE LEAVE (INSPECTOR)', `แจ้งวันลา: ${lType} วันที่ ${sDate} ถึง ${eDate}`);
-                                    setLoadingMsg(null);
-                                    setModal(null);
-                                    setSuccessModal(
-                                        <div className="text-center">
-                                            <div className="font-black text-sm mb-1 text-amber-600">แจ้งวันลาสำเร็จ!</div>
-                                            <div className="text-xs text-slate-600">ประเภท: {lType}</div>
-                                            <div className="text-xs text-slate-600">จำนวน: {dates.length} วัน</div>
-                                        </div>
-                                    );
-                                }
-                            }} className="space-y-4">
-                                {modal.data?.id ? (
-                                    <div>
-                                        <label className="text-xs font-bold text-slate-700 mb-1 block">วันที่ลา</label>
-                                        <input type="date" name="start_date" defaultValue={modal.data.date ? formatSafeDate(modal.data.date) : ''} required className="w-full text-sm p-3 rounded-lg border outline-none font-bold text-blue-600" />
-                                    </div>
-                                ) : (
-                                    <div className="grid grid-cols-2 gap-2">
-                                        <div>
-                                            <label className="text-xs font-bold text-slate-700 mb-1 block">เริ่มวันที่</label>
-                                            <input type="date" name="start_date" required className="w-full text-sm p-3 rounded-lg border outline-none font-bold text-blue-600" />
-                                        </div>
-                                        <div>
-                                            <label className="text-xs font-bold text-slate-700 mb-1 block">ถึงวันที่</label>
-                                            <input type="date" name="end_date" required className="w-full text-sm p-3 rounded-lg border outline-none font-bold text-blue-600" />
-                                        </div>
-                                    </div>
-                                )}
-                                <div>
-                                    <label className="text-xs font-bold text-slate-700 mb-1 block">ประเภทการลา</label>
-                                    <select name="leave_type" defaultValue={modal.data?.site_name || 'ลาพักร้อน'} className="w-full text-sm p-3 rounded-lg border outline-none font-bold" onChange={(e) => setLeaveType(e.target.value)}>
-                                        <option value="ลาพักร้อน">ลาพักร้อน</option>
-                                        <option value="ลาป่วย">ลาป่วย</option>
-                                        <option value="ลากิจ">ลากิจ</option>
-                                        <option value="อื่นๆ">อื่นๆ (ระบุเอง)</option>
-                                    </select>
-                                </div>
-                                {leaveType === 'อื่นๆ' && (
-                                    <div><input type="text" name="custom_leave" required placeholder="ระบุเหตุผล..." className="w-full text-sm p-3 rounded-lg border outline-none bg-amber-50" /></div>
-                                )}
-                                <button type="submit" disabled={loadingMsg} className="w-full py-3 rounded-xl font-bold text-sm bg-blue-600 text-white shadow-md">
-                                    {modal.data?.id ? 'บันทึกการแก้ไข' : 'ยืนยันแจ้งวันลา'}
-                                </button>
-                            </form>
-                        </div>
-                    )}
-
-                    {/* Modal จัดการวันลา (สำหรับ Admin) */}
-                    {modal?.type === 'manage_leaves' && (
-                        <div className="modal-card w-full max-w-md rounded-3xl overflow-hidden shadow-2xl animate-pop flex flex-col max-h-[90vh] bg-white">
-                            <div className="bg-amber-500 p-4 text-white flex justify-between items-center"><h3 className="font-bold flex items-center gap-2"><Icons.User /> จัดการวันลา</h3><button onClick={() => setModal(null)} className="bg-white/20 p-1.5 rounded-full"><Icons.X /></button></div>
-                            <div className="p-4 overflow-y-auto custom-scrollbar flex-1 bg-slate-50 space-y-4">
-                                <div className="bg-white p-4 rounded-xl shadow-sm border">
-                                    <h4 className="font-bold text-slate-700 mb-3 text-sm flex items-center gap-2"><Icons.Plus /> เพิ่มวันลาใหม่</h4>
-                                    <div className="space-y-3">
-                                        <div className="relative">
-                                            <div className="w-full p-2.5 text-sm border rounded-lg bg-white font-bold cursor-pointer flex justify-between items-center" onClick={() => setShowLeaveDropdown(!showLeaveDropdown)}>
-                                                <span className={`truncate ${leaveInspectors.length === 0 ? 'text-slate-400' : 'text-slate-800'}`}>
-                                                    {leaveInspectors.length === 0 ? '-- เลือกพนักงาน --' : leaveInspectors.includes('ALL') ? 'ทุกคน' : leaveInspectors.join(', ')}
-                                                </span>
-                                                <span className="text-slate-400 text-xs">▼</span>
-                                            </div>
-                                            {showLeaveDropdown && (
-                                                <div className="absolute z-10 w-full mt-1 bg-white border rounded-lg shadow-xl max-h-48 overflow-y-auto custom-scrollbar">
-                                                    <label className="flex items-center gap-2 p-3 hover:bg-amber-50 cursor-pointer border-b">
-                                                        <input type="checkbox" checked={leaveInspectors.includes('ALL')} onChange={(e) => {
-                                                            if (e.target.checked) setLeaveInspectors(['ALL']); else setLeaveInspectors([]);
-                                                        }} className="accent-amber-500 w-4 h-4" />
-                                                        <span className="font-bold text-amber-800 text-sm">ทุกคน</span>
-                                                    </label>
-                                                    {(db.inspectors || []).map(i => (
-                                                        <label key={i.name} className="flex items-center gap-2 p-3 hover:bg-slate-50 cursor-pointer border-b last:border-0">
-                                                            <input type="checkbox" checked={leaveInspectors.includes(i.name)} onChange={(e) => {
-                                                                if (e.target.checked) setLeaveInspectors(prev => prev.includes('ALL') ? [i.name] : [...prev, i.name]);
-                                                                else setLeaveInspectors(prev => prev.filter(name => name !== i.name));
-                                                            }} className="accent-amber-500 w-4 h-4" />
-                                                            <span className="text-slate-700 font-bold text-sm">{i.name}</span>
-                                                        </label>
-                                                    ))}
-                                                </div>
-                                            )}
-                                        </div>
-                                        <div className="grid grid-cols-2 gap-2">
-                                            <div><label className="text-[10px] font-bold text-slate-500 mb-1 block">วันที่เริ่ม</label><input type="date" value={leaveStartDate} onChange={(e) => setLeaveStartDate(e.target.value)} className="w-full p-2 border rounded-lg text-xs font-bold" /></div>
-                                            <div><label className="text-[10px] font-bold text-slate-500 mb-1 block">วันสิ้นสุด</label><input type="date" value={leaveEndDate} onChange={(e) => setLeaveEndDate(e.target.value)} className="w-full p-2 border rounded-lg text-xs font-bold" /></div>
-                                        </div>
-                                        <select className="w-full p-2.5 text-sm border rounded-lg font-bold" value={leaveType} onChange={(e) => setLeaveType(e.target.value)}>
-                                            <option value="ลาพักร้อน">ลาพักร้อน</option><option value="ลากิจ">ลากิจ</option><option value="ลาป่วย">ลาป่วย</option><option value="อื่นๆโปรดระบุ">อื่นๆ (ระบุเอง)</option>
-                                        </select>
-                                        {leaveType === 'อื่นๆโปรดระบุ' && <input type="text" placeholder="ระบุประเภทการลา..." value={customLeaveType} onChange={(e) => setCustomLeaveType(e.target.value)} className="w-full p-2.5 border rounded-lg text-sm bg-amber-50" />}
-                                        <button onClick={async () => {
-                                            if(leaveInspectors.length === 0 || !leaveStartDate || !leaveEndDate) return setAlertMsg('กรุณากรอกข้อมูลให้ครบ และเลือกพนักงาน');
-                                            let finalType = leaveType === 'อื่นๆโปรดระบุ' ? customLeaveType : leaveType;
-                                            setLoadingMsg('กำลังสร้างวันลาลง Firebase...');
-                                            
-                                            let targets = leaveInspectors.includes('ALL') ? (db.inspectors || []).map(i => i.name) : leaveInspectors;
-                                            
-                                            if (window.dbFirestore) {
-                                                const batch = window.dbFirestore.batch();
-                                                for (let target of targets) {
-                                                    const eqNo = `LEAVE_${Date.now()}_${Math.floor(Math.random()*1000)}`;
-                                                    for (let date of leaveDates) {
-                                                        const newId = window.SAIS_UTILS?.generateId ? window.SAIS_UTILS.generateId() : Date.now().toString() + Math.random();
-                                                        const docRef = window.dbFirestore.collection("bookings").doc(newId);
-                                                        batch.set(docRef, { id: newId, date: date, inspector_name: target, job_type: 'leave', site_name: finalType, equipment_no: eqNo, created_by: user?.username, status: 'active' });
-                                                    }
-                                                }
-                                                await batch.commit();
-                                            }
-                                            
-                                            logActivity('CREATE ADMIN LEAVE', `สร้างวันลาประเภท: ${finalType}\nจำนวนเป้าหมาย: ${targets.length} คน\nวันที่: ${leaveStartDate} ถึง ${leaveEndDate}`);
-                                            setLoadingMsg(null);
-                                            
-                                            setSuccessModal(
-                                                <div className="text-center">
-                                                    <div className="font-black text-sm mb-1 text-amber-600">เพิ่มวันลาสำเร็จ!</div>
-                                                    <div className="text-xs text-slate-600">ประเภท: {finalType}</div>
-                                                    <div className="text-xs text-slate-600 mt-1">จำนวนที่เพิ่มเข้าสู่ตาราง: <span className="font-bold text-amber-600">{leaveDates.length * targets.length} ช่อง</span></div>
-                                                </div>
-                                            );
-                                            
-                                            setLeaveStartDate(''); setLeaveEndDate(''); setLeaveInspectors([]); setShowLeaveDropdown(false);
-                                        }} className="w-full py-3 bg-amber-500 text-white font-bold rounded-xl shadow-md flex justify-center items-center gap-2"><Icons.Plus /> เพิ่มวันลา ({leaveDates.length} วัน)</button>
-                                    </div>
-                                </div>
-                                
-                                {/* 📍 แสดง List และฟังก์ชันแก้ไข/ลบ วันลา */}
-                                <div className="mt-6 pt-4 border-t border-slate-200">
-                                    <div className="flex justify-between items-center mb-3">
-                                        <h4 className="font-bold text-slate-700 text-sm">รายการวันลาในระบบ</h4>
-                                        {selectedLeavesToDelete.length > 0 && (
-                                            <button onClick={() => handleBulkDelete('leave', selectedLeavesToDelete)} className="bg-red-50 text-red-600 px-3 py-1.5 rounded-lg text-[10px] font-bold active:scale-95 shadow-sm border border-red-200 transition-colors hover:bg-red-100">
-                                                🗑️ ลบที่เลือก ({selectedLeavesToDelete.length})
-                                            </button>
-                                        )}
-                                    </div>
-                                    <div className="space-y-2 max-h-60 overflow-y-auto custom-scrollbar pr-1">
-                                        {(db.bookings || []).filter(b => b.job_type === 'leave' && b.status !== 'cancelled').sort((a,b) => new Date(b.date) - new Date(a.date)).map(l => (
-                                            <div key={l.id} className="flex items-center gap-3 bg-white p-3 rounded-xl border border-slate-200 shadow-sm hover:border-amber-300 transition-all">
-                                                <input type="checkbox" checked={selectedLeavesToDelete.includes(l.id)} onChange={(e) => {
-                                                    if (e.target.checked) setSelectedLeavesToDelete([...selectedLeavesToDelete, l.id]);
-                                                    else setSelectedLeavesToDelete(selectedLeavesToDelete.filter(id => id !== l.id));
-                                                }} className="accent-red-500 w-4 h-4 rounded shadow-sm cursor-pointer" />
-                                                <div className="flex-1 min-w-0">
-                                                    <div className="font-bold text-slate-800 text-sm truncate">{l.site_name} <span className="text-xs text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full ml-1">👤 {l.inspector_name}</span></div>
-                                                    <div className="text-[10px] text-slate-500 font-bold mt-1">📅 {formatSafeDate(l.date)}</div>
-                                                </div>
-                                                <div className="flex flex-col gap-1">
-                                                    <button onClick={() => setModal({ type: 'edit_special', data: l, returnTo: 'manage_leaves' })} className="px-2.5 py-1.5 bg-blue-50 text-blue-600 rounded-lg shadow-sm border border-blue-100 active:scale-95"><Icons.Edit /></button>
-                                                    <button onClick={() => handleCancelBooking(l)} className="px-2.5 py-1.5 bg-red-50 text-red-600 rounded-lg shadow-sm border border-red-100 active:scale-95"><Icons.Trash /></button>
-                                                </div>
-                                            </div>
-                                        ))}
-                                        {(db.bookings || []).filter(b => b.job_type === 'leave' && b.status !== 'cancelled').length === 0 && <div className="text-center text-xs text-slate-400 py-6 border-2 border-dashed bg-white rounded-xl">ยังไม่มีการจองวันลา</div>}
-                                    </div>
-                                </div>
+                                    setLoadingMsg(null); setSuccessModal('บันทึกวันลาสำเร็จ'); setModal(null);
+                                }} className="w-full py-3.5 bg-amber-500 text-white font-bold rounded-xl shadow-md">บันทึกวันลา</button>
                             </div>
                         </div>
                     )}
 
-                    {/* 📍 Modal จัดการกิจกรรม (สำหรับ Admin) */}
                     {modal?.type === 'manage_events' && (
-                        <div className="modal-card w-full max-w-md rounded-3xl overflow-hidden shadow-2xl animate-pop flex flex-col max-h-[90vh] bg-white">
-                            <div className="bg-emerald-500 p-4 text-white flex justify-between items-center"><h3 className="font-bold flex items-center gap-2"><Icons.Star /> จัดการกิจกรรม</h3><button onClick={() => setModal(null)} className="bg-white/20 p-1.5 rounded-full"><Icons.X /></button></div>
-                            <div className="p-4 overflow-y-auto custom-scrollbar flex-1 bg-slate-50 space-y-4">
-                                <div className="bg-white p-4 rounded-xl shadow-sm border border-emerald-100">
-                                    <h4 className="font-bold text-emerald-800 mb-3 text-sm flex items-center gap-2"><Icons.Plus /> เพิ่มกิจกรรมใหม่</h4>
-                                    <div className="space-y-4">
-                                        
-                                        <div>
-                                            <label className="text-[10px] font-bold text-slate-500 mb-1 block">ชื่อกิจกรรม</label>
-                                            <input type="text" id="event_name_input" placeholder="ระบุชื่อกิจกรรม..." className="w-full p-2.5 text-sm border rounded-lg font-bold bg-slate-50 focus:bg-white transition-all outline-none focus:border-emerald-400" />
-                                        </div>
-                                        
-                                        {/* 📍 Dropdown เลือกผู้เข้าร่วมแบบหลายคน */}
-                                        <div className="relative">
-                                            <label className="text-[10px] font-bold text-slate-500 mb-1 block">ผู้เข้าร่วม</label>
-                                            <div className="w-full p-2.5 text-sm border rounded-lg bg-slate-50 font-bold cursor-pointer flex justify-between items-center" onClick={() => setShowEventDropdown(!showEventDropdown)}>
-                                                <span className={`truncate ${eventInspectors.length === 0 ? 'text-slate-400' : 'text-emerald-700'}`}>
-                                                    {eventInspectors.length === 0 ? '-- เลือกผู้เข้าร่วม --' : eventInspectors.includes('ALL') ? '✅ ทุกคน (กิจกรรมรวม)' : `👤 ผู้ตรวจ (${eventInspectors.length} คน)`}
-                                                </span>
-                                                <span className="text-slate-400 text-xs">▼</span>
-                                            </div>
-                                            {showEventDropdown && (
-                                                <div className="absolute z-20 w-full mt-1 bg-white border border-slate-200 rounded-xl shadow-xl max-h-48 overflow-y-auto custom-scrollbar">
-                                                    <label className="flex items-center gap-3 p-3 hover:bg-emerald-50 cursor-pointer border-b border-slate-100">
-                                                        <input type="checkbox" checked={eventInspectors.includes('ALL')} onChange={(e) => {
-                                                            if (e.target.checked) setEventInspectors(['ALL']); else setEventInspectors([]);
-                                                        }} className="accent-emerald-500 w-4 h-4 shadow-sm" />
-                                                        <span className="font-black text-emerald-700 text-sm">✅ ทุกคน (กิจกรรมรวมทั้งบริษัท)</span>
-                                                    </label>
-                                                    {(db.inspectors || []).map(i => (
-                                                        <label key={i.name} className="flex items-center gap-3 p-3 hover:bg-slate-50 cursor-pointer border-b border-slate-100 last:border-0">
-                                                            <input type="checkbox" checked={eventInspectors.includes(i.name)} onChange={(e) => {
-                                                                if (e.target.checked) setEventInspectors(prev => prev.includes('ALL') ? [i.name] : [...prev, i.name]);
-                                                                else setEventInspectors(prev => prev.filter(name => name !== i.name));
-                                                            }} className="accent-emerald-500 w-4 h-4 shadow-sm" />
-                                                            <span className="text-slate-700 font-bold text-sm">👤 เฉพาะ: {i.name}</span>
-                                                        </label>
-                                                    ))}
-                                                </div>
-                                            )}
-                                        </div>
-
-                                        <div className="grid grid-cols-2 gap-3">
-                                            <div><label className="text-[10px] font-bold text-slate-500 mb-1 block">วันที่เริ่ม</label><input type="date" value={eventStartDate} onChange={(e) => setEventStartDate(e.target.value)} className="w-full p-2 border rounded-lg text-xs font-bold text-slate-700 bg-slate-50" /></div>
-                                            <div><label className="text-[10px] font-bold text-slate-500 mb-1 block">วันสิ้นสุด</label><input type="date" value={eventEndDate} onChange={(e) => setEventEndDate(e.target.value)} className="w-full p-2 border rounded-lg text-xs font-bold text-slate-700 bg-slate-50" /></div>
-                                        </div>
-
-                                        {/* 📍 เพิ่ม Color Picker สำหรับเลือกสีกิจกรรมอิสระ */}
-                                        <div className="bg-emerald-50/50 p-3 rounded-xl border border-emerald-100">
-                                            <label className="text-[10px] font-bold text-emerald-800 mb-2 block">🎨 เลือกสีกิจกรรมบนตาราง</label>
-                                            <div className="flex items-center gap-3">
-                                                <input type="color" value={eventColor} onChange={(e) => setEventColor(e.target.value)} className="w-10 h-10 border-0 rounded-lg cursor-pointer shadow-sm p-0 bg-transparent" />
-                                                <div className="flex gap-1.5 flex-wrap flex-1">
-                                                    {['#22c55e', '#3b82f6', '#8b5cf6', '#eab308', '#f97316', '#ec4899', '#64748b'].map(color => (
-                                                        <div key={color} onClick={() => setEventColor(color)} className="w-6 h-6 rounded-full cursor-pointer shadow-sm border border-black/10 transition-transform active:scale-90" style={{backgroundColor: color}}></div>
-                                                    ))}
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <button onClick={async () => {
-                                            const eName = document.getElementById('event_name_input').value;
-                                            if(!eName || !eventStartDate || !eventEndDate || eventInspectors.length === 0) return setAlertMsg('กรุณากรอกข้อมูลและเลือกผู้เข้าร่วมให้ครบถ้วน');
-                                            
-                                            setLoadingMsg('กำลังสร้างกิจกรรมลง Firebase...');
-                                            let targets = eventInspectors.includes('ALL') ? ['SYSTEM_EVENT'] : eventInspectors;
-                                            
-                                            if (window.dbFirestore) {
-                                                const batch = window.dbFirestore.batch();
-                                                for (let target of targets) {
-                                                    const eqNo = `EVENT_${Date.now()}_${eventColor}`;
-                                                    for(let date of eventDates) {
-                                                        const newId = window.SAIS_UTILS?.generateId ? window.SAIS_UTILS.generateId() : Date.now().toString() + Math.random();
-                                                        const docRef = window.dbFirestore.collection("bookings").doc(newId);
-                                                        batch.set(docRef, { id: newId, date: date, inspector_name: target, job_type: 'company_event', site_name: eName, equipment_no: eqNo, created_by: user?.username, status: 'active' });
-                                                    }
-                                                }
-                                                await batch.commit();
-                                            }
-                                            
-                                            logActivity('CREATE EVENT', `สร้างกิจกรรม: ${eName}\nวันที่: ${eventStartDate} ถึง ${eventEndDate}`);
-                                            setLoadingMsg(null);
-                                            setModal(null);
-                                            
-                                            setSuccessModal(
-                                                <div className="text-center">
-                                                    <div className="font-black text-sm mb-1 text-emerald-600">สร้างกิจกรรมสำเร็จ!</div>
-                                                    <div className="text-xs text-slate-600">เรื่อง: {eName}</div>
-                                                    <div className="text-xs text-slate-600 mt-1">เป้าหมาย: {targets.includes('SYSTEM_EVENT') ? 'ทุกคนในบริษัท' : `${targets.length} คน`}</div>
-                                                </div>
-                                            );
-
-                                            setEventStartDate(''); setEventEndDate(''); setEventInspectors([]); setShowEventDropdown(false);
-                                            document.getElementById('event_name_input').value = '';
-                                            
-                                        }} className="w-full py-3.5 bg-emerald-500 text-white font-bold rounded-xl shadow-md flex justify-center items-center gap-2 active:scale-95 transition-transform mt-2">
-                                            <Icons.Plus /> ยืนยันสร้างกิจกรรม
-                                        </button>
-                                    </div>
+                        <div className="modal-card w-full max-w-md bg-white rounded-3xl p-6 relative max-h-[90vh] overflow-y-auto">
+                            <button onClick={() => setModal(null)} className="absolute top-4 right-4 bg-slate-100 p-2 rounded-full"><Icons.X /></button>
+                            <h3 className="text-xl font-bold mb-4 border-b pb-2 text-emerald-600">จัดการกิจกรรมบริษัท</h3>
+                            <div className="space-y-3">
+                                <input type="text" id="event_name_input" placeholder="ชื่อกิจกรรม..." className="w-full p-3 border rounded-xl font-bold text-sm" />
+                                <div className="grid grid-cols-2 gap-2">
+                                    <div><label className="text-xs font-bold block mb-1">เริ่ม</label><input type="date" value={eventStartDate} onChange={e=>setEventStartDate(e.target.value)} className="w-full p-2 border rounded-lg text-xs font-bold" /></div>
+                                    <div><label className="text-xs font-bold block mb-1">ถึง</label><input type="date" value={eventEndDate} onChange={e=>setEventEndDate(e.target.value)} className="w-full p-2 border rounded-lg text-xs font-bold" /></div>
                                 </div>
-
-                                {/* 📍 แสดง List และฟังก์ชันแก้ไข/ลบ กิจกรรม */}
-                                <div className="mt-6 pt-4 border-t border-slate-200">
-                                    <div className="flex justify-between items-center mb-3">
-                                        <h4 className="font-bold text-slate-700 text-sm">รายการกิจกรรมในระบบ</h4>
-                                        {selectedEventsToDelete.length > 0 && (
-                                            <button onClick={() => handleBulkDelete('event', selectedEventsToDelete)} className="bg-red-50 text-red-600 px-3 py-1.5 rounded-lg text-[10px] font-bold active:scale-95 shadow-sm border border-red-200 transition-colors hover:bg-red-100">
-                                                🗑️ ลบที่เลือก ({selectedEventsToDelete.length})
-                                            </button>
-                                        )}
-                                    </div>
-                                    <div className="space-y-2 max-h-60 overflow-y-auto custom-scrollbar pr-1">
-                                        {(db.bookings || []).filter(b => b.job_type === 'company_event' && b.status !== 'cancelled').sort((a,b) => new Date(b.date) - new Date(a.date)).map(ge => {
-                                            // ดึงสีกิจกรรมออกมาแสดงผล
-                                            let customColor = '#22c55e';
-                                            const match = String(ge.equipment_no).match(/_(#[0-9a-fA-F]{6})/);
-                                            if (match) customColor = match[1];
-
-                                            return (
-                                                <div key={ge.id} className="flex items-center gap-3 bg-white p-3 rounded-xl border border-slate-200 shadow-sm hover:border-emerald-300 transition-all">
-                                                    <input type="checkbox" checked={selectedEventsToDelete.includes(ge.id)} onChange={(e) => {
-                                                        if (e.target.checked) setSelectedEventsToDelete([...selectedEventsToDelete, ge.id]);
-                                                        else setSelectedEventsToDelete(selectedEventsToDelete.filter(id => id !== ge.id));
-                                                    }} className="accent-red-500 w-4 h-4 rounded shadow-sm cursor-pointer flex-shrink-0" />
-                                                    
-                                                    <div className="w-2 h-full min-h-[40px] rounded-full flex-shrink-0" style={{backgroundColor: customColor}}></div>
-                                                    
-                                                    <div className="flex-1 min-w-0">
-                                                        <div className="font-bold text-slate-800 text-sm truncate">{ge.site_name} 
-                                                            <span className="text-[9px] text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded-md ml-2 border border-emerald-100">
-                                                                {ge.inspector_name === 'SYSTEM_EVENT' ? 'ทุกคน' : ge.inspector_name}
-                                                            </span>
-                                                        </div>
-                                                        <div className="text-[10px] text-slate-500 font-bold mt-1">📅 {formatSafeDate(ge.date)}</div>
-                                                    </div>
-                                                    <div className="flex flex-col gap-1">
-                                                        <button onClick={() => setModal({ type: 'edit_special', data: ge, returnTo: 'manage_events' })} className="px-2.5 py-1.5 bg-blue-50 text-blue-600 rounded-lg shadow-sm border border-blue-100 active:scale-95"><Icons.Edit /></button>
-                                                        <button onClick={() => handleCancelBooking(ge)} className="px-2.5 py-1.5 bg-red-50 text-red-600 rounded-lg shadow-sm border border-red-100 active:scale-95"><Icons.Trash /></button>
-                                                    </div>
-                                                </div>
-                                            );
-                                        })}
-                                        {(db.bookings || []).filter(b => b.job_type === 'company_event' && b.status !== 'cancelled').length === 0 && <div className="text-center text-xs text-slate-400 py-6 border-2 border-dashed bg-white rounded-xl">ไม่มีกิจกรรมในระบบ</div>}
-                                    </div>
-                                </div>
+                                <button onClick={async () => {
+                                    const eName = document.getElementById('event_name_input').value;
+                                    if(!eName || !eventStartDate || !eventEndDate) return setAlertMsg('กรุณากรอกข้อมูลให้ครบถ้วน');
+                                    setLoadingMsg('กำลังสร้างกิจกรรม...');
+                                    if (window.dbFirestore) {
+                                        const batch = window.dbFirestore.batch();
+                                        for(let date of eventDates) {
+                                            const newId = Date.now().toString() + Math.random();
+                                            batch.set(window.dbFirestore.collection("bookings").doc(newId), {
+                                                id: newId, date: date, inspector_name: 'SYSTEM_EVENT', job_type: 'company_event', site_name: eName, equipment_no: `EVENT_${Date.now()}`, status: 'active'
+                                            });
+                                        }
+                                        await batch.commit();
+                                    }
+                                    setLoadingMsg(null); setSuccessModal('สร้างกิจกรรมสำเร็จ'); setModal(null);
+                                }} className="w-full py-3.5 bg-emerald-500 text-white font-bold rounded-xl shadow-md">สร้างกิจกรรม</button>
                             </div>
                         </div>
                     )}
 
-                    {/* Modal จัดการวันหยุด (สำหรับ Admin) */}
                     {modal?.type === 'manage_holidays' && (
-                        <div className="modal-card w-full max-w-md rounded-3xl overflow-hidden shadow-2xl animate-pop flex flex-col max-h-[90vh] bg-white">
-                            <div className="bg-red-600 p-4 text-white flex justify-between items-center"><h3 className="font-bold flex items-center gap-2"><Icons.CalendarX /> จัดการวันหยุด</h3><button onClick={() => setModal(null)} className="bg-white/20 p-1.5 rounded-full"><Icons.X /></button></div>
-                            <div className="p-4 overflow-y-auto custom-scrollbar flex-1 bg-slate-50 space-y-4">
-                                <div className="bg-white p-4 rounded-xl shadow-sm border">
-                                    <h4 className="font-bold text-slate-700 mb-3 text-sm flex items-center gap-2"><Icons.Plus /> เพิ่มวันหยุดใหม่</h4>
-                                    <div className="space-y-3">
-                                        <input type="text" id="holiday_name_input" placeholder="ชื่อวันหยุด..." className="w-full p-2.5 text-sm border rounded-lg font-bold" />
-                                        <div className="grid grid-cols-2 gap-2">
-                                            <div><label className="text-[10px] font-bold text-slate-500 mb-1 block">วันที่เริ่ม</label><input type="date" value={holidayStartDate} onChange={(e) => setHolidayStartDate(e.target.value)} className="w-full p-2 border rounded-lg text-xs font-bold" /></div>
-                                            <div><label className="text-[10px] font-bold text-slate-500 mb-1 block">วันสิ้นสุด</label><input type="date" value={holidayEndDate} onChange={(e) => setHolidayEndDate(e.target.value)} className="w-full p-2 border rounded-lg text-xs font-bold" /></div>
-                                        </div>
-                                        <button onClick={async () => {
-                                            const hName = document.getElementById('holiday_name_input').value;
-                                            if(!hName || !holidayStartDate || !holidayEndDate) return setAlertMsg('กรุณากรอกข้อมูลให้ครบ');
-                                            
-                                            setLoadingMsg('กำลังสร้างวันหยุดลง Firebase...');
-                                            const eqNo = `HLD_${Date.now()}`;
-                                            if (window.dbFirestore) {
-                                                const batch = window.dbFirestore.batch();
-                                                for(let date of holidayDates) {
-                                                    const newId = window.SAIS_UTILS?.generateId ? window.SAIS_UTILS.generateId() : Date.now().toString() + Math.random();
-                                                    const docRef = window.dbFirestore.collection("bookings").doc(newId);
-                                                    batch.set(docRef, { id: newId, date: date, inspector_name: 'SYSTEM_HOLIDAY', job_type: 'public_holiday', site_name: hName, equipment_no: eqNo, created_by: user?.username, status: 'active' });
-                                                }
-                                                await batch.commit();
-                                            }
-                                            
-                                            logActivity('CREATE HOLIDAY', `เพิ่มวันหยุด: ${hName} (${holidayDates.length} วัน)`);
-                                            setLoadingMsg(null);
-                                            setModal(null);
-                                            
-                                            setSuccessModal(
-                                                <div className="text-center">
-                                                    <div className="font-black text-sm mb-1 text-red-600">สร้างวันหยุดสำเร็จ!</div>
-                                                    <div className="text-xs text-slate-600">เรื่อง: {hName}</div>
-                                                    <div className="text-xs text-slate-600 mt-1">จำนวนที่บล็อกตาราง: <span className="font-bold text-red-600">{holidayDates.length} วัน</span></div>
-                                                </div>
-                                            );
-
-                                            setHolidayStartDate(''); setHolidayEndDate(''); document.getElementById('holiday_name_input').value = '';
-                                            
-                                        }} className="w-full py-3 bg-red-600 text-white font-bold rounded-xl shadow-md flex justify-center items-center gap-2"><Icons.Plus /> กำหนดวันหยุด</button>
-                                    </div>
+                        <div className="modal-card w-full max-w-md bg-white rounded-3xl p-6 relative max-h-[90vh] overflow-y-auto">
+                            <button onClick={() => setModal(null)} className="absolute top-4 right-4 bg-slate-100 p-2 rounded-full"><Icons.X /></button>
+                            <h3 className="text-xl font-bold mb-4 border-b pb-2 text-red-600">จัดการวันหยุดบริษัท</h3>
+                            <div className="space-y-3">
+                                <input type="text" id="holiday_name_input" placeholder="ชื่อวันหยุด..." className="w-full p-3 border rounded-xl font-bold text-sm" />
+                                <div className="grid grid-cols-2 gap-2">
+                                    <div><label className="text-xs font-bold block mb-1">เริ่ม</label><input type="date" value={holidayStartDate} onChange={e=>setHolidayStartDate(e.target.value)} className="w-full p-2 border rounded-lg text-xs font-bold" /></div>
+                                    <div><label className="text-xs font-bold block mb-1">ถึง</label><input type="date" value={holidayEndDate} onChange={e=>setHolidayEndDate(e.target.value)} className="w-full p-2 border rounded-lg text-xs font-bold" /></div>
                                 </div>
-
-                                {/* 📍 แสดง List และฟังก์ชันแก้ไข/ลบ วันหยุด */}
-                                <div className="mt-6 pt-4 border-t border-slate-200">
-                                    <div className="flex justify-between items-center mb-3">
-                                        <h4 className="font-bold text-slate-700 text-sm">รายการวันหยุดในระบบ</h4>
-                                        {selectedHolidaysToDelete.length > 0 && (
-                                            <button onClick={() => handleBulkDelete('holiday', selectedHolidaysToDelete)} className="bg-red-50 text-red-600 px-3 py-1.5 rounded-lg text-[10px] font-bold active:scale-95 shadow-sm border border-red-200 transition-colors hover:bg-red-100">
-                                                🗑️ ลบที่เลือก ({selectedHolidaysToDelete.length})
-                                            </button>
-                                        )}
-                                    </div>
-                                    <div className="space-y-2 max-h-60 overflow-y-auto custom-scrollbar pr-1">
-                                        {(db.bookings || []).filter(b => b.job_type === 'public_holiday' && b.status !== 'cancelled').sort((a,b) => new Date(b.date) - new Date(a.date)).map(hd => (
-                                            <div key={hd.id} className="flex items-center gap-3 bg-white p-3 rounded-xl border border-slate-200 shadow-sm hover:border-red-300 transition-all">
-                                                <input type="checkbox" checked={selectedHolidaysToDelete.includes(hd.id)} onChange={(e) => {
-                                                    if (e.target.checked) setSelectedHolidaysToDelete([...selectedHolidaysToDelete, hd.id]);
-                                                    else setSelectedHolidaysToDelete(selectedHolidaysToDelete.filter(id => id !== hd.id));
-                                                }} className="accent-red-500 w-4 h-4 rounded shadow-sm cursor-pointer" />
-                                                <div className="flex-1 min-w-0">
-                                                    <div className="font-bold text-slate-800 text-sm truncate">{hd.site_name}</div>
-                                                    <div className="text-[10px] text-slate-500 font-bold mt-1">📅 {formatSafeDate(hd.date)}</div>
-                                                </div>
-                                                <div className="flex flex-col gap-1">
-                                                    <button onClick={() => setModal({ type: 'edit_special', data: hd, returnTo: 'manage_holidays' })} className="px-2.5 py-1.5 bg-blue-50 text-blue-600 rounded-lg shadow-sm border border-blue-100 active:scale-95"><Icons.Edit /></button>
-                                                    <button onClick={() => handleCancelBooking(hd)} className="px-2.5 py-1.5 bg-red-50 text-red-600 rounded-lg shadow-sm border border-red-100 active:scale-95"><Icons.Trash /></button>
-                                                </div>
-                                            </div>
-                                        ))}
-                                        {(db.bookings || []).filter(b => b.job_type === 'public_holiday' && b.status !== 'cancelled').length === 0 && <div className="text-center text-xs text-slate-400 py-6 border-2 border-dashed bg-white rounded-xl">ไม่มีวันหยุดในระบบ</div>}
-                                    </div>
-                                </div>
+                                <button onClick={async () => {
+                                    const hName = document.getElementById('holiday_name_input').value;
+                                    if(!hName || !holidayStartDate || !holidayEndDate) return setAlertMsg('กรุณากรอกข้อมูลให้ครบถ้วน');
+                                    setLoadingMsg('กำลังสร้างวันหยุด...');
+                                    if (window.dbFirestore) {
+                                        const batch = window.dbFirestore.batch();
+                                        for(let date of holidayDates) {
+                                            const newId = Date.now().toString() + Math.random();
+                                            batch.set(window.dbFirestore.collection("bookings").doc(newId), {
+                                                id: newId, date: date, inspector_name: 'SYSTEM_HOLIDAY', job_type: 'public_holiday', site_name: hName, equipment_no: `HLD_${Date.now()}`, status: 'active'
+                                            });
+                                        }
+                                        await batch.commit();
+                                    }
+                                    setLoadingMsg(null); setSuccessModal('สร้างวันหยุดสำเร็จ'); setModal(null);
+                                }} className="w-full py-3.5 bg-red-600 text-white font-bold rounded-xl shadow-md">บันทึกวันหยุด</button>
                             </div>
                         </div>
                     )}
                 </div>
             )}
 
-            {/* 📍 Global Modal สำหรับคลิกเปิดดูไฟล์รูปภาพหรือเอกสาร */}
+            {/* Global Modal สำหรับเปิดดูไฟล์แนบ */}
             {viewFileUrl && (
                 <div className="backdrop z-[700] p-4 flex flex-col items-center justify-center">
                     <div className="w-full max-w-4xl bg-white rounded-3xl overflow-hidden flex flex-col h-[85vh] shadow-2xl animate-pop relative">
@@ -3280,7 +2586,7 @@ const App = () => {
                 </div>
             )}
 
-            {/* 📍 หน้าต่างแจ้งเตือนและ Logs (Activity Modal) */}
+            {/* หน้าต่าง Activity Modal */}
             {showActivityModal && (
                 <div className="backdrop z-[200] p-4 flex items-center justify-center">
                     <div className="modal-card p-6 w-full max-w-lg bg-white rounded-3xl shadow-2xl h-[85vh] flex flex-col animate-pop relative">
@@ -3291,85 +2597,39 @@ const App = () => {
                             <button onClick={() => setActivityTab('notif')} className={`flex-1 py-2 text-xs font-bold rounded-lg transition-all ${activityTab === 'notif' ? 'bg-white shadow-sm text-blue-600' : 'text-slate-500'}`}>
                                 🔔 แจ้งเตือน ({unreadNotifs.length})
                             </button>
-                            <button onClick={() => { setActivityTab('log'); if(!hasLoadedAdmin && isAdmin) fetchAdminData(0, 50, 'logs'); }} className={`flex-1 py-2 text-xs font-bold rounded-lg transition-all ${activityTab === 'log' ? 'bg-white shadow-sm text-slate-800' : 'text-slate-500'}`}>
+                            <button onClick={() => setActivityTab('log')} className={`flex-1 py-2 text-xs font-bold rounded-lg transition-all ${activityTab === 'log' ? 'bg-white shadow-sm text-slate-800' : 'text-slate-500'}`}>
                                 🗄️ ประวัติระบบ (Logs)
                             </button>
                         </div>
 
-                        {!hasLoadedAdmin && activityTab === 'log' ? (
-                             <div className="flex flex-col items-center justify-center p-10 text-slate-400 gap-4 flex-1"><Icons.Loader /> กำลังดึงประวัติระบบ...</div>
-                        ) : (
-                            <div className="overflow-y-auto flex-1 pr-2 space-y-3 custom-scrollbar">
-                                {activityTab === 'notif' ? (
-                                    (() => {
-                                        const userNotifs = (db.notifications || []).filter(n => n.target === user?.username || (isAdmin && n.target === 'ALL_ADMIN')).sort((a,b) => new Date(b.timestamp) - new Date(a.timestamp));
-                                        
-                                        if (userNotifs.length === 0) return <div className="text-center text-slate-400 text-sm py-12">ไม่มีรายการแจ้งเตือน</div>;
-
-                                        return userNotifs.map((notif, i) => {
-                                            const readers = String(notif.isRead || '').split(',');
-                                            const isUnread = !readers.includes(user?.username);
-
-                                            return (
-                                                <div key={`notif_${notif.id || i}`} onClick={() => { 
-                                                    if(isUnread) {
-                                                        const newReaders = [...readers, user?.username].filter(Boolean).join(',');
-                                                        setDb(prev => ({
-                                                            ...prev,
-                                                            notifications: prev.notifications.map(n => n.id === notif.id ? { ...n, isRead: newReaders } : n)
-                                                        }));
-                                                        fetch(SCRIPT_URL, { 
-                                                            method: 'POST', 
-                                                            body: JSON.stringify({ action: 'read_notification', api_key: window?.SAIS_CONFIG?.API_KEY, id: notif.id, user: user?.username }) 
-                                                        });
-                                                    }
-                                                }}
-                                                     className={`p-4 rounded-xl border shadow-sm cursor-pointer transition-all ${isUnread ? 'bg-blue-50/80 border-blue-300 ring-1 ring-blue-300 hover:bg-blue-100' : 'bg-white border-slate-200 opacity-75 hover:opacity-100'}`}>
-                                                    <div className="flex justify-between items-start mb-2">
-                                                        <div className="font-bold text-sm text-slate-800 flex items-center gap-2">
-                                                            {isUnread && <span className="w-2.5 h-2.5 rounded-full bg-blue-500 animate-pulse"></span>}
-                                                            {notif.title || 'แจ้งเตือนระบบ'}
-                                                        </div>
-                                                        <div className="text-[9px] text-slate-400 bg-slate-50 px-2 py-1 rounded-md border border-slate-100">
-                                                            {notif.timestamp ? new Date(notif.timestamp).toLocaleString('th-TH', { timeZone: 'Asia/Bangkok', day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : ''}
-                                                        </div>
-                                                    </div>
-                                                    <div className="text-xs text-slate-700 leading-relaxed whitespace-pre-line">{notif.message}</div>
-                                                </div>
-                                            );
-                                        });
-                                    })()
-                                ) : (
-                                    (() => {
-                                        const filteredLogs = (adminDb.logs || []).filter(log => {
-                                            if (!logSearchQuery) return true;
-                                            const q = logSearchQuery.toLowerCase();
-                                            return String(log.user || '').toLowerCase().includes(q) || String(log.action || '').toLowerCase().includes(q) || String(log.details || '').toLowerCase().includes(q);
-                                        }).sort((a,b) => new Date(b.timestamp) - new Date(a.timestamp));
-
-                                        if (filteredLogs.length === 0) return <div className="text-center text-slate-400 text-sm py-10">ไม่พบประวัติ</div>;
-
-                                        return filteredLogs.slice(0, logsLimit).map((log, i) => (
-                                            <div key={i} className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-                                                <div className="flex justify-between items-start mb-2">
-                                                    <div className="flex items-center gap-2">
-                                                        <div className="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center text-slate-500"><Icons.User /></div>
-                                                        <div className="text-[10px] font-bold text-slate-700">{log.user}</div>
-                                                    </div>
-                                                    <div className="text-[9px] text-slate-400 bg-slate-50 px-2 py-1 rounded-md border">
-                                                        {new Date(log.timestamp).toLocaleString('th-TH', { timeZone: 'Asia/Bangkok', day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}
-                                                    </div>
-                                                </div>
-                                                <div className="mb-2">
-                                                    <span className={`px-2 py-1 rounded-md text-[9px] font-bold inline-block ${String(log.action).includes('CREATE') || String(log.action).includes('เพิ่ม') ? 'bg-green-100 text-green-700' : String(log.action).includes('UPDATE') || String(log.action).includes('แก้ไข') ? 'bg-blue-100 text-blue-700' : String(log.action).includes('DELETE') || String(log.action).includes('ลบ') ? 'bg-red-100 text-red-700' : 'bg-slate-100 text-slate-700'}`}>{log.action}</span>
-                                                </div>
-                                                <div className="text-[11px] font-mono text-slate-600 leading-relaxed whitespace-pre-wrap bg-slate-50 p-3 rounded-lg border">{log.details}</div>
+                        <div className="overflow-y-auto flex-1 pr-2 space-y-3 custom-scrollbar">
+                            {activityTab === 'notif' ? (
+                                (() => {
+                                    const userNotifs = (db.notifications || []).filter(n => n.target === user?.username || (isAdmin && n.target === 'ALL_ADMIN')).sort((a,b) => new Date(b.timestamp) - new Date(a.timestamp));
+                                    if (userNotifs.length === 0) return <div className="text-center text-slate-400 text-sm py-12">ไม่มีรายการแจ้งเตือน</div>;
+                                    return userNotifs.map((notif, i) => (
+                                        <div key={i} className="p-4 rounded-xl border bg-white shadow-sm">
+                                            <div className="font-bold text-sm text-slate-800 mb-1">{notif.title || 'แจ้งเตือน'}</div>
+                                            <div className="text-xs text-slate-600">{notif.message}</div>
+                                        </div>
+                                    ));
+                                })()
+                            ) : (
+                                (() => {
+                                    const logs = adminDb.logs || [];
+                                    if (logs.length === 0) return <div className="text-center text-slate-400 text-sm py-10">ไม่พบประวัติ</div>;
+                                    return logs.map((log, i) => (
+                                        <div key={i} className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                                            <div className="flex justify-between items-start mb-1 text-[10px] text-slate-500">
+                                                <span>👤 {log.user}</span><span>{new Date(log.timestamp).toLocaleString('th-TH')}</span>
                                             </div>
-                                        ));
-                                    })()
-                                )}
-                            </div>
-                        )}
+                                            <div className="mb-1"><span className="px-2 py-0.5 rounded text-[9px] font-bold bg-slate-100 text-slate-700">{log.action}</span></div>
+                                            <div className="text-[11px] font-mono text-slate-600 whitespace-pre-wrap bg-slate-50 p-2 rounded border">{log.details}</div>
+                                        </div>
+                                    ));
+                                })()
+                            )}
+                        </div>
                     </div>
                </div>
             )}
@@ -3377,7 +2637,7 @@ const App = () => {
     );
 };
 
-// 📍 ระบบดักจับ Error ป้องกันหน้าจอขาว (ErrorBoundary)
+// 📍 Error Boundary ป้องกันหน้าจอขาวแบบเด็ดขาด
 class ErrorBoundary extends React.Component {
     constructor(props) { super(props); this.state = { hasError: false, errorMsg: '' }; }
     static getDerivedStateFromError(error) { return { hasError: true, errorMsg: error.toString() }; }
@@ -3386,13 +2646,9 @@ class ErrorBoundary extends React.Component {
         if (this.state.hasError) {
             return (
                 <div className="h-screen w-full flex flex-col items-center justify-center bg-slate-50 p-6 text-center">
-                    <div className="text-red-500 mb-4 bg-red-50 p-4 rounded-full shadow-sm">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
-                        </svg>
-                    </div>
+                    <div className="text-red-500 mb-4 bg-red-50 p-4 rounded-full shadow-sm"><Icons.Alert /></div>
                     <h2 className="text-xl font-bold text-slate-800 mb-2">ระบบขัดข้องชั่วคราว</h2>
-                    <p className="text-sm text-slate-500 mb-6 bg-white p-3 rounded-lg max-w-md break-words border border-slate-200 shadow-sm">{this.state.errorMsg}</p>
+                    <p className="text-sm text-slate-500 mb-6 bg-white p-3 rounded-lg max-w-md border">{this.state.errorMsg}</p>
                     <button onClick={() => window.location.reload()} className="bg-blue-600 text-white px-6 py-3 rounded-xl font-bold shadow-md active:scale-95 transition-transform">รีเฟรชหน้าเว็บ</button>
                 </div>
             );
@@ -3401,13 +2657,8 @@ class ErrorBoundary extends React.Component {
     }
 }
 
-// 📍 จุดเริ่มต้นและเรนเดอร์ React
 const rootElement = document.getElementById('root');
 if (rootElement) {
     const root = ReactDOM.createRoot(rootElement);
-    root.render(
-        <ErrorBoundary>
-            <App />
-        </ErrorBoundary>
-    );
+    root.render(<ErrorBoundary><App /></ErrorBoundary>);
 }
