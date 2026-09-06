@@ -35,7 +35,7 @@ const Icons = {
     Edit: () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>,
     FileText: () => <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>,
     Image: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>,
-    Settings: () => <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06-.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>,
+    Settings: () => <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l.06.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2 2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06-.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>,
     HelpCircle: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>,
     Info: () => <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>,
     UserPlus: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>,
@@ -99,12 +99,10 @@ const getCardStyle = (task, settings = {}) => {
 
 const RealtimeClock = React.memo(({ lastSyncTime }) => {
     const [currentTime, setCurrentTime] = useState(getThaiTime());
-    
     useEffect(() => {
         const timerId = setInterval(() => setCurrentTime(getThaiTime()), 1000);
         return () => clearInterval(timerId);
     }, []);
-
     return (
         <div className="realtime-clock flex flex-col gap-1 py-2 bg-slate-50 border-t border-slate-200 shadow-inner z-50">
             <div className="flex items-center justify-center gap-1.5 text-xs text-slate-700">
@@ -118,6 +116,7 @@ const RealtimeClock = React.memo(({ lastSyncTime }) => {
     );
 });
 
+// 📍 CalendarGrid
 const CalendarGrid = React.memo(({ daysInView, db, isAdmin, user, setModal, setAlertMsg, handleDrop, handleDragOver, handleDragLeave, handleDragStart, handleDragEnd, setConfirmDialog, apiAction, setQuickAddType, filteredBookings, tableFontScale, columnZoom, specialFontScale, isExporting }) => {
     const taskMap = useMemo(() => {
         const map = {};
@@ -152,7 +151,9 @@ const CalendarGrid = React.memo(({ daysInView, db, isAdmin, user, setModal, setA
                 </div>
             ))}
             {daysInView.map((d, index) => {
-                let headerClass = d.isSunday ? 'text-red-600 font-black bg-red-50/50' : '';
+                let headerClass = '';
+                if (d.isGlobalHoliday) headerClass = 'is-sunday-col';
+                else if (d.isGlobalEvent) headerClass = 'is-global-event-col';
                 return (
                     <React.Fragment key={index}>
                         <div className={`sticky-left ${headerClass} ${d.isToday ? 'is-today-row' : ''} flex flex-col justify-center items-center ${isExporting ? 'px-2' : ''}`}>
@@ -198,9 +199,7 @@ const CalendarGrid = React.memo(({ daysInView, db, isAdmin, user, setModal, setA
                                                 if(typeof setQuickAddType === 'function') setQuickAddType('job');
                                                 if(typeof setModal === 'function') setModal({ type: 'booking', data: { date: d.full, inspector_name: ins.name } });
                                             }
-                                        } catch (error) {
-                                            console.error("Calendar click error:", error);
-                                        }
+                                        } catch (error) { console.error("Calendar click error:", error); }
                                     }}>
 
                                     {d.isGlobalHoliday && d.globalHolidays.map((gh, ghi) => {
@@ -304,12 +303,13 @@ const CalendarGrid = React.memo(({ daysInView, db, isAdmin, user, setModal, setA
         </div>
     );
 });
+// 📍 COMPONENT หลักของระบบ
 const App = () => {
     const SCRIPT_URL = window?.SAIS_CONFIG?.SCRIPT_URL || "";
     const ADMIN_USERNAME = window?.SAIS_CONFIG?.ADMIN_USERNAME || "jiraphong2227";
     const utils = window?.SAIS_UTILS || {};
 
-    // 📍 1. สร้าง State ทั้งหมด (จัดเรียงใหม่ให้อยู่บนสุดก่อนเงื่อนไข Return)
+    // 📍 1. สร้าง State ทั้งหมด (จัดเรียงใหม่ให้อยู่บนสุดก่อนเงื่อนไข Return ป้องกันหน้าจอขาว)
     const [modal, setModal] = useState(null); 
     const [db, setDb] = useState({ bookings: [], inspectors: [], notifications: [], settings: {} });
     const [adminDb, setAdminDb] = useState({ users: [], logs: [], all_bookings: [] });
@@ -423,7 +423,7 @@ const App = () => {
             return null;
         } catch(e) { return null; } 
     });
-    // 📍 2. แก้ไขบัคหน้าจอขาว (โหลด Firebase แบบป้องกัน Race Condition 100%)
+    // 📍 2. โหลด Firebase อย่างปลอดภัย (แก้บัคโหลด Script ชนกัน)
     useEffect(() => {
         const loadScript = (src) => {
             return new Promise((resolve, reject) => {
@@ -454,7 +454,7 @@ const App = () => {
             try {
                 await loadScript("https://www.gstatic.com/firebasejs/10.8.1/firebase-app-compat.js");
                 await loadScript("https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore-compat.js");
-                await loadScript("https://www.gstatic.com/firebasejs/10.8.1/firebase-storage-compat.js"); // นำ Storage กลับมา
+                await loadScript("https://www.gstatic.com/firebasejs/10.8.1/firebase-storage-compat.js"); 
 
                 if (!window.firebase.apps.length) {
                     window.firebase.initializeApp({
@@ -508,7 +508,7 @@ const App = () => {
 
     const isAdmin = useMemo(() => user?.role === 'admin', [user]);
     
-    // 📍 2. ตัวแปร unreadNotifs ไม่หายแล้ว เพราะผูก Scope ถูกต้อง 100%
+    // 📍 จุดนี้คือตัวแก้ปัญหา "ReferenceError: unreadNotifs is not defined" ที่แท้จริง (จัดลำดับถูกต้องแล้ว 100%)
     const unreadNotifs = useMemo(() => {
         return (db.notifications || []).filter(n => {
             const isTargeted = n.target === user?.username || (isAdmin && n.target === 'ALL_ADMIN');
@@ -549,7 +549,7 @@ const App = () => {
         });
     }, [db.inspectors, adminDb.users, modal]);
 
-    // 📍 2. ดึงข้อมูล Realtime ด้วย Firestore (ดึง Admin ผ่าน Firebase ตัดปัญหาสายซ้อน Sheets)
+    // 📍 ดึงข้อมูล Realtime ด้วย Firestore 
     useEffect(() => {
         if (!isFirebaseReady || !window.dbFirestore) return;
 
@@ -573,14 +573,12 @@ const App = () => {
         });
 
         let unsubUsers, unsubLogs;
-        
         if (user && user.role === 'admin') {
             unsubUsers = window.dbFirestore.collection("users").onSnapshot(snapshot => {
                 const list = [];
                 snapshot.forEach(doc => list.push(doc.data()));
                 setAdminDb(prev => ({ ...prev, users: list }));
             });
-            
             unsubLogs = window.dbFirestore.collection("logs").orderBy("timestamp", "desc").limit(100).onSnapshot(snapshot => {
                 const list = [];
                 snapshot.forEach(doc => list.push(doc.data()));
@@ -597,46 +595,35 @@ const App = () => {
             if(unsubLogs) unsubLogs();
         };
     }, [isFirebaseReady, user]);
-    // ==========================================
-    // 📍 ส่วนที่ 4: Utility Functions & UI Settings
-    // ==========================================
-    const handleTabChange = (view) => { setCurrentView(view); };
-
-    const findDocIdFallback = async (booking) => {
-        if (booking.id) return String(booking.id);
-        if (window.dbFirestore) {
-            const snapshot = await window.dbFirestore.collection("bookings")
-                .where("equipment_no", "==", booking.equipment_no)
-                .where("date", "==", booking.date).get();
-            if (!snapshot.empty) return snapshot.docs[0].id;
+    // 📍 3. ตรวจสอบการเลือกพื้นที่ในฟอร์มเพื่อแสดง Google Maps
+    useEffect(() => {
+        if (modal && modal.type === 'booking') {
+            const currentArea = areaSelection === 'other' ? (modal.data?.area || 'ไม่ระบุ') : areaSelection;
+            handleMapChange(currentArea);
+            setDocUrls({
+                layout: modal.data?.layout_img || '',
+                wiring: modal.data?.wiring_img || '',
+                precheck: modal.data?.precheck_img || '',
+                site_cond_1: modal.data?.site_cond_1 || '',
+                site_cond_2: modal.data?.site_cond_2 || '',
+                site_cond_3: modal.data?.site_cond_3 || '',
+                site_cond_4: modal.data?.site_cond_4 || '',
+                site_cond_5: modal.data?.site_cond_5 || '',
+                site_cond_6: modal.data?.site_cond_6 || ''
+            });
         }
-        return null;
-    };
+    }, [modal, areaSelection]);
 
-    const handleTouchStart = (e) => { 
-        if (scrollRef.current && scrollRef.current.scrollTop === 0) touchStartY.current = e.touches[0].clientY; 
-    };
-    
-    const handleTouchMove = (e) => {
-        if (scrollRef.current && scrollRef.current.scrollTop === 0 && touchStartY.current > 0) {
-            const diff = e.touches[0].clientY - touchStartY.current;
-            if (diff > 0 && diff < 80) setPullY(diff);
-        }
-    };
-    
-    const handleTouchEnd = async () => {
-        if (pullY > 50 && !isRefreshing) { 
-            setIsRefreshing(true); setPullY(50); 
-            setTimeout(() => { setIsRefreshing(false); setPullY(0); }, 800); 
-        } else { setPullY(0); }
-        touchStartY.current = 0;
-    };
-
-    // 📍 ระบบประวัติการทำงาน (Logs)
+    // 📍 4. ระบบบันทึกประวัติการใช้งาน (Log) ลง Firebase 100%
     const logActivity = async (action, details) => {
         if (!window.dbFirestore || !user) return;
         try {
-            await window.dbFirestore.collection("logs").add({ action: action, details: details, user: user.username, timestamp: getThaiTime().toISOString() });
+            await window.dbFirestore.collection("logs").add({
+                action: action,
+                details: details,
+                user: user.username,
+                timestamp: getThaiTime().toISOString()
+            });
         } catch (e) { console.error("Log Error:", e); }
     };
 
@@ -653,16 +640,24 @@ const App = () => {
             if (userObj && userObj.full_name) userFullName = `${userObj.full_name} (${actionUser})`;
         }
 
-        if (!oldData) return `[เพิ่มรายการใหม่]\nหัวข้อ/โครงการ: ${site}\nประเภทงาน: ${jt}\nEq No.: ${eq}\nผู้ตรวจ: ${inspector}\nวันที่: ${dateStr}\nโดย: ${userFullName}`;
+        if (!oldData) {
+            return `[เพิ่มรายการใหม่]\nหัวข้อ/โครงการ: ${site}\nประเภทงาน: ${jt}\nEq No.: ${eq}\nผู้ตรวจ: ${inspector}\nวันที่: ${dateStr}\nโดย: ${userFullName}`;
+        }
         
         let changes = [];
-        const labels = { date: 'วันที่', inspector_name: 'ผู้ตรวจ', site_name: 'หัวข้อ/โครงการ', equipment_no: 'Eq No.', unit_no: 'Unit', job_type: 'ประเภทงาน', area: 'พื้นที่', tel: 'เบอร์โทร', product_line: 'Product', layout_doc: 'สถานะ Layout', wiring_doc: 'สถานะ Wiring', precheck_doc: 'สถานะ Precheck' };
+        const labels = {
+            date: 'วันที่', inspector_name: 'ผู้ตรวจ', site_name: 'หัวข้อ/โครงการ',
+            equipment_no: 'Eq No.', unit_no: 'Unit', job_type: 'ประเภทงาน', 
+            area: 'พื้นที่', tel: 'เบอร์โทร', product_line: 'Product',
+            layout_doc: 'สถานะ Layout', wiring_doc: 'สถานะ Wiring', precheck_doc: 'สถานะ Precheck'
+        };
         for (let key in labels) {
-            let oldVal = String(oldData[key] || '').trim(); let newVal = String(newData[key] || '').trim();
+            let oldVal = String(oldData[key] || '').trim();
+            let newVal = String(newData[key] || '').trim();
             if (oldVal !== newVal) {
-                if (oldVal === 'false' || oldVal === 'pending') oldVal = 'ยังไม่ส่ง/รอตรวจ';
+                if (oldVal === 'false' || oldVal === 'pending') oldVal = 'รอตรวจสอบ';
                 if (oldVal === 'true') oldVal = 'ตรวจสอบแล้ว';
-                if (newVal === 'false' || newVal === 'pending') newVal = 'ยังไม่ส่ง/รอตรวจ';
+                if (newVal === 'false' || newVal === 'pending') newVal = 'รอตรวจสอบ';
                 if (newVal === 'true') newVal = 'ตรวจสอบแล้ว';
                 changes.push(`• ${labels[key]}: [${oldVal || '-'}] ➡️ [${newVal || '-'}]`);
             }
@@ -672,11 +667,12 @@ const App = () => {
 
     useEffect(() => {
         if (successModal) {
-            const timer = setTimeout(() => { setSuccessModal(null); }, 2500);
+            const timer = setTimeout(() => { setSuccessModal(null); }, 3500); 
             return () => clearTimeout(timer);
         }
     }, [successModal]);
 
+    // 📍 5. การตั้งค่า UI
     useEffect(() => { localStorage.setItem('sais_table_font_scale', tableFontScale.toString()); }, [tableFontScale]);
     useEffect(() => { localStorage.setItem('sais_special_font_scale', specialFontScale.toString()); }, [specialFontScale]);
     useEffect(() => { localStorage.setItem('sais_column_zoom', columnZoom.toString()); }, [columnZoom]);
@@ -705,428 +701,106 @@ const App = () => {
         const coordRegex = /^(-?\d+\.\d+)\s*,\s*(-?\d+\.\d+)$/;
         const matchCoord = link.match(coordRegex);
         let finalUrl = link;
-        if (matchCoord) { finalUrl = `https://www.google.com/maps/search/?api=1&query=${matchCoord[1]},${matchCoord[2]}`; } 
-        else if (!link.startsWith('http')) { finalUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(link)}`; }
+        if (matchCoord) {
+            finalUrl = `https://www.google.com/maps/search/?api=1&query=${matchCoord[1]},${matchCoord[2]}`;
+        } else if (!link.startsWith('http')) {
+            finalUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(link)}`;
+        }
         window.open(finalUrl, '_blank');
     };
 
     const handleExportJPG = () => {
-        setShowSettings(false); setCurrentView('calendar'); setLoadingMsg('กำลังสร้างและปรับความคมชัดภาพตาราง... (รอสักครู่)'); setIsExporting(true);
+        setShowSettings(false);
+        setCurrentView('calendar');
+        setLoadingMsg('กำลังสร้างและปรับความคมชัดภาพตาราง... (รอสักครู่)');
+        setIsExporting(true);
         setTimeout(() => {
             const targetNode = document.getElementById('calendar-export-area');
             if(targetNode) {
-                html2canvas(targetNode, { scale: 2, useCORS: true, backgroundColor: '#f8fafc', windowWidth: targetNode.scrollWidth, windowHeight: targetNode.scrollHeight })
-                .then(canvas => {
+                html2canvas(targetNode, { 
+                    scale: 2, useCORS: true, backgroundColor: '#f8fafc',
+                    windowWidth: targetNode.scrollWidth, windowHeight: targetNode.scrollHeight 
+                }).then(canvas => {
                     const link = document.createElement('a');
                     link.download = `SAIS_Schedule_${currentDate.getFullYear()}_${currentDate.getMonth()+1}_P${period+1}.jpg`;
-                    link.href = canvas.toDataURL('image/jpeg', 0.9); link.click();
-                    setIsExporting(false); setLoadingMsg(null); setSuccessModal('บันทึกรูปภาพตารางสำเร็จ');
-                }).catch(err => { setIsExporting(false); setLoadingMsg(null); setAlertMsg('เกิดข้อผิดพลาดในการบันทึกภาพ'); });
-            } else { setIsExporting(false); setLoadingMsg(null); setAlertMsg('ไม่พบตาราง'); }
+                    link.href = canvas.toDataURL('image/jpeg', 0.9);
+                    link.click();
+                    setIsExporting(false); setLoadingMsg(null); setSuccessModal('บันทึกรูปภาพสำเร็จ');
+                }).catch(err => {
+                    setIsExporting(false); setLoadingMsg(null); setAlertMsg('เกิดข้อผิดพลาดในการบันทึกภาพ');
+                });
+            } else {
+                setIsExporting(false); setLoadingMsg(null); setAlertMsg('ไม่พบตาราง');
+            }
         }, 1500); 
     };
 
-    // ==========================================
-    // 📍 ส่วนที่ 5: API Sync, Upload, Drag & Drop
-    // ==========================================
+    // 📍 6. ระบบ Background Sync (Backup ไปยัง Google Sheets เสมอเพื่อความปลอดภัยของข้อมูล)
     const apiAction = async (payload, customLoadMsg = null, disableAutoSync = false) => {
         if (!SCRIPT_URL) return false;
         if (customLoadMsg) setLoadingMsg(customLoadMsg);
         try {
             const payloadWithAuth = { ...payload, api_key: window?.SAIS_CONFIG?.API_KEY };
-            const fetchPromise = fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify(payloadWithAuth) }).then(res => res.json()).then(result => {
-                if (result.status !== 'ok' && !String(result.message).includes('ไม่พบ ID')) console.warn('Backup Sync Note:', result.message);
-            }).catch(e => console.warn('Background Sync Error:', e));
-            if (customLoadMsg) { await fetchPromise; setLoadingMsg(null); }
-            return true;
-        } catch (e) { if (customLoadMsg) setLoadingMsg(null); return false; }
-    };
-
-    const handleMigrateToFirestore = async () => {
-        if (!window.confirm("ยืนยันการย้ายข้อมูลทั้งหมดจาก Sheets ลง Firestore ใช่หรือไม่?")) return;
-        if (!isFirebaseReady || !window.dbFirestore) return setAlertMsg("ระบบฐานข้อมูล Firebase ยังไม่พร้อมทำงาน กรุณารอสักครู่");
-        try {
-            setLoadingMsg("กำลังโอนย้ายข้อมูล (1/3)...");
-            let bookingCount = 0; let userCount = 0; let inspectorCount = 0;
-            const bookings = adminDb.all_bookings || [];
-            for (const b of bookings) { if (!b.id) continue; await window.dbFirestore.collection("bookings").doc(String(b.id)).set(b); bookingCount++; }
-            setLoadingMsg("กำลังโอนย้ายข้อมูล (2/3)...");
-            const users = adminDb.users || [];
-            for (const u of users) { if (!u.username) continue; await window.dbFirestore.collection("users").doc(String(u.username)).set(u); userCount++; }
-            setLoadingMsg("กำลังโอนย้ายข้อมูล (3/3)...");
-            const inspectors = db.inspectors || [];
-            for (const ins of inspectors) { if (!ins.name) continue; await window.dbFirestore.collection("inspectors").doc(String(ins.name)).set(ins); inspectorCount++; }
-            setLoadingMsg(null);
-            setSuccessModal(`ย้ายข้อมูลลง Firestore สำเร็จ!\n- คิวงาน: ${bookingCount}\n- ผู้ใช้: ${userCount}\n- ผู้ตรวจ: ${inspectorCount}`);
-        } catch (error) { setLoadingMsg(null); setAlertMsg("เกิดข้อผิดพลาด: " + error.message); }
-    };
-
-    const handleBulkDelete = async (type, ids) => {
-        if (ids.length === 0) return;
-        setConfirmDialog({
-            msg: `ยืนยันลบข้อมูลที่เลือกทั้ง ${ids.length} รายการ?`,
-            onConfirm: async () => {
-                setConfirmDialog(null); setLoadingMsg('กำลังลบข้อมูลแบบกลุ่ม...');
-                try {
-                    if (window.dbFirestore) {
-                        const batch = window.dbFirestore.batch();
-                        ids.forEach(id => { const docRef = window.dbFirestore.collection("bookings").doc(String(id)); batch.delete(docRef); });
-                        await batch.commit();
+            const fetchPromise = fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify(payloadWithAuth) })
+                .then(res => res.json())
+                .then(result => {
+                    if (result.status !== 'ok' && !String(result.message).includes('ไม่พบ ID')) {
+                        console.warn('Backup Sync Note:', result.message);
                     }
-                    if (type === 'leave') setSelectedLeavesToDelete([]);
-                    if (type === 'event') setSelectedEventsToDelete([]);
-                    if (type === 'holiday') setSelectedHolidaysToDelete([]);
-                    logActivity(`DELETE MULTIPLE (${type})`, `ลบข้อมูลจำนวน ${ids.length} รายการ`);
-                    setLoadingMsg(null);
-                    setSuccessModal(<div className="text-center"><div className="font-black text-sm mb-1">ลบข้อมูลสำเร็จ!</div><div className="text-xs text-slate-600">จำนวนที่ถูกลบ: <span className="font-bold text-red-500">{ids.length} รายการ</span></div></div>);
-                    apiAction({ action: 'delete_multiple', ids: ids, user: user?.username, reason: `[ลบข้อมูลแบบกลุ่ม]\nหมวดหมู่: ${type}\nจำนวน: ${ids.length} รายการ` }, null, true);
-                } catch(e) { setLoadingMsg(null); setAlertMsg('เกิดข้อผิดพลาดในการลบข้อมูล: ' + e.message); }
+                }).catch(e => console.warn('Background Sync Error:', e));
+
+            if (customLoadMsg) {
+                await fetchPromise;
+                setLoadingMsg(null);
             }
-        });
-    };
-
-    const handleFileUpload = async (e, docType, isMultiple = false) => {
-        const files = e.target.files;
-        if (!files || files.length === 0) return;
-        setUploadingDoc(prev => ({ ...prev, [docType]: true })); 
-        setLoadingMsg('กำลังอัปโหลดเอกสาร/รูปภาพ...');
-        try {
-            let uploadedUrls = [];
-            for (let i = 0; i < files.length; i++) {
-                const file = files[i]; let base64Data = ""; let mimeType = file.type;
-                if (mimeType.startsWith('image/')) { base64Data = await utils.compressImage(file); } 
-                else if (mimeType === 'application/pdf') {
-                    base64Data = await new Promise((resolve, reject) => {
-                        const reader = new FileReader(); reader.onload = () => resolve(reader.result); reader.onerror = error => reject(error); reader.readAsDataURL(file);
-                    });
-                } else { setAlertMsg('รองรับเฉพาะไฟล์รูปภาพและ PDF เท่านั้น'); continue; }
-
-                const res = await utils.fetchWithRetry(SCRIPT_URL, { 
-                    method: 'POST', body: JSON.stringify({ action: 'upload_image', api_key: window?.SAIS_CONFIG?.API_KEY, base64: base64Data, mimeType: mimeType, fileName: `SAIS_${docType}_${Date.now()}_${i}.${mimeType === 'application/pdf' ? 'pdf' : 'jpg'}` }) 
-                });
-                if (res.status === 'ok') uploadedUrls.push(res.fileUrl); 
+            if (!disableAutoSync && hasLoadedAdmin) {
+                fetchAdminData(0, 50, 'all'); 
             }
-            if (uploadedUrls.length > 0) {
-                if (isMultiple) { setDocUrls(prev => ({ ...prev, [docType]: prev[docType] ? prev[docType] + ',' + uploadedUrls.join(',') : uploadedUrls.join(',') })); } 
-                else { setDocUrls(prev => ({ ...prev, [docType]: uploadedUrls[0] })); }
-                setSuccessModal(`อัปโหลดเอกสารสำเร็จ`);
-            }
-        } catch(err) { setAlertMsg('เกิดข้อผิดพลาดในการอัปโหลด'); }
-        setLoadingMsg(null); setUploadingDoc(prev => ({ ...prev, [docType]: false }));
-    };
-
-    const handleDownloadFile = async (url, filename) => {
-        try {
-            const response = await fetch(url); const blob = await response.blob(); const blobUrl = window.URL.createObjectURL(blob);
-            const link = document.createElement('a'); link.style.display = 'none'; link.href = blobUrl; link.download = filename || 'SAIS_Document';
-            document.body.appendChild(link); link.click(); window.URL.revokeObjectURL(blobUrl); document.body.removeChild(link);
-        } catch (e) { window.open(url, '_blank'); }
-    };
-
-    const handleDragStart = (e, taskId) => { e.dataTransfer.setData('taskId', taskId); setDraggingTask(db.bookings.find(b => String(b.id) === String(taskId) || String(b.equipment_no) === String(taskId))); setIsDragging(true); };
-    const handleDragOver = (e) => { e.preventDefault(); e.currentTarget.classList.add('bg-blue-50/60', 'border-2', 'border-blue-400', 'border-dashed'); };
-    const handleDragLeave = (e) => { e.currentTarget.classList.remove('bg-blue-50/60', 'border-2', 'border-blue-400', 'border-dashed'); };
-    const handleDragEnd = (e) => { setIsDragging(false); setIsTrashHovered(false); setDraggingTask(null); };
-    const handleTrashDragOver = (e) => { e.preventDefault(); if (!isTrashHovered) setIsTrashHovered(true); };
-    const handleTrashDragLeave = (e) => { setIsTrashHovered(false); };
-
-    const handleTrashDrop = async (e) => {
-        e.preventDefault(); setIsDragging(false); setIsTrashHovered(false);
-        if (!isAdmin) return;
-        const taskId = e.dataTransfer.getData('taskId');
-        const task = draggingTask || db.bookings.find(b => String(b.id) === String(taskId) || String(b.equipment_no) === String(taskId));
-        if (!task) return setAlertMsg('ไม่พบข้อมูลการ์ดที่ต้องการลบทิ้ง');
-        setConfirmDialog({
-            msg: `คุณกำลังลากการ์ดทิ้งลงถังขยะ\nยืนยันลบข้อมูลนี้ใช่หรือไม่?\n\n📌 รายการ: ${task.site_name || task.equipment_no}`,
-            onConfirm: async () => {
-                setConfirmDialog(null); setDraggingTask(null);
-                try {
-                    setLoadingMsg('กำลังลบทิ้ง...');
-                    const docId = await findDocIdFallback(task);
-                    if (docId && window.dbFirestore) await window.dbFirestore.collection("bookings").doc(docId).delete();
-                    logActivity('DELETE VIA TRASH', `[ลบรายการด้วย Drag & Drop]\nรายการ: ${task.site_name || task.equipment_no}`);
-                    setLoadingMsg(null); setSuccessModal(<div className="text-center"><div className="font-black text-sm mb-1 text-red-600">ทิ้งรายการลงถังขยะสำเร็จ!</div><div className="text-xs text-slate-600">รายการ: {task.site_name || task.equipment_no}</div></div>);
-                    apiAction({ action: 'delete_booking', id: docId || task.id, user: user?.username || 'admin', reason: `[ลบรายการด้วย Drag & Drop ถังขยะ]\nโดย: ${user?.username || 'admin'}\nโครงการ: ${task.site_name || '-'}\nEq No.: ${task.equipment_no || '-'}`, job_type: task.job_type, equipment_no: task.equipment_no }, null, true);
-                } catch(e) { setAlertMsg('เกิดข้อผิดพลาดในการลบทิ้ง: ' + e.message); setLoadingMsg(null); }
-            }
-        });
-    };
-
-    const handleDrop = async (e, targetDate, targetInspector) => {
-        e.preventDefault(); e.currentTarget.classList.remove('bg-blue-50/60', 'border-2', 'border-blue-400', 'border-dashed');
-        if (!isAdmin) return setAlertMsg('เฉพาะแอดมินที่สามารถลากย้ายคิวได้ครับ');
-        const taskId = e.dataTransfer.getData('taskId');
-        const task = draggingTask || db.bookings.find(b => String(b.id) === String(taskId) || String(b.equipment_no) === String(taskId));
-        if (!task) return setAlertMsg('เกิดข้อผิดพลาด ไม่พบข้อมูลการ์ด กรุณาลองลากใหม่อีกครั้ง');
-        
-        const jobTypeLower = String(task.job_type).toLowerCase();
-        const isSpecial = jobTypeLower.includes('leave') || jobTypeLower.includes('event') || jobTypeLower.includes('holiday');
-        let finalInspector = targetInspector;
-        if (task.inspector_name === 'SYSTEM_EVENT') finalInspector = 'SYSTEM_EVENT';
-        if (task.inspector_name === 'SYSTEM_HOLIDAY') finalInspector = 'SYSTEM_HOLIDAY';
-
-        const oldDate = task.date ? formatSafeDate(task.date) : 'ไม่ระบุ';
-        const oldInspector = task.inspector_name;
-        if (oldDate === targetDate && oldInspector === finalInspector) return setDraggingTask(null);
-        
-        if (!isSpecial) {
-            const isDup = db.bookings.some(b => formatSafeDate(b.date) === targetDate && String(b.equipment_no) === String(task.equipment_no) && String(b.id) !== String(task.id) && String(b.status) !== 'cancelled');
-            if (isDup) return setAlertMsg('ไม่สามารถย้ายได้ เนื่องจาก Eq No. นี้ถูกจองไปแล้วในวันที่คุณเลือก');
+            return true;
+        } catch (e) { 
+            if (customLoadMsg) setLoadingMsg(null);
+            return false; 
         }
-
-        setConfirmDialog({
-            msg: `คุณต้องการย้ายรายการนี้ใช่หรือไม่?\nจากวันที่ ${oldDate} 👉 ${targetDate}\n${oldInspector !== finalInspector ? `เปลี่ยนผู้ตรวจเป็น 👉 ${finalInspector}` : ''}`,
-            onConfirm: async () => {
-                setConfirmDialog(null); setDraggingTask(null);
-                try {
-                    setLoadingMsg('กำลังย้ายข้อมูล...');
-                    const docId = await findDocIdFallback(task);
-                    if (docId && window.dbFirestore) await window.dbFirestore.collection("bookings").doc(docId).update({ date: targetDate, inspector_name: finalInspector });
-                    logActivity('MOVE BOOKING', `[ย้ายคิวงาน]\nรายการ: ${task.site_name || task.equipment_no}\nวันที่: [${oldDate}] ➡️ [${targetDate}]\nผู้ตรวจ: [${oldInspector}] ➡️ [${finalInspector}]`);
-                    setLoadingMsg(null); setSuccessModal(<div className="text-center"><div className="font-black text-sm mb-1 text-green-600">ย้ายรายการสำเร็จ!</div><div className="text-xs text-slate-600 font-bold mb-1">{task.site_name || task.equipment_no}</div></div>);
-                    apiAction({ action: 'update_booking', id: docId || task.id, date: targetDate, inspector_name: finalInspector, user: user?.username || 'admin', reason: `[ย้ายคิวงานด้วยวิธีลากวางบนตาราง]\nโดย: ${user?.username || '-'}\nรายการ: ${task.site_name || task.equipment_no}\nวันที่: [${oldDate}] ➡️ [${targetDate}]\nผู้ตรวจ: [${oldInspector}] ➡️ [${finalInspector}]`, job_type: task.job_type, equipment_no: task.equipment_no }, null, true);
-                } catch(e) { setAlertMsg('เกิดข้อผิดพลาดในการย้าย: ' + e.message); setLoadingMsg(null); }
-            }
-        });
     };
 
-    // ==========================================
-    // 📍 ส่วนที่ 6: Submit Data & Booking Engine
-    // ==========================================
-    const filteredBookings = useMemo(() => { return (db.bookings || []).filter(b => filterArea === 'All' ? true : String(b.area || '') === filterArea); }, [db.bookings, filterArea]);
-
-    const handleCancelBooking = (booking) => {
-        if(!booking?.equipment_no) return;
-        setConfirmDialog({
-            msg: "ยืนยันลบข้อมูลนี้ใช่หรือไม่?",
-            onConfirm: async () => {
-                setConfirmDialog(null); setModal(null);
-                const isSpecial = String(booking.job_type).includes('leave') || String(booking.job_type).includes('event') || String(booking.job_type).includes('holiday');
-                let logDetail = isSpecial ? `[ลบรายการพิเศษ]\nประเภทงาน: ${booking.job_type || '-'}\nวันที่: ${booking.date ? formatSafeDate(booking.date) : '-'}` : `[ลบรายการคิวงาน]\nโครงการ: ${booking.site_name || '-'}\nEq No.: ${booking.equipment_no || '-'}`;
-                try {
-                    setLoadingMsg('กำลังลบข้อมูล...');
-                    const docId = await findDocIdFallback(booking);
-                    if (docId && window.dbFirestore) await window.dbFirestore.collection("bookings").doc(docId).delete();
-                    logActivity('DELETE BOOKING', logDetail);
-                    setLoadingMsg(null); setSuccessModal('ลบข้อมูลสำเร็จ!');
-                    apiAction({ action: 'delete_booking', id: docId || booking.id || '', user: user?.username || 'admin', reason: logDetail, job_type: booking.job_type, equipment_no: booking.equipment_no }, null, true);
-                } catch(e) { setAlertMsg('เกิดข้อผิดพลาดในการลบข้อมูล: ' + e.message); setLoadingMsg(null); }
-            }
-        });
+    const handleTabChange = (view) => {
+        setCurrentView(view);
+        if ((view === 'admin' || view === 'search') && !hasLoadedAdmin) fetchAdminData(0, 50, 'all');
     };
 
-    const handleCancelJob = (booking) => {
-        if(!booking?.equipment_no) return;
-        const isPastDate = booking.date && formatSafeDate(booking.date) < todayLocalString;
-        if (isPastDate && !isAdmin) return setAlertMsg('🔒 ไม่อนุญาตให้ยกเลิกคิวงานที่ผ่านมาแล้วครับ (ติดต่อ Admin หากจำเป็น)');
-        setPromptDialog({
-            msg: "โปรดระบุเหตุผลในการยกเลิกคิวงานนี้:",
-            onSubmit: async (reason) => {
-                setPromptDialog(null); setModal(null); setActionMenuId(null);
-                const logDetail = `[ยกเลิกคิวงาน]\nโครงการ: ${booking.site_name || '-'}\nEq No.: ${booking.equipment_no || '-'}\nประเภทงาน: ${booking.job_type || '-'}\nเหตุผล: ${reason || 'ไม่ระบุ'}`;
-                try {
-                    setLoadingMsg('กำลังยกเลิกคิวงาน...');
-                    const docId = await findDocIdFallback(booking);
-                    if (docId && window.dbFirestore) await window.dbFirestore.collection("bookings").doc(docId).delete();
-                    logActivity('CANCEL BOOKING', logDetail);
-                    setLoadingMsg(null); setSuccessModal('ยกเลิกคิวงานสำเร็จ!');
-                    apiAction({ action: 'delete_booking', id: docId || booking.id || '', user: user?.username || 'admin', reason: logDetail, job_type: booking.job_type, equipment_no: booking.equipment_no }, null, true);
-                } catch(e) { setAlertMsg('เกิดข้อผิดพลาดในการยกเลิก: ' + e.message); setLoadingMsg(null); }
-            }
-        });
-    };
-
-    const handleVerifyDoc = async (booking, docField, isChecked) => {
-        if (!isAdmin) return;
-        const val = isChecked ? 'true' : 'pending';
-        const docName = docField.replace('_doc', '').toUpperCase();
-        const logDetail = `[อัปเดตเอกสาร]\nเอกสาร: ${docName} -> ${isChecked ? 'ตรวจสอบแล้ว' : 'รอตรวจสอบ'}\nโครงการ: ${booking.site_name}`;
-        try {
-            setLoadingMsg(`กำลังอัปเดตสถานะ ${docName}...`);
-            const docId = await findDocIdFallback(booking);
-            if (docId && window.dbFirestore) await window.dbFirestore.collection("bookings").doc(docId).update({ [docField]: val });
-            logActivity('VERIFY DOCUMENT', logDetail);
-            setLoadingMsg(null); setSuccessModal(`อัปเดตเอกสาร ${docName} สำเร็จ!`);
-            apiAction({ ...booking, action: 'update_booking', id: docId || booking.id, [docField]: val, reason: logDetail }, null, true);
-        } catch(e) { setAlertMsg('อัปเดตสถานะไม่สำเร็จ: ' + e.message); setLoadingMsg(null); }
-    };
-
-    const handleEditSpecialSubmit = async (e) => {
-        e.preventDefault();
-        const fd = new FormData(e.target);
-        const newTitle = fd.get('site_name'); const newInspector = fd.get('inspector_name'); const newDate = fd.get('date');
-        try {
-            setLoadingMsg('กำลังอัปเดตข้อมูล...');
-            if (modal.returnTo) setModal({ type: modal.returnTo }); else setModal(null);
-            const docId = await findDocIdFallback(modal.data);
-            if (docId && window.dbFirestore) await window.dbFirestore.collection("bookings").doc(docId).update({ site_name: newTitle, inspector_name: newInspector, date: newDate });
-            logActivity('EDIT SPECIAL', `[แก้ไขข้อมูลพิเศษ]\nหัวข้อ: ${newTitle}\nวันที่: ${newDate}\nผู้ตรวจ: ${newInspector}`);
-            setLoadingMsg(null); setSuccessModal('อัปเดตข้อมูลสำเร็จ!');
-            apiAction({ ...modal.data, action: 'update_booking', id: docId || modal.data.id, site_name: newTitle, inspector_name: newInspector, date: newDate, user: user?.username, reason: `[แก้ไขคิวพิเศษ]\nเปลี่ยนวันที่เป็น ${newDate}\nผู้ตรวจ: ${newInspector}\nหัวข้อ: ${newTitle}`, job_type: modal.data.job_type, equipment_no: modal.data.equipment_no }, null, true);
-        } catch (e) { setAlertMsg('เกิดข้อผิดพลาด: ' + e.message); setLoadingMsg(null); }
-    };
-
-    const handleBookingSubmit = async (e) => {
-        e.preventDefault();
-        const fd = new FormData(e.target);
-        const data = Object.fromEntries(fd);
-        if (!user?.username) return setAlertMsg('กรุณาเข้าสู่ระบบก่อนทำรายการ');
-        
-        let finalArea = areaSelection === 'other' ? (fd.get('custom_area') || 'ไม่ระบุ') : (fd.get('area') || areaSelection);
-        let finalProductLine = productLineSelection === 'อื่นๆโปรดระบุ' ? (fd.get('custom_product_line') || 'ไม่ระบุ') : (fd.get('product_line') || productLineSelection);
-        let finalJobType = fd.get('job_type') || jobTypeSelection;
-
-        const isAdminOverride = fd.get('isAdminOverride') === 'true' || modal?.data?.isAdminOverride === true || (isAdmin && modal?.data?.id);
-        const targetInspector = isAdminOverride ? fd.get('admin_inspector_target') : modal?.data?.inspector_name;
-        const targetDate = isAdminOverride ? fd.get('admin_date_target') : modal?.data?.date;
-        
-        const isPastDate = targetDate < todayLocalString;
-        if (isPastDate && !isAdmin && modal?.data?.id && quickAddType === 'job') return setAlertMsg('🔒 ไม่อนุญาตให้แก้ไขข้อมูลงานที่ผ่านมาแล้วครับ (ติดต่อ Admin หากจำเป็น)');
-
-        // กรณีเพิ่มวันหยุด/วันลา/กิจกรรม
-        if (quickAddType !== 'job') {
-            let p_jobType = '', p_siteName = fd.get('site_name'), p_eq = '';
-            const sTime = fd.get('start_time'); const eTime = fd.get('end_time');
-            if (sTime && eTime && sTime >= eTime) return setAlertMsg("เวลาสิ้นสุดต้องมากกว่าเวลาเริ่มต้นในวันเดียวกัน");
-            if (sTime && eTime) p_siteName = `${sTime}-${eTime} ${p_siteName}`;
-
-            if (quickAddType === 'leave') { p_jobType = 'leave'; p_siteName = fd.get('leave_type') === 'อื่นๆโปรดระบุ' ? fd.get('custom_leave') : fd.get('leave_type'); p_eq = `LEAVE_${Date.now()}`; } 
-            else if (quickAddType === 'event') { p_jobType = 'company_event'; p_eq = `EVENT_${Date.now()}_${eventColor}`; } 
-            else if (quickAddType === 'holiday') { p_jobType = 'public_holiday'; p_eq = `HLD_${Date.now()}`; }
-
-            try {
-                setLoadingMsg(`กำลังบันทึกข้อมูล${quickAddType}ลง Firebase...`);
-                const newId = modal?.data?.id || (window.SAIS_UTILS?.generateId ? window.SAIS_UTILS.generateId() : Date.now().toString());
-                const docId = modal?.data ? await findDocIdFallback(modal.data) || newId : newId;
-                setModal(null);
-                
-                if (window.dbFirestore) {
-                    await window.dbFirestore.collection("bookings").doc(String(docId)).set({ id: docId, date: targetDate, inspector_name: quickAddType === 'holiday' ? 'SYSTEM_HOLIDAY' : targetInspector, job_type: p_jobType, site_name: p_siteName, equipment_no: p_eq, created_by: user?.username, status: 'active' });
-                }
-                
-                logActivity(`CREATE ${quickAddType.toUpperCase()}`, `[บันทึก${quickAddType}]\nวันที่: ${targetDate}\nหัวข้อ: ${p_siteName}\nผู้ตรวจ: ${targetInspector}`);
-                setLoadingMsg(null); setSuccessModal('บันทึกข้อมูลสำเร็จ!');
-                apiAction({ action: 'create_multiple_bookings', dates: [targetDate], inspector_name: quickAddType === 'holiday' ? 'SYSTEM_HOLIDAY' : targetInspector, job_type: p_jobType, site_name: p_siteName, equipment_no: p_eq, user: user?.username, reason: `[บันทึก${quickAddType}]\nโดย: ${user?.username}\nวันที่: ${targetDate}\nหัวข้อ: ${p_siteName}\nผู้ตรวจ: ${targetInspector}` }, null, true);
-            } catch(e) { setAlertMsg('ข้อผิดพลาดในการบันทึก: ' + e.message); setLoadingMsg(null); }
-            return;
+    const findDocIdFallback = async (booking) => {
+        if (booking.id) return String(booking.id);
+        if (window.dbFirestore) {
+            const snapshot = await window.dbFirestore.collection("bookings")
+                .where("equipment_no", "==", booking.equipment_no)
+                .where("date", "==", booking.date).get();
+            if (!snapshot.empty) return snapshot.docs[0].id;
         }
-
-        // Validation 100% บังคับกรอก
-        const missingFields = [];
-        if (!data.site_name || String(data.site_name).trim() === '') missingFields.push('• ชื่อโครงการ / รายการ');
-        if (!data.equipment_no || String(data.equipment_no).trim() === '') missingFields.push('• หมายเลข Eq No.');
-        if (!data.unit_no || String(data.unit_no).trim() === '') missingFields.push('• หมายเลข Unit');
-        if (!finalProductLine || finalProductLine === '' || finalProductLine === 'ไม่ระบุ') missingFields.push('• Product Line');
-        if (!finalJobType || finalJobType === '') missingFields.push('• ประเภทงาน (Job Type)');
-        if (!finalArea || finalArea === '' || finalArea === 'ไม่ระบุ') missingFields.push('• พื้นที่หน้างาน');
-        if (!targetDate) missingFields.push('• วันที่ต้องการจอง (Date)');
-        if (!targetInspector) missingFields.push('• ผู้ตรวจ (Inspector)');
-        if (!isAdmin && (!data.tel || String(data.tel).trim() === '')) missingFields.push('• เบอร์โทรศัพท์ติดต่อหน้างาน');
-
-        if (missingFields.length > 0) return setAlertMsg(`❌ กรุณากรอกข้อมูลในช่องต่อไปนี้ให้ครบถ้วน:\n\n${missingFields.join('\n')}`);
-        if (!isAdmin && !/^\d{10}$/.test(data.tel)) return setAlertMsg('กรุณากรอกเบอร์โทรศัพท์ให้ครบ 10 หลัก (เฉพาะตัวเลข)');
-        if (isAdmin && data.tel && !/^\d{10}$/.test(data.tel)) return setAlertMsg('เบอร์โทรศัพท์ต้องมี 10 หลัก (หรือเว้นว่างไว้)');
-
-        const missingDocs = [];
-        if (!(docUrls.layout || modal?.data?.layout_img)) missingDocs.push('• เอกสาร Layout');
-        if (!(docUrls.wiring || modal?.data?.wiring_img)) missingDocs.push('• เอกสาร Wiring');
-        if (!(docUrls.precheck || modal?.data?.precheck_img)) missingDocs.push('• เอกสาร Precheck');
-        if (!(docUrls.site_cond_1 || modal?.data?.site_cond_1)) missingDocs.push('• รูปถ่ายจุดที่ 1. หน้าตู้คอนโทรล');
-        if (!(docUrls.site_cond_2 || modal?.data?.site_cond_2)) missingDocs.push('• รูปถ่ายจุดที่ 2. บนหลังคาลิฟต์');
-        if (!(docUrls.site_cond_3 || modal?.data?.site_cond_3)) missingDocs.push('• รูปถ่ายจุดที่ 3. ด้านบนปล่อง');
-        if (!(docUrls.site_cond_4 || modal?.data?.site_cond_4)) missingDocs.push('• รูปถ่ายจุดที่ 4. ก้นบ่อลิฟต์');
-        if (!(docUrls.site_cond_5 || modal?.data?.site_cond_5)) missingDocs.push('• รูปถ่ายจุดที่ 5. ภายในตู้ลิฟต์');
-        if (!(docUrls.site_cond_6 || modal?.data?.site_cond_6)) missingDocs.push('• รูปถ่ายจุดที่ 6. หน้าชั้นและรอบวงกบประตูนอก');
-
-        if (missingDocs.length > 0 && !isAdmin) return setAlertMsg(`❌ กรุณาแนบเอกสารและรูปภาพหน้างานให้ครบ 100%\nขาดรายการดังนี้:\n\n${missingDocs.join('\n')}`);
-        if (Object.values(uploadingDoc).some(status => status === true)) return setAlertMsg('⏳ ระบบกำลังอัปโหลดไฟล์...\nกรุณารอให้ระบบอัปโหลดไฟล์เสร็จสมบูรณ์ 100% ก่อนกดยืนยันครับ');
-
-        const isDup = (db.bookings || []).some(b => {
-            const sameDate = b.date && formatSafeDate(b.date) === targetDate;
-            if (!sameDate) return false;
-            if (b.id === modal?.data?.id) return false;
-            if (String(b.inspector_name) === 'SYSTEM_HOLIDAY') return false;
-            if (String(b.status) === 'cancelled') return false;
-            if (String(b.equipment_no) === String(data.equipment_no)) return true;
-            if (!isAdmin && String(b.inspector_name) === targetInspector) return true;
-            return false;
-        });
-        if (isDup) return setAlertMsg(isAdmin ? `เลข Eq No. ${data.equipment_no} ถูกจองไปแล้วในวันนี้` : 'ผู้ตรวจคิวเต็มแล้วในวันนี้');
-        
-        const targetInspectorObj = (db.inspectors || []).find(i => i.name === targetInspector);
-        let allowedCerts = ['ES1', '3300', 'S-villas'];
-        if (targetInspectorObj && targetInspectorObj.product_lines && targetInspectorObj.product_lines.trim() !== '') {
-            allowedCerts = targetInspectorObj.product_lines.split(',').map(s => s.trim());
-        }
-        if (!allowedCerts.includes(finalProductLine) && finalProductLine !== 'ไม่ระบุ') return setAlertMsg(`ผู้ตรวจ "${targetInspector}" ไม่ได้รับสิทธิ์ให้ตรวจ Product Line: ${finalProductLine}\n(สิทธิ์ปัจจุบัน: ${allowedCerts.join(', ')})`);
-
-        const jStart = fd.get('job_start_time'); const jEnd = fd.get('job_end_time');
-        if (jStart && jEnd && jStart >= jEnd) return setAlertMsg("เวลาสิ้นสุดต้องมากกว่าเวลาเริ่มต้นในวันเดียวกัน");
-        let finalSiteName = data.site_name;
-        if (jStart && jEnd) finalSiteName = `${jStart}-${jEnd} ${finalSiteName}`;
-
-        const bookingId = modal?.data?.id || (window.SAIS_UTILS?.generateId ? window.SAIS_UTILS.generateId() : Date.now().toString());
-        const docId = modal?.data ? await findDocIdFallback(modal.data) || bookingId : bookingId;
-
-        const payload = {
-            ...data, site_name: finalSiteName, tel: String(data.tel || ''), area: finalArea, job_type: finalJobType, product_line: finalProductLine,
-            id: docId, inspector_name: targetInspector, date: targetDate, user: user?.username, created_by: modal?.data?.created_by || user?.username,
-            layout_img: docUrls.layout || modal?.data?.layout_img || '',
-            wiring_img: docUrls.wiring || modal?.data?.wiring_img || '',
-            precheck_img: docUrls.precheck || modal?.data?.precheck_img || '',
-            site_cond_1: docUrls.site_cond_1 || modal?.data?.site_cond_1 || '',
-            site_cond_2: docUrls.site_cond_2 || modal?.data?.site_cond_2 || '',
-            site_cond_3: docUrls.site_cond_3 || modal?.data?.site_cond_3 || '',
-            site_cond_4: docUrls.site_cond_4 || modal?.data?.site_cond_4 || '',
-            site_cond_5: docUrls.site_cond_5 || modal?.data?.site_cond_5 || '',
-            site_cond_6: docUrls.site_cond_6 || modal?.data?.site_cond_6 || ''
-        };
-
-        if (isAdmin) { 
-            payload.layout_doc = data.layout_doc ? 'true' : 'false';
-            payload.wiring_doc = data.wiring_doc ? 'true' : 'false'; 
-            payload.precheck_doc = data.precheck_doc ? 'true' : 'false';
-        } else if (modal?.data?.id) { 
-            payload.layout_doc = String(modal?.data?.layout_doc || 'false');
-            payload.wiring_doc = String(modal?.data?.wiring_doc || 'false'); 
-            payload.precheck_doc = String(modal?.data?.precheck_doc || 'false');
-        } else { 
-            payload.layout_doc = 'false'; payload.wiring_doc = 'false'; payload.precheck_doc = 'false';
-        }
-        
-        try {
-            setLoadingMsg(modal?.data?.id ? 'กำลังอัปเดตข้อมูลลง Firebase...' : 'กำลังบันทึกคิวงานลง Firebase...');
-            if (window.dbFirestore) await window.dbFirestore.collection("bookings").doc(String(docId)).set({ ...payload, status: 'active' });
-            
-            logActivity(modal?.data?.id ? 'UPDATE BOOKING' : 'CREATE BOOKING', getDiffLog(modal?.data?.id ? modal.data : null, payload, user?.username));
-            setLoadingMsg(null); setSuccessModal(modal?.data?.id ? 'แก้ไขคิวงานสำเร็จ!' : 'จองคิวงานสำเร็จ!');
-            
-            if (isAdmin && !modal?.data?.id && fd.get('keep_open')) {
-                e.target.equipment_no.value = '';
-                if (e.target.unit_no) e.target.unit_no.value = '';
-                e.target.equipment_no.focus(); 
-            } else {
-                setModal(null); setAreaSelection(''); setJobTypeSelection(''); setProductLineSelection(''); setLiveMapUrl('');
-                setDocUrls({ layout: '', wiring: '', precheck: '', site_cond_1: '', site_cond_2: '', site_cond_3: '', site_cond_4: '', site_cond_5: '', site_cond_6: '' });
-            }
-
-            apiAction({ ...payload, action: modal?.data?.id ? 'update_booking' : 'create_booking', reason: getDiffLog(modal?.data?.id ? modal.data : null, payload, user?.username) }, null, true);
-        } catch(e) { console.error(e); setAlertMsg('เกิดข้อผิดพลาดในการบันทึก: ' + e.message); setLoadingMsg(null); }
+        return null;
     };
 
-    const handleLogout = () => {
-        setConfirmDialog({
-            msg: 'ยืนยันการออกจากระบบใช่หรือไม่?',
-            onConfirm: async () => {
-                setConfirmDialog(null); setLoadingMsg('กำลังออกจากระบบ...'); setUser(null);
-                try {
-                    localStorage.clear(); sessionStorage.clear();
-                    if ('caches' in window) caches.keys().then(names => Promise.all(names.map(n => caches.delete(n))));
-                } catch (error) {} finally { window.location.replace(window.location.pathname + '?logout=' + new Date().getTime()); }
-            }
-        });
+    const handleTouchStart = (e) => { 
+        if (scrollRef.current && scrollRef.current.scrollTop === 0) touchStartY.current = e.touches[0].clientY; 
     };
-    // 📍 7. ระบบลบข้อมูล (เดี่ยวและกลุ่ม)
+    
+    const handleTouchMove = (e) => {
+        if (scrollRef.current && scrollRef.current.scrollTop === 0 && touchStartY.current > 0) {
+            const diff = e.touches[0].clientY - touchStartY.current;
+            if (diff > 0 && diff < 80) setPullY(diff);
+        }
+    };
+    
+    const handleTouchEnd = async () => {
+        if (pullY > 50 && !isRefreshing) { 
+            setIsRefreshing(true);
+            setPullY(50); 
+            setTimeout(() => { setIsRefreshing(false); setPullY(0); }, 800); 
+        } else {
+            setPullY(0); 
+        }
+        touchStartY.current = 0;
+    };
+    // 📍 7. ระบบลบข้อมูลแบบกลุ่ม (Bulk Delete)
     const handleBulkDelete = async (type, ids) => {
         if (ids.length === 0) return;
         setConfirmDialog({
@@ -1273,7 +947,6 @@ const App = () => {
         } catch(e) { setAlertMsg('อัปเดตสถานะไม่สำเร็จ: ' + e.message); setLoadingMsg(null); }
     };
 
-    // 📍 9. ระบบอัปโหลดและดาวน์โหลดไฟล์
     const handleDownloadFile = async (url, filename) => {
         try {
             const response = await fetch(url);
@@ -1349,8 +1022,7 @@ const App = () => {
         setLoadingMsg(null); 
         setUploadingDoc(prev => ({ ...prev, [docType]: false }));
     };
-
-    // 📍 10. ระบบ Drag & Drop ทิ้งลงถังขยะ และ ย้ายวัน
+    // 📍 9. ระบบ Drag & Drop ย้ายวันบนตาราง และ ทิ้งลงถังขยะ
     const handleDragStart = (e, taskId) => { 
         e.dataTransfer.setData('taskId', taskId);
         setDraggingTask(db.bookings.find(b => String(b.id) === String(taskId) || String(b.equipment_no) === String(taskId))); 
@@ -1514,7 +1186,11 @@ const App = () => {
             }
         });
     };
-    // 📍 11. ฟังก์ชัน Submit คิวพิเศษ
+
+    const filteredBookings = useMemo(() => { 
+        return (db.bookings || []).filter(b => filterArea === 'All' ? true : String(b.area || '') === filterArea); 
+    }, [db.bookings, filterArea]);
+
     const handleEditSpecialSubmit = async (e) => {
         e.preventDefault();
         const fd = new FormData(e.target);
@@ -1550,7 +1226,7 @@ const App = () => {
         } catch (e) { console.error(e); setAlertMsg('เกิดข้อผิดพลาด: ' + e.message); setLoadingMsg(null); }
     };
 
-    // 📍 12. ฟังก์ชัน Submit การจองคิวปกติ (Validation 100%)
+    // 📍 10. ฟังก์ชันการบันทึกจองคิวงาน
     const handleBookingSubmit = async (e) => {
         e.preventDefault();
         const fd = new FormData(e.target);
@@ -1743,9 +1419,7 @@ const App = () => {
                 setDocUrls({ layout: '', wiring: '', precheck: '', site_cond_1: '', site_cond_2: '', site_cond_3: '', site_cond_4: '', site_cond_5: '', site_cond_6: '' });
             }
 
-            // Sync กลับไป Sheets เพื่อ Backup เบื้องหลัง
-            const finalPayload = { ...payload, action: modal?.data?.id ? 'update_booking' : 'create_booking', reason: getDiffLog(modal?.data?.id ? modal.data : null, payload, user?.username) };
-            apiAction(finalPayload, null, true);
+            apiAction({ ...payload, action: modal?.data?.id ? 'update_booking' : 'create_booking', reason: getDiffLog(modal?.data?.id ? modal.data : null, payload, user?.username) }, null, true);
         } catch(e) { console.error(e); setAlertMsg('เกิดข้อผิดพลาดในการบันทึก: ' + e.message); setLoadingMsg(null); }
     };
 
@@ -1897,7 +1571,7 @@ const App = () => {
         );
     }
 
-    // 📍 ป้องกันจอขาวระหว่างโหลด Firebase (โหลดให้เสร็จก่อนเรนเดอร์ตาราง)
+    // 📍 ป้องกันจอขาวระหว่างโหลด Firebase
     if (!isFirebaseReady) return <div className="h-screen w-full flex items-center justify-center flex-col gap-4 p-8 text-center"><Icons.Loader /><h2 className="text-xl font-bold text-slate-800">กำลังเตรียมระบบฐานข้อมูล...</h2></div>;
 
     // 📍 15. MAIN UI LAYOUT
@@ -1974,7 +1648,7 @@ const App = () => {
                 </div>
             </header>
 
-            {/* 📍 แถบเมนูด้านล่าง (Bottom Nav) ล็อคติดล่างเสมอ ไม่ซ่อนอัตโนมัติแล้ว */}
+            {/* แถบเมนูด้านล่าง (Bottom Nav) ล็อคติดล่างเสมอ */}
             <div className="bottom-nav">
                 <div className={`nav-item ${currentView === 'calendar' ? 'active' : ''}`} onClick={() => handleTabChange('calendar')}><Icons.Home /> ปฏิทิน</div>
                 <div className={`nav-item ${currentView === 'search' ? 'active' : ''}`} onClick={() => handleTabChange('search')}><Icons.Search /> ค้นหา</div>
@@ -2192,7 +1866,6 @@ const App = () => {
                         </div>
                     )}
 
-                    {/* แท็บเมนูย่อยของหน้างานฉัน */}
                     <div className="flex gap-2 mb-4 bg-slate-100 p-1 rounded-lg overflow-x-auto custom-scrollbar">
                         <button onClick={() => setMyBookingsTab('pending')} className={`flex-1 py-2 text-xs font-bold rounded-md whitespace-nowrap px-2 ${myBookingsTab === 'pending' ? 'bg-white shadow-sm text-amber-600' : 'text-slate-500'}`}>
                             {user?.role === 'inspector' ? '⏳ คิวรอตรวจ' : '⏳ รอดำเนินการ'}
@@ -2210,7 +1883,6 @@ const App = () => {
                         )}
                     </div>
                     
-                    {/* ปุ่มเพิ่มวันลา (แสดงเฉพาะแท็บวันลา) */}
                     {myBookingsTab === 'leave' && user?.role === 'inspector' && (
                         <div className="mb-4">
                             <button onClick={() => setModal({ type: 'inspector_leave_form', data: {} })} className="w-full py-3 bg-amber-500 text-white font-bold rounded-xl shadow-md flex justify-center items-center gap-2 active:scale-95 transition-all">
@@ -2227,7 +1899,6 @@ const App = () => {
                             const filteredTasks = (db.bookings || []).filter(b => {
                                 if(String(b.inspector_name) === 'SYSTEM_HOLIDAY' || String(b.inspector_name) === 'SYSTEM_EVENT') return false;
 
-                                // 📍 แท็บวันลาส่วนตัวของ Inspector
                                 if (myBookingsTab === 'leave') {
                                     const isAssigned = String(b.inspector_name).toLowerCase() === String(mappedName).toLowerCase();
                                     return isAssigned && String(b.job_type).toLowerCase() === 'leave' && String(b.status) !== 'cancelled';
@@ -2376,7 +2047,7 @@ const App = () => {
                             </div>
 
                             {(() => {
-                                // Data Processing (ดึงจาก db.bookings ทั่วไปเพื่อความเร็ว ยกเว้น Admin ที่ดึงจาก all_bookings ได้)
+                                // Data Processing
                                 const sourceData = isAdmin ? (adminDb.all_bookings || []) : (db.bookings || []);
                                 
                                 const allTasks = sourceData.filter(b => {
@@ -2422,9 +2093,9 @@ const App = () => {
                                 
                                 const sortedInspectors = (db.inspectors || []).map(ins => {
                                     return { name: ins.name, count: inspectorCounts[ins.name] || 0 };
-                                }).sort((a,b) => b.count - a.count); // จัดอันดับคนงานเยอะสุดขึ้นก่อน
+                                }).sort((a,b) => b.count - a.count);
 
-                                // Top Sites (โครงการที่มีงานเยอะสุด)
+                                // Top Sites
                                 const siteCounts = allTasks.reduce((acc, task) => {
                                     if(task.site_name) {
                                         acc[task.site_name] = (acc[task.site_name] || 0) + 1;
@@ -2445,14 +2116,14 @@ const App = () => {
                                                 <div className="text-[10px] font-bold text-emerald-100 mb-1">อัตราเอกสารผ่าน</div>
                                                 <div className="text-3xl font-black">{successRate}%</div>
                                                 <div className="text-[9px] font-normal opacity-80 mt-1">({docStats.complete} จาก {totalJobs} งาน)</div>
-                                                <Icons.FileCheck /> {/* Background Icon */}
+                                                <Icons.FileCheck /> 
                                                 <div className="absolute -right-4 -bottom-4 opacity-20 transform scale-[3]">
                                                     <Icons.FileCheck />
                                                 </div>
                                             </div>
                                         </div>
 
-                                        {/* 📍 Top Sites (โครงการยอดฮิต) */}
+                                        {/* Top Sites */}
                                         {topSites.length > 0 && (
                                             <div className="bg-white p-5 rounded-2xl shadow-sm border border-slate-200">
                                                 <h3 className="text-sm font-bold text-slate-800 mb-4 flex items-center gap-2"><Icons.MapPin /> โครงการที่มีงานตรวจมากที่สุด</h3>
@@ -2470,7 +2141,7 @@ const App = () => {
                                             </div>
                                         )}
 
-                                        {/* 📍 Top Inspectors Leaderboard */}
+                                        {/* Top Inspectors Leaderboard */}
                                         <div className="bg-white p-5 rounded-2xl shadow-sm border border-slate-200">
                                             <h3 className="text-sm font-bold text-slate-800 mb-4 flex items-center gap-2"><Icons.Award /> สถิติงานแยกตามผู้ตรวจ</h3>
                                             <div className="space-y-2">
@@ -2528,12 +2199,8 @@ const App = () => {
                         <div className="flex justify-between items-center">
                             <h2 className="text-xl font-bold text-slate-800 flex items-center gap-2">
                                 <Icons.Shield /> Admin Panel
-                                {!hasLoadedAdmin && <span className="text-[10px] text-blue-500 animate-pulse ml-2 font-normal border border-blue-200 bg-blue-50 px-2 py-0.5 rounded-full">ดึงข้อมูล...</span>}
                             </h2>
                             <div className="flex gap-2">
-                                <button onClick={handleMigrateToFirestore} className="text-[11px] font-bold text-white bg-red-600 px-3 py-1.5 rounded-lg border border-red-700 flex items-center gap-1 active:scale-95 shadow-sm hover:bg-red-700">
-                                    🔥 ย้ายเข้า Firebase
-                                </button>
                                 <button onClick={() => setShowAdminHelp(!showAdminHelp)} className="text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1.5 rounded-lg border border-blue-200 flex items-center gap-1 active:scale-95">
                                     <Icons.HelpCircle /> คู่มือแอดมิน
                                 </button>
@@ -2546,7 +2213,6 @@ const App = () => {
                         </div>
                     </div>
 
-                    {/* คู่มือ Admin */}
                     {showAdminHelp && (
                         <div className="bg-blue-50 p-5 rounded-2xl border border-blue-200 mb-4 shadow-sm text-sm animate-pop">
                             <div className="flex justify-between items-center border-b border-blue-200 pb-2 mb-3">
@@ -2554,9 +2220,9 @@ const App = () => {
                                 <button onClick={() => setShowAdminHelp(false)} className="text-blue-500 hover:text-blue-700"><Icons.X /></button>
                             </div>
                             <div className="space-y-4 text-blue-900 text-xs leading-relaxed">
-                                <div><b>👥 จัดการผู้ใช้งาน:</b> อนุมัติสิทธิ์พนักงานใหม่ (เปลี่ยนจาก Pending เป็น Approved) และรีเซ็ตรหัสผ่าน <br/><span className="text-red-600 font-bold">จุดสำคัญ:</span> สำหรับผู้ตรวจ (Inspector) แอดมินต้อง <b>"ผูกชื่อในตาราง (Mapping Name)"</b> ให้ตรงกับชื่อในปฏิทินเสมอ เพื่อให้งานเด้งไปที่หน้า "งานฉัน" ของผู้ตรวจท่านนั้น</div>
+                                <div><b>👥 จัดการผู้ใช้งาน:</b> สามารถกด "สร้างผู้ใช้งานใหม่" หรือ อนุมัติสิทธิ์พนักงาน (Pending ➡️ Approved) และรีเซ็ตรหัสผ่าน <br/><span className="text-red-600 font-bold">จุดสำคัญ:</span> สำหรับผู้ตรวจ (Inspector) แอดมินต้อง <b>"ผูกชื่อในตาราง (Mapping Name)"</b> ให้ตรงกับชื่อในปฏิทินเสมอ เพื่อให้งานเด้งไปที่หน้า "งานฉัน" ของผู้ตรวจท่านนั้น</div>
                                 <div><b>📋 ผู้ตรวจ & Certificate:</b> กำหนดว่า Inspector แต่ละท่านสามารถตรวจ Product Line ใดได้บ้าง (เช่น ES1, 3300) หากไม่ได้เลือกไว้ ระบบจะไม่ให้ User จองคิวนั้น</div>
-                                <div><b>🗓️ จัดการวันพิเศษ (ลาก/ย้ายคิว):</b> แอดมินสามารถกำหนดวันหยุดบริษัท, กิจกรรม (แสดงแถบสีเขียว), และวันลา (แสดงแถบสีเหลือง) แอดมินสามารถ <b>คลิกค้างที่การ์ดแล้วลาก (Drag & Drop)</b> เพื่อย้ายคิวงานข้ามวันหรือเปลี่ยนคนตรวจได้ทันที</div>
+                                <div><b>🗓️ จัดการวันพิเศษ (ลาก/ย้ายคิว):</b> แอดมินสามารถกำหนดวันหยุดบริษัท, กิจกรรม (แสดงแถบสีเขียว), และวันลา (แสดงแถบสีเหลือง) พร้อมทั้งลบแบบกลุ่มได้ <br/> แอดมินสามารถ <b>คลิกค้างที่การ์ดแล้วลาก (Drag & Drop)</b> เพื่อย้ายคิวงานข้ามวันหรือเปลี่ยนคนตรวจได้ทันที</div>
                                 <div><b>✅ ตรวจสอบเอกสาร:</b> ไปที่แท็บ "ตรวจเอกสาร" ด้านล่าง เพื่อกดยืนยัน (Check) ว่าได้รับ Layout, Wiring, Precheck เรียบร้อยแล้ว (สถานะจะเปลี่ยนเป็นตรวจแล้ว)</div>
                                 <div><b>🎨 ตั้งค่าสีเว็บไซต์:</b> ปรับแต่งสีสัน, ความกว้างตาราง, และขนาดฟอนต์ได้ด้วยตนเองผ่านเมนู <b>"ตั้งค่าสีเว็บไซต์ / ตาราง"</b> โดยไม่ต้องแก้โค้ด</div>
                             </div>
@@ -2949,7 +2615,7 @@ const App = () => {
                         </div>
                     )}
 
-                    {/* Modal กดช่องตาราง (Admin Cell Action) */}
+                    {/* Modal กดช่องตาราง (Admin Cell Action) - แก้ไขบัคปุ่มค้างแล้ว */}
                     {modal?.type === 'admin_cell_action' && (
                         <div className="modal-card p-6 text-center animate-pop w-full max-w-sm bg-white rounded-3xl shadow-2xl relative">
                             <button onClick={() => setModal(null)} className="absolute top-4 right-4 bg-slate-100 text-slate-500 p-2 rounded-full hover:bg-slate-200"><Icons.X /></button>
@@ -3029,7 +2695,7 @@ const App = () => {
                                                     return (
                                                         <div key={docKey} className={`flex flex-col items-center justify-center p-2 rounded-xl border relative ${isSent ? 'bg-green-50 border-green-200 text-green-700' : 'bg-slate-50 border-slate-200 text-slate-500'}`}>
                                                             <div className="text-[10px] mb-1 uppercase font-bold">{docKey}</div>
-                                                            <div className="text-xs font-bold mb-1">{isSent ? '✅ ตรวจสอบแล้ว' : '⏳ รอตรวจสอบ'}</div>
+                                                            <div className="text-xs font-bold mb-1">{isSent ? '✅ ตรวจแล้ว' : '⏳ รอตรวจ'}</div>
                                                             {fileUrl && (
                                                                 <button onClick={(e) => { e.stopPropagation(); setViewFileUrl(fileUrl); }} className="mt-auto text-[9px] bg-blue-600 text-white px-2 py-1.5 rounded w-full text-center truncate shadow-sm active:scale-95 font-bold hover:bg-blue-700 transition-colors">
                                                                     เปิดดูไฟล์
@@ -3109,227 +2775,444 @@ const App = () => {
                         </div>
                     )}
 
-                    {/* 📍 Modal Booking ฟอร์มจองคิว */}
-                    {modal?.type === 'booking' && (
-                        <div className="modal-card w-full max-w-[450px] animate-pop flex flex-col max-h-[90vh] bg-white rounded-3xl overflow-hidden shadow-2xl relative">
-                            <button onClick={() => { setModal(null); setShowBookingHelp(false); }} className="absolute top-4 right-4 bg-slate-200 text-slate-500 p-2 rounded-full z-50"><Icons.X /></button>
-                            <div className="p-4 border-b border-slate-100 bg-slate-50 flex justify-between items-center pr-14">
-                                <h3 className="text-xl font-bold text-slate-800 flex items-center gap-2">
-                                    <Icons.FileCheck /> {showBookingHelp ? 'คู่มือจองคิวงาน' : (modal.data.id ? '✏️ แก้ไขคิวงาน' : '📝 จองคิวงานใหม่')}
-                                </h3>
-                                {!showBookingHelp && (
-                                    <button type="button" onClick={() => setShowBookingHelp(true)} className="text-[10px] bg-blue-50 text-blue-600 font-bold px-2 py-1 rounded-full border border-blue-100 flex items-center gap-1 shadow-sm">
-                                        <Icons.HelpCircle /> วิธีใช้งาน
-                                    </button>
-                                )}
-                            </div>
+                    {/* 📍 Modal แจ้งวันลาส่วนตัว (สำหรับ Inspector ทำเอง) */}
+                    {modal?.type === 'inspector_leave_form' && (
+                        <div className="modal-card p-6 w-full max-w-sm bg-white rounded-3xl shadow-2xl animate-pop relative">
+                            <button onClick={() => setModal(null)} className="absolute top-4 right-4 bg-slate-100 text-slate-500 p-2 rounded-full"><Icons.X /></button>
+                            <h3 className="text-xl font-bold text-slate-900 mb-4 border-b pb-2 flex items-center gap-2">
+                                <Icons.User /> {modal.data?.id ? 'แก้ไขวันลาของฉัน' : 'แจ้งวันลาหยุด (ส่วนตัว)'}
+                            </h3>
+                            <form onSubmit={async (e) => {
+                                e.preventDefault();
+                                const fd = new FormData(e.target);
+                                const sDate = fd.get('start_date');
+                                const eDate = fd.get('end_date') || sDate;
+                                const lType = fd.get('leave_type') === 'อื่นๆ' ? fd.get('custom_leave') : fd.get('leave_type');
+                                const targetName = user?.inspector_mapped_name || user?.full_name || user?.username;
 
-                            {/* คู่มือแบบสมบูรณ์ของหน้าจองคิว */}
-                            {showBookingHelp ? (
-                                <div className="p-5 overflow-y-auto max-h-[75vh] custom-scrollbar space-y-4">
-                                    <div className="bg-blue-50 p-5 rounded-2xl border border-blue-200 space-y-4">
-                                        <h4 className="font-bold text-blue-800 text-[15px] border-b border-blue-200 pb-2 flex items-center gap-2">
-                                            <Icons.Info /> คู่มือจองคิวตรวจ / แก้ไข / ลบ
-                                        </h4>
-                                        <div className="text-xs text-blue-900 space-y-4 leading-relaxed">
-                                            <div>
-                                                <span className="font-bold text-blue-800 text-[13px]">📝 การจองคิวใหม่</span>
-                                                <ul className="list-disc pl-4 mt-2 space-y-1.5 text-slate-700">
-                                                    <li>คลิกวันที่และชื่อ Inspector ที่ว่างในตารางปฏิทิน</li>
-                                                    <li>เลือก <b>Product Line</b> (เช่น ES1, 3300) และ <b>ประเภทงาน</b></li>
-                                                    <li>กรอกข้อมูลสำคัญ: <b>Eq No., Unit No., ชื่อโครงการ, พื้นที่</b> ให้ถูกต้อง</li>
-                                                    <li className="text-red-600 font-bold">เงื่อนไขบังคับ: ท่านต้องอัปโหลดเอกสาร Layout, Wiring และ Pre-check ให้ครบทั้ง 3 ช่อง ระบบจึงจะอนุญาตให้กดบันทึก</li>
-                                                </ul>
-                                            </div>
-                                            <div>
-                                                <span className="font-bold text-blue-800 text-[13px]">📸 การแนบรูปภาพ Site Conditions</span>
-                                                <ul className="list-disc pl-4 mt-2 space-y-1.5 text-slate-700">
-                                                    <li>สามารถแนบรูปหน้างานได้ 6 จุด (หน้าตู้, หลังคาลิฟต์, บ่อลิฟต์ ฯลฯ)</li>
-                                                    <li>แนบได้สูงสุด <span className="font-bold">5 รูปต่อ 1 หัวข้อ</span></li>
-                                                    <li><span className="font-bold text-red-600">ผู้ทำการจอง</span> จะต้องเป็นผู้อัพโหลดและรับผิดชอบการแนบรูปภาพหน้างานทุกครั้ง</li>
-                                                </ul>
-                                            </div>
-                                            <div>
-                                                <span className="font-bold text-blue-800 text-[13px]">✏️ การแก้ไข และ 🗑️ การลบ</span>
-                                                <ul className="list-disc pl-4 mt-2 space-y-1.5 text-slate-700">
-                                                    <li><b>แก้ไข:</b> กดที่คิวงานของท่านในปฏิทิน เลือก "แก้ไขข้อมูล" เพื่ออัปเดตไฟล์หรือเบอร์โทร</li>
-                                                    <li><b>ยกเลิกคิว:</b> กดจากปุ่ม "ยกเลิกคิวงาน" <span className="text-red-600 font-bold">หมายเหตุ: จะไม่สามารถยกเลิกคิวย้อนหลังที่ผ่านมาแล้วได้</span> ต้องติดต่อ Admin เท่านั้น</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <button type="button" onClick={() => setShowBookingHelp(false)} className="w-full py-3.5 bg-blue-600 text-white font-bold rounded-xl mt-2 text-sm shadow-md active:scale-95 transition-all">เข้าใจแล้ว กลับไปฟอร์มจองคิว</button>
-                                </div>
-                            ) : (
-                                <div className="p-5 overflow-y-auto max-h-[75vh] custom-scrollbar">
+                                if (modal.data?.id) {
+                                    setLoadingMsg('กำลังบันทึก...');
+                                    const docId = await findDocIdFallback(modal.data);
+                                    if (docId && window.dbFirestore) {
+                                        await window.dbFirestore.collection("bookings").doc(docId).update({ date: sDate, site_name: lType });
+                                    }
                                     
-                                    {/* ป้ายแสดงข้อมูลยืนยันวันที่และผู้ตรวจ */}
-                                    <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-100 p-4 rounded-2xl mb-5 flex justify-between items-center shadow-sm">
-                                        <div className="flex-1">
-                                            <div className="text-[10px] text-blue-500 font-bold mb-1 flex items-center gap-1"><Icons.Clock /> วันที่ทำรายการจอง</div>
-                                            <div className="text-base font-black text-blue-900">{modal.data.date ? formatSafeDate(modal.data.date) : '-'}</div>
+                                    logActivity('UPDATE LEAVE (INSPECTOR)', `แก้ไขวันลา: ${lType} วันที่ ${sDate}`);
+                                    setLoadingMsg(null);
+                                    setModal(null);
+                                    setSuccessModal(
+                                        <div className="text-center">
+                                            <div className="font-black text-sm mb-1 text-amber-600">อัปเดตวันลาสำเร็จ!</div>
+                                            <div className="text-xs text-slate-600">ประเภท: {lType}</div>
+                                            <div className="text-xs text-slate-600">วันที่: {sDate}</div>
                                         </div>
-                                        <div className="w-px h-10 bg-blue-200 mx-4"></div>
-                                        <div className="flex-1 text-right">
-                                            <div className="text-[10px] text-indigo-500 font-bold mb-1 flex items-center gap-1 justify-end"><Icons.User /> ผู้ตรวจที่จะรับงาน</div>
-                                            <div className="text-base font-black text-indigo-900">{modal.data.inspector_name || '-'}</div>
+                                    );
+                                } else {
+                                    const dates = generateDates(sDate, eDate, true);
+                                    if(dates.length === 0) return setAlertMsg('วันที่ไม่ถูกต้อง');
+                                    const eqNo = `LEAVE_${Date.now()}_${Math.floor(Math.random()*1000)}`;
+                                    
+                                    setLoadingMsg('กำลังบันทึกข้อมูลลง Firebase...');
+                                    if (window.dbFirestore) {
+                                        const batch = window.dbFirestore.batch();
+                                        for(let date of dates) {
+                                            const newId = window.SAIS_UTILS?.generateId ? window.SAIS_UTILS.generateId() : Date.now().toString() + Math.random();
+                                            const docRef = window.dbFirestore.collection("bookings").doc(newId);
+                                            batch.set(docRef, { id: newId, date: date, inspector_name: targetName, job_type: 'leave', site_name: lType, equipment_no: eqNo, created_by: user?.username, status: 'active' });
+                                        }
+                                        await batch.commit();
+                                    }
+                                    
+                                    logActivity('CREATE LEAVE (INSPECTOR)', `แจ้งวันลา: ${lType} วันที่ ${sDate} ถึง ${eDate}`);
+                                    setLoadingMsg(null);
+                                    setModal(null);
+                                    setSuccessModal(
+                                        <div className="text-center">
+                                            <div className="font-black text-sm mb-1 text-amber-600">แจ้งวันลาสำเร็จ!</div>
+                                            <div className="text-xs text-slate-600">ประเภท: {lType}</div>
+                                            <div className="text-xs text-slate-600">จำนวน: {dates.length} วัน</div>
+                                        </div>
+                                    );
+                                }
+                            }} className="space-y-4">
+                                {modal.data?.id ? (
+                                    <div>
+                                        <label className="text-xs font-bold text-slate-700 mb-1 block">วันที่ลา</label>
+                                        <input type="date" name="start_date" defaultValue={modal.data.date ? formatSafeDate(modal.data.date) : ''} required className="w-full text-sm p-3 rounded-lg border outline-none font-bold text-blue-600" />
+                                    </div>
+                                ) : (
+                                    <div className="grid grid-cols-2 gap-2">
+                                        <div>
+                                            <label className="text-xs font-bold text-slate-700 mb-1 block">เริ่มวันที่</label>
+                                            <input type="date" name="start_date" required className="w-full text-sm p-3 rounded-lg border outline-none font-bold text-blue-600" />
+                                        </div>
+                                        <div>
+                                            <label className="text-xs font-bold text-slate-700 mb-1 block">ถึงวันที่</label>
+                                            <input type="date" name="end_date" required className="w-full text-sm p-3 rounded-lg border outline-none font-bold text-blue-600" />
                                         </div>
                                     </div>
-
-                                    {(() => {
-                                        let allowedCerts = ['ES1', '3300', 'S-villas'];
-                                        if (modal?.data?.inspector_name) {
-                                            const inspectorObj = (db.inspectors || []).find(i => i.name === modal.data.inspector_name);
-                                            if (inspectorObj && inspectorObj.product_lines && inspectorObj.product_lines.trim() !== '') {
-                                                allowedCerts = inspectorObj.product_lines.split(',').map(s => s.trim());
-                                            }
-                                        }
-                                        if (!allowedCerts.includes('อื่นๆโปรดระบุ')) allowedCerts.push('อื่นๆโปรดระบุ');
-                                        return (
-                                            <form onSubmit={handleBookingSubmit} className="space-y-4">
-                                                {isAdmin && modal.data.id && (
-                                                    <div className="bg-amber-50 p-3 rounded-xl border border-amber-200">
-                                                        <h4 className="text-xs font-bold text-amber-800 mb-2 border-b pb-1">⚙️ [Admin] แก้ไขวันที่/ผู้ตรวจ</h4>
-                                                        <div className="grid grid-cols-2 gap-2">
-                                                            <div><label className="text-[10px] font-bold text-amber-700">แก้ไขวันที่</label><input type="date" name="admin_date_target" defaultValue={modal.data.date ? formatSafeDate(modal.data.date) : ''} className="w-full text-sm p-2 rounded-lg border outline-none" /></div>
-                                                            <div>
-                                                                <label className="text-[10px] font-bold text-amber-700">ย้ายผู้ตรวจ</label>
-                                                                <select name="admin_inspector_target" defaultValue={modal.data.inspector_name} className="w-full text-sm p-2 rounded-lg border font-bold">
-                                                                    {(db.inspectors || []).map(i => <option key={i.name} value={i.name}>{i.name}</option>)}
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <input type="hidden" name="isAdminOverride" value="true" />
-                                                    </div>
-                                                )}
-
-                                                <div className="grid grid-cols-2 gap-3">
-                                                    <div>
-                                                        <label className="text-xs font-bold text-slate-700 mb-1 block">Product Line <span className="text-red-500">*</span></label>
-                                                        <select name="product_line" value={productLineSelection} onChange={e => setProductLineSelection(e.target.value)} required className="w-full text-sm p-2.5 rounded-lg border bg-white">
-                                                            <option value="" disabled>--เลือก--</option>
-                                                            {allowedCerts.map(cert => <option key={cert} value={cert}>{cert}</option>)}
-                                                        </select>
-                                                    </div>
-                                                    <div>
-                                                        <label className="text-xs font-bold text-slate-700 mb-1 block">ประเภทงาน <span className="text-red-500">*</span></label>
-                                                        <select name="job_type" value={jobTypeSelection} onChange={e => setJobTypeSelection(e.target.value)} required className="w-full text-sm p-2.5 rounded-lg border bg-white">
-                                                            <option value="" disabled>--เลือก--</option>
-                                                            <option value="New">New</option><option value="MOD">MOD</option>
-                                                            <option value="Re-ins temporary power supply">Re-ins temporary</option>
-                                                            <option value="Re-ins builder lift">Re-ins builder lift</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                                {productLineSelection === 'อื่นๆโปรดระบุ' && <div><input type="text" name="custom_product_line" required placeholder="โปรดระบุ Product Line..." className="w-full text-sm p-2.5 rounded-lg bg-yellow-50 border border-yellow-300" defaultValue={modal.data.product_line} /></div>}
-
-                                                <div>
-                                                    <label className="text-xs font-bold text-slate-700 mb-1 block">พื้นที่ <span className="text-red-500">*</span></label>
-                                                    <select name="area" value={areaSelection} onChange={e => setAreaSelection(e.target.value)} required className="w-full text-sm p-2.5 rounded-lg border bg-white">
-                                                        <option value="" disabled>--เลือก--</option>
-                                                        <option value="กรุงเทพและปริมณฑล">กรุงเทพและปริมณฑล</option>
-                                                        <option value="other">ต่างจังหวัด (โปรดระบุ)</option>
-                                                    </select>
-                                                </div>
-                                                {areaSelection === 'other' && <div><input type="text" name="custom_area" required placeholder="ระบุจังหวัด..." className="w-full text-sm p-2.5 rounded-lg bg-pink-50 border border-pink-300" defaultValue={modal.data.area} /></div>}
-
-                                                <div className="grid grid-cols-2 gap-3">
-                                                    <div><label className="text-xs font-bold text-slate-700 mb-1 block">Eq No. <span className="text-red-500">*</span></label><input type="text" name="equipment_no" required placeholder="เช่น 11731095" defaultValue={modal.data.equipment_no} className="w-full text-sm p-2.5 rounded-lg border outline-none" /></div>
-                                                    <div><label className="text-xs font-bold text-slate-700 mb-1 block">Unit No. {!isAdmin && <span className="text-red-500">*</span>}</label><input type="text" name="unit_no" required={!isAdmin} placeholder="เช่น L1,PL1" defaultValue={modal.data.unit_no} className="w-full text-sm p-2.5 rounded-lg border outline-none" /></div>
-                                                </div>
-
-                                                <div><label className="text-xs font-bold text-slate-700 mb-1 block">ชื่อโครงการ <span className="text-red-500">*</span></label><input type="text" name="site_name" required placeholder="ระบุชื่อโครงการ" defaultValue={modal.data.site_name ? modal.data.site_name.replace(/^\d{2}:\d{2}-\d{2}:\d{2}\s/, '') : ''} className="w-full text-sm p-2.5 rounded-lg border outline-none" /></div>
-                                                
-                                                <div>
-                                                    <label className="text-xs font-bold text-slate-700 mb-1 block">เบอร์ติดต่อหน้างาน {!isAdmin && <span className="text-red-500">*</span>}</label>
-                                                    <input type="tel" name="tel" required={!isAdmin} maxLength="10" placeholder="08XXXXXXXX" defaultValue={modal.data.tel} className="w-full text-sm p-2.5 rounded-lg border outline-none" onInput={(e) => { e.target.value = e.target.value.replace(/[^0-9]/g, ''); }} />
-                                                </div>
-
-                                                <div>
-                                                    <label className="text-xs font-bold text-slate-700 mb-1 block">Google Maps</label>
-                                                    <input type="text" name="map_link" placeholder="ใส่ชื่อสถานที่หรือ link" defaultValue={modal.data.map_link} className="w-full text-sm p-2.5 rounded-lg border outline-none" onChange={(e) => handleMapChange(e.target.value)} />
-                                                    {liveMapUrl && <iframe src={liveMapUrl} className="map-preview mt-2 w-full h-48 rounded-xl border bg-slate-50" allowFullScreen loading="lazy" referrerPolicy="no-referrer"></iframe>}
-                                                </div>
-
-                                                {/* 📍 ป้ายเตือนบังคับแนบเอกสาร (ถ้าไม่ใช่แอดมิน) */}
-                                                {!isAdmin && (
-                                                    <div className="bg-red-50 text-red-600 text-[10px] p-3 rounded-lg border border-red-200 mt-2 font-bold flex items-center gap-2">
-                                                        <Icons.Alert /> กรุณาอัปโหลดเอกสาร Layout, Wiring, Precheck ให้ครบทั้ง 3 ช่องเพื่อบันทึกคิวงาน
-                                                    </div>
-                                                )}
-
-                                                <div className="bg-slate-50 p-4 rounded-xl border space-y-3 mt-4">
-                                                    <h4 className="text-sm font-bold text-slate-800 border-b pb-2 flex items-center gap-2"><Icons.Upload /> อัปโหลดเอกสารแนบ (รูป/PDF)</h4>
-                                                    {['layout', 'wiring', 'precheck'].map((doc) => {
-                                                        const currentUrl = docUrls[doc] || modal.data[`${doc}_img`];
-                                                        return (
-                                                            <div key={doc} className="flex items-center justify-between gap-2 bg-white p-2 rounded-lg border shadow-sm">
-                                                                <div className="flex-1">
-                                                                    <label className="text-[11px] font-bold text-slate-700 uppercase">{doc} {!isAdmin && <span className="text-red-500">*</span>}</label>
-                                                                    {currentUrl && <div className="text-[9px] text-emerald-600 mt-0.5">✅ อัปโหลดแล้ว</div>}
-                                                                </div>
-                                                                <div className="flex items-center gap-2">
-                                                                    {currentUrl && (
-                                                                        <button type="button" onClick={(e) => { e.preventDefault(); setViewFileUrl(currentUrl); }} className="text-[10px] text-blue-600 bg-blue-50 px-2 py-1.5 rounded-md shadow-sm border border-blue-100 font-bold active:scale-95">ดูไฟล์</button>
-                                                                    )}
-                                                                    <label className="bg-slate-800 text-white text-[10px] px-3 py-1.5 rounded-md cursor-pointer active:scale-95 transition-all shadow-sm">
-                                                                        {uploadingDoc[doc] ? 'รอ...' : 'เปลี่ยนไฟล์'}
-                                                                        <input type="file" accept="image/*,application/pdf" className="hidden" onChange={(e) => handleFileUpload(e, doc)} disabled={uploadingDoc[doc]} />
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                        );
-                                                    })}
-                                                </div>
-
-                                                <div className="bg-blue-50 p-4 rounded-xl border border-blue-200 space-y-3 mt-4">
-                                                    <h4 className="text-sm font-bold text-blue-800 border-b border-blue-200 pb-2 flex items-center gap-2">
-                                                        <Icons.Image /> อัปโหลดรูป Site Conditions (1-5 รูป) <span className="text-[10px] text-red-500 font-normal bg-red-50 px-2 py-0.5 rounded-md ml-1 border border-red-100">(แนบให้ครบ)</span>
-                                                    </h4>
-                                                    {[
-                                                        {id: 'site_cond_1', label: '1. หน้าตู้คอนโทรล'}, {id: 'site_cond_2', label: '2. บนหลังคาลิฟต์'},
-                                                        {id: 'site_cond_3', label: '3. ด้านบนปล่อง'}, {id: 'site_cond_4', label: '4. ก้นบ่อลิฟต์'},
-                                                        {id: 'site_cond_5', label: '5. ภายในตู้ลิฟต์'}, {id: 'site_cond_6', label: '6. หน้าชั้นและรอบวงกบประตูนอก'}
-                                                    ].map((cond) => {
-                                                        const currentCondUrl = docUrls[cond.id] || modal.data[cond.id];
-                                                        return (
-                                                            <div key={cond.id} className="flex items-center justify-between gap-2 bg-white p-2 rounded-lg border border-blue-100 shadow-sm">
-                                                                <div className="flex-1 min-w-0">
-                                                                    <label className="text-[11px] font-bold text-slate-700 block truncate">{cond.label}</label>
-                                                                    {currentCondUrl && <span className="text-[9px] text-emerald-600 block mt-1">อัปโหลดแล้ว {currentCondUrl.split(',').length} รูป</span>}
-                                                                </div>
-                                                                <div className="flex flex-col gap-1 items-end shrink-0">
-                                                                    {currentCondUrl && (
-                                                                        <button type="button" onClick={(e) => { e.preventDefault(); setViewFileUrl(currentCondUrl.split(',')[0]); }} className="text-[9px] text-indigo-600 bg-indigo-50 px-2 py-1 rounded shadow-sm border border-indigo-100 font-bold active:scale-95">ดูรูปแรก</button>
-                                                                    )}
-                                                                    <label className="bg-blue-600 text-white text-[10px] px-3 py-1.5 rounded cursor-pointer shadow-sm active:scale-95 transition-transform">
-                                                                        {uploadingDoc[cond.id] ? 'รอ...' : '+ แนบรูป (Max:5)'}
-                                                                        <input type="file" accept="image/*" multiple className="hidden" 
-                                                                            onChange={(e) => {
-                                                                                if (e.target.files.length > 5) { setAlertMsg('สามารถแนบรูปภาพได้สูงสุดไม่เกิน 5 รูปต่อ 1 หัวข้อครับ'); e.target.value = ''; return; }
-                                                                                const existingCount = currentCondUrl ? currentCondUrl.split(',').length : 0;
-                                                                                if (existingCount + e.target.files.length > 5) { setAlertMsg(`หัวข้อนี้มีรูปอยู่แล้ว ${existingCount} รูป เพิ่มได้อีก ${5 - existingCount} รูป`); e.target.value = ''; return; }
-                                                                                handleFileUpload(e, cond.id, true);
-                                                                            }} 
-                                                                            disabled={uploadingDoc[cond.id]} 
-                                                                        />
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                        );
-                                                    })}
-                                                </div>
-
-                                                <button disabled={loadingMsg} className="w-full py-4 rounded-xl font-bold text-white bg-red-600 shadow-lg mt-6 active:scale-95 text-sm transition-transform flex items-center justify-center gap-2">
-                                                    {loadingMsg ? <Icons.Loader /> : <Icons.Check />} 
-                                                    {modal.data.id ? 'บันทึกการแก้ไข' : 'ยืนยันการจองคิว'}
-                                                </button>
-                                            </form>
-                                        );
-                                    })()}
+                                )}
+                                <div>
+                                    <label className="text-xs font-bold text-slate-700 mb-1 block">ประเภทการลา</label>
+                                    <select name="leave_type" defaultValue={modal.data?.site_name || 'ลาพักร้อน'} className="w-full text-sm p-3 rounded-lg border outline-none font-bold" onChange={(e) => setLeaveType(e.target.value)}>
+                                        <option value="ลาพักร้อน">ลาพักร้อน</option>
+                                        <option value="ลาป่วย">ลาป่วย</option>
+                                        <option value="ลากิจ">ลากิจ</option>
+                                        <option value="อื่นๆ">อื่นๆ (ระบุเอง)</option>
+                                    </select>
                                 </div>
-                            )}
+                                {leaveType === 'อื่นๆ' && (
+                                    <div><input type="text" name="custom_leave" required placeholder="ระบุเหตุผล..." className="w-full text-sm p-3 rounded-lg border outline-none bg-amber-50" /></div>
+                                )}
+                                <button type="submit" disabled={loadingMsg} className="w-full py-3 rounded-xl font-bold text-sm bg-blue-600 text-white shadow-md">
+                                    {modal.data?.id ? 'บันทึกการแก้ไข' : 'ยืนยันแจ้งวันลา'}
+                                </button>
+                            </form>
+                        </div>
+                    )}
+
+                    {/* Modal จัดการวันลา (สำหรับ Admin) */}
+                    {modal?.type === 'manage_leaves' && (
+                        <div className="modal-card w-full max-w-md rounded-3xl overflow-hidden shadow-2xl animate-pop flex flex-col max-h-[90vh] bg-white">
+                            <div className="bg-amber-500 p-4 text-white flex justify-between items-center"><h3 className="font-bold flex items-center gap-2"><Icons.User /> จัดการวันลา</h3><button onClick={() => setModal(null)} className="bg-white/20 p-1.5 rounded-full"><Icons.X /></button></div>
+                            <div className="p-4 overflow-y-auto custom-scrollbar flex-1 bg-slate-50 space-y-4">
+                                <div className="bg-white p-4 rounded-xl shadow-sm border">
+                                    <h4 className="font-bold text-slate-700 mb-3 text-sm flex items-center gap-2"><Icons.Plus /> เพิ่มวันลาใหม่</h4>
+                                    <div className="space-y-3">
+                                        <div className="relative">
+                                            <div className="w-full p-2.5 text-sm border rounded-lg bg-white font-bold cursor-pointer flex justify-between items-center" onClick={() => setShowLeaveDropdown(!showLeaveDropdown)}>
+                                                <span className={`truncate ${leaveInspectors.length === 0 ? 'text-slate-400' : 'text-slate-800'}`}>
+                                                    {leaveInspectors.length === 0 ? '-- เลือกพนักงาน --' : leaveInspectors.includes('ALL') ? 'ทุกคน' : leaveInspectors.join(', ')}
+                                                </span>
+                                                <span className="text-slate-400 text-xs">▼</span>
+                                            </div>
+                                            {showLeaveDropdown && (
+                                                <div className="absolute z-10 w-full mt-1 bg-white border rounded-lg shadow-xl max-h-48 overflow-y-auto custom-scrollbar">
+                                                    <label className="flex items-center gap-2 p-3 hover:bg-amber-50 cursor-pointer border-b">
+                                                        <input type="checkbox" checked={leaveInspectors.includes('ALL')} onChange={(e) => {
+                                                            if (e.target.checked) setLeaveInspectors(['ALL']); else setLeaveInspectors([]);
+                                                        }} className="accent-amber-500 w-4 h-4" />
+                                                        <span className="font-bold text-amber-800 text-sm">ทุกคน</span>
+                                                    </label>
+                                                    {(db.inspectors || []).map(i => (
+                                                        <label key={i.name} className="flex items-center gap-2 p-3 hover:bg-slate-50 cursor-pointer border-b last:border-0">
+                                                            <input type="checkbox" checked={leaveInspectors.includes(i.name)} onChange={(e) => {
+                                                                if (e.target.checked) setLeaveInspectors(prev => prev.includes('ALL') ? [i.name] : [...prev, i.name]);
+                                                                else setLeaveInspectors(prev => prev.filter(name => name !== i.name));
+                                                            }} className="accent-amber-500 w-4 h-4" />
+                                                            <span className="text-slate-700 font-bold text-sm">{i.name}</span>
+                                                        </label>
+                                                    ))}
+                                                </div>
+                                            )}
+                                        </div>
+                                        <div className="grid grid-cols-2 gap-2">
+                                            <div><label className="text-[10px] font-bold text-slate-500 mb-1 block">วันที่เริ่ม</label><input type="date" value={leaveStartDate} onChange={(e) => setLeaveStartDate(e.target.value)} className="w-full p-2 border rounded-lg text-xs font-bold" /></div>
+                                            <div><label className="text-[10px] font-bold text-slate-500 mb-1 block">วันสิ้นสุด</label><input type="date" value={leaveEndDate} onChange={(e) => setLeaveEndDate(e.target.value)} className="w-full p-2 border rounded-lg text-xs font-bold" /></div>
+                                        </div>
+                                        <select className="w-full p-2.5 text-sm border rounded-lg font-bold" value={leaveType} onChange={(e) => setLeaveType(e.target.value)}>
+                                            <option value="ลาพักร้อน">ลาพักร้อน</option><option value="ลากิจ">ลากิจ</option><option value="ลาป่วย">ลาป่วย</option><option value="อื่นๆโปรดระบุ">อื่นๆ (ระบุเอง)</option>
+                                        </select>
+                                        {leaveType === 'อื่นๆโปรดระบุ' && <input type="text" placeholder="ระบุประเภทการลา..." value={customLeaveType} onChange={(e) => setCustomLeaveType(e.target.value)} className="w-full p-2.5 border rounded-lg text-sm bg-amber-50" />}
+                                        <button onClick={async () => {
+                                            if(leaveInspectors.length === 0 || !leaveStartDate || !leaveEndDate) return setAlertMsg('กรุณากรอกข้อมูลให้ครบ และเลือกพนักงาน');
+                                            let finalType = leaveType === 'อื่นๆโปรดระบุ' ? customLeaveType : leaveType;
+                                            setLoadingMsg('กำลังสร้างวันลาลง Firebase...');
+                                            
+                                            let targets = leaveInspectors.includes('ALL') ? (db.inspectors || []).map(i => i.name) : leaveInspectors;
+                                            
+                                            if (window.dbFirestore) {
+                                                const batch = window.dbFirestore.batch();
+                                                for (let target of targets) {
+                                                    const eqNo = `LEAVE_${Date.now()}_${Math.floor(Math.random()*1000)}`;
+                                                    for (let date of leaveDates) {
+                                                        const newId = window.SAIS_UTILS?.generateId ? window.SAIS_UTILS.generateId() : Date.now().toString() + Math.random();
+                                                        const docRef = window.dbFirestore.collection("bookings").doc(newId);
+                                                        batch.set(docRef, { id: newId, date: date, inspector_name: target, job_type: 'leave', site_name: finalType, equipment_no: eqNo, created_by: user?.username, status: 'active' });
+                                                    }
+                                                }
+                                                await batch.commit();
+                                            }
+                                            
+                                            logActivity('CREATE ADMIN LEAVE', `สร้างวันลาประเภท: ${finalType}\nจำนวนเป้าหมาย: ${targets.length} คน\nวันที่: ${leaveStartDate} ถึง ${leaveEndDate}`);
+                                            setLoadingMsg(null);
+                                            
+                                            setSuccessModal(
+                                                <div className="text-center">
+                                                    <div className="font-black text-sm mb-1 text-amber-600">เพิ่มวันลาสำเร็จ!</div>
+                                                    <div className="text-xs text-slate-600">ประเภท: {finalType}</div>
+                                                    <div className="text-xs text-slate-600 mt-1">จำนวนที่เพิ่มเข้าสู่ตาราง: <span className="font-bold text-amber-600">{leaveDates.length * targets.length} ช่อง</span></div>
+                                                </div>
+                                            );
+                                            
+                                            setLeaveStartDate(''); setLeaveEndDate(''); setLeaveInspectors([]); setShowLeaveDropdown(false);
+                                        }} className="w-full py-3 bg-amber-500 text-white font-bold rounded-xl shadow-md flex justify-center items-center gap-2"><Icons.Plus /> เพิ่มวันลา ({leaveDates.length} วัน)</button>
+                                    </div>
+                                </div>
+                                
+                                {/* 📍 แสดง List และฟังก์ชันแก้ไข/ลบ วันลา */}
+                                <div className="mt-6 pt-4 border-t border-slate-200">
+                                    <div className="flex justify-between items-center mb-3">
+                                        <h4 className="font-bold text-slate-700 text-sm">รายการวันลาในระบบ</h4>
+                                        {selectedLeavesToDelete.length > 0 && (
+                                            <button onClick={() => handleBulkDelete('leave', selectedLeavesToDelete)} className="bg-red-50 text-red-600 px-3 py-1.5 rounded-lg text-[10px] font-bold active:scale-95 shadow-sm border border-red-200 transition-colors hover:bg-red-100">
+                                                🗑️ ลบที่เลือก ({selectedLeavesToDelete.length})
+                                            </button>
+                                        )}
+                                    </div>
+                                    <div className="space-y-2 max-h-60 overflow-y-auto custom-scrollbar pr-1">
+                                        {(db.bookings || []).filter(b => b.job_type === 'leave' && b.status !== 'cancelled').sort((a,b) => new Date(b.date) - new Date(a.date)).map(l => (
+                                            <div key={l.id} className="flex items-center gap-3 bg-white p-3 rounded-xl border border-slate-200 shadow-sm hover:border-amber-300 transition-all">
+                                                <input type="checkbox" checked={selectedLeavesToDelete.includes(l.id)} onChange={(e) => {
+                                                    if (e.target.checked) setSelectedLeavesToDelete([...selectedLeavesToDelete, l.id]);
+                                                    else setSelectedLeavesToDelete(selectedLeavesToDelete.filter(id => id !== l.id));
+                                                }} className="accent-red-500 w-4 h-4 rounded shadow-sm cursor-pointer" />
+                                                <div className="flex-1 min-w-0">
+                                                    <div className="font-bold text-slate-800 text-sm truncate">{l.site_name} <span className="text-xs text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full ml-1">👤 {l.inspector_name}</span></div>
+                                                    <div className="text-[10px] text-slate-500 font-bold mt-1">📅 {formatSafeDate(l.date)}</div>
+                                                </div>
+                                                <div className="flex flex-col gap-1">
+                                                    <button onClick={() => setModal({ type: 'edit_special', data: l, returnTo: 'manage_leaves' })} className="px-2.5 py-1.5 bg-blue-50 text-blue-600 rounded-lg shadow-sm border border-blue-100 active:scale-95"><Icons.Edit /></button>
+                                                    <button onClick={() => handleCancelBooking(l)} className="px-2.5 py-1.5 bg-red-50 text-red-600 rounded-lg shadow-sm border border-red-100 active:scale-95"><Icons.Trash /></button>
+                                                </div>
+                                            </div>
+                                        ))}
+                                        {(db.bookings || []).filter(b => b.job_type === 'leave' && b.status !== 'cancelled').length === 0 && <div className="text-center text-xs text-slate-400 py-6 border-2 border-dashed bg-white rounded-xl">ยังไม่มีการจองวันลา</div>}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* 📍 Modal จัดการกิจกรรม (สำหรับ Admin) */}
+                    {modal?.type === 'manage_events' && (
+                        <div className="modal-card w-full max-w-md rounded-3xl overflow-hidden shadow-2xl animate-pop flex flex-col max-h-[90vh] bg-white">
+                            <div className="bg-emerald-500 p-4 text-white flex justify-between items-center"><h3 className="font-bold flex items-center gap-2"><Icons.Star /> จัดการกิจกรรม</h3><button onClick={() => setModal(null)} className="bg-white/20 p-1.5 rounded-full"><Icons.X /></button></div>
+                            <div className="p-4 overflow-y-auto custom-scrollbar flex-1 bg-slate-50 space-y-4">
+                                <div className="bg-white p-4 rounded-xl shadow-sm border border-emerald-100">
+                                    <h4 className="font-bold text-emerald-800 mb-3 text-sm flex items-center gap-2"><Icons.Plus /> เพิ่มกิจกรรมใหม่</h4>
+                                    <div className="space-y-4">
+                                        
+                                        <div>
+                                            <label className="text-[10px] font-bold text-slate-500 mb-1 block">ชื่อกิจกรรม</label>
+                                            <input type="text" id="event_name_input" placeholder="ระบุชื่อกิจกรรม..." className="w-full p-2.5 text-sm border rounded-lg font-bold bg-slate-50 focus:bg-white transition-all outline-none focus:border-emerald-400" />
+                                        </div>
+                                        
+                                        {/* 📍 Dropdown เลือกผู้เข้าร่วมแบบหลายคน */}
+                                        <div className="relative">
+                                            <label className="text-[10px] font-bold text-slate-500 mb-1 block">ผู้เข้าร่วม</label>
+                                            <div className="w-full p-2.5 text-sm border rounded-lg bg-slate-50 font-bold cursor-pointer flex justify-between items-center" onClick={() => setShowEventDropdown(!showEventDropdown)}>
+                                                <span className={`truncate ${eventInspectors.length === 0 ? 'text-slate-400' : 'text-emerald-700'}`}>
+                                                    {eventInspectors.length === 0 ? '-- เลือกผู้เข้าร่วม --' : eventInspectors.includes('ALL') ? '✅ ทุกคน (กิจกรรมรวม)' : `👤 ผู้ตรวจ (${eventInspectors.length} คน)`}
+                                                </span>
+                                                <span className="text-slate-400 text-xs">▼</span>
+                                            </div>
+                                            {showEventDropdown && (
+                                                <div className="absolute z-20 w-full mt-1 bg-white border border-slate-200 rounded-xl shadow-xl max-h-48 overflow-y-auto custom-scrollbar">
+                                                    <label className="flex items-center gap-3 p-3 hover:bg-emerald-50 cursor-pointer border-b border-slate-100">
+                                                        <input type="checkbox" checked={eventInspectors.includes('ALL')} onChange={(e) => {
+                                                            if (e.target.checked) setEventInspectors(['ALL']); else setEventInspectors([]);
+                                                        }} className="accent-emerald-500 w-4 h-4 shadow-sm" />
+                                                        <span className="font-black text-emerald-700 text-sm">✅ ทุกคน (กิจกรรมรวมทั้งบริษัท)</span>
+                                                    </label>
+                                                    {(db.inspectors || []).map(i => (
+                                                        <label key={i.name} className="flex items-center gap-3 p-3 hover:bg-slate-50 cursor-pointer border-b border-slate-100 last:border-0">
+                                                            <input type="checkbox" checked={eventInspectors.includes(i.name)} onChange={(e) => {
+                                                                if (e.target.checked) setEventInspectors(prev => prev.includes('ALL') ? [i.name] : [...prev, i.name]);
+                                                                else setEventInspectors(prev => prev.filter(name => name !== i.name));
+                                                            }} className="accent-emerald-500 w-4 h-4 shadow-sm" />
+                                                            <span className="text-slate-700 font-bold text-sm">👤 เฉพาะ: {i.name}</span>
+                                                        </label>
+                                                    ))}
+                                                </div>
+                                            )}
+                                        </div>
+
+                                        <div className="grid grid-cols-2 gap-3">
+                                            <div><label className="text-[10px] font-bold text-slate-500 mb-1 block">วันที่เริ่ม</label><input type="date" value={eventStartDate} onChange={(e) => setEventStartDate(e.target.value)} className="w-full p-2 border rounded-lg text-xs font-bold text-slate-700 bg-slate-50" /></div>
+                                            <div><label className="text-[10px] font-bold text-slate-500 mb-1 block">วันสิ้นสุด</label><input type="date" value={eventEndDate} onChange={(e) => setEventEndDate(e.target.value)} className="w-full p-2 border rounded-lg text-xs font-bold text-slate-700 bg-slate-50" /></div>
+                                        </div>
+
+                                        {/* 📍 เพิ่ม Color Picker สำหรับเลือกสีกิจกรรมอิสระ */}
+                                        <div className="bg-emerald-50/50 p-3 rounded-xl border border-emerald-100">
+                                            <label className="text-[10px] font-bold text-emerald-800 mb-2 block">🎨 เลือกสีกิจกรรมบนตาราง</label>
+                                            <div className="flex items-center gap-3">
+                                                <input type="color" value={eventColor} onChange={(e) => setEventColor(e.target.value)} className="w-10 h-10 border-0 rounded-lg cursor-pointer shadow-sm p-0 bg-transparent" />
+                                                <div className="flex gap-1.5 flex-wrap flex-1">
+                                                    {['#22c55e', '#3b82f6', '#8b5cf6', '#eab308', '#f97316', '#ec4899', '#64748b'].map(color => (
+                                                        <div key={color} onClick={() => setEventColor(color)} className="w-6 h-6 rounded-full cursor-pointer shadow-sm border border-black/10 transition-transform active:scale-90" style={{backgroundColor: color}}></div>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <button onClick={async () => {
+                                            const eName = document.getElementById('event_name_input').value;
+                                            if(!eName || !eventStartDate || !eventEndDate || eventInspectors.length === 0) return setAlertMsg('กรุณากรอกข้อมูลและเลือกผู้เข้าร่วมให้ครบถ้วน');
+                                            
+                                            setLoadingMsg('กำลังสร้างกิจกรรมลง Firebase...');
+                                            let targets = eventInspectors.includes('ALL') ? ['SYSTEM_EVENT'] : eventInspectors;
+                                            
+                                            if (window.dbFirestore) {
+                                                const batch = window.dbFirestore.batch();
+                                                for (let target of targets) {
+                                                    const eqNo = `EVENT_${Date.now()}_${eventColor}`;
+                                                    for(let date of eventDates) {
+                                                        const newId = window.SAIS_UTILS?.generateId ? window.SAIS_UTILS.generateId() : Date.now().toString() + Math.random();
+                                                        const docRef = window.dbFirestore.collection("bookings").doc(newId);
+                                                        batch.set(docRef, { id: newId, date: date, inspector_name: target, job_type: 'company_event', site_name: eName, equipment_no: eqNo, created_by: user?.username, status: 'active' });
+                                                    }
+                                                }
+                                                await batch.commit();
+                                            }
+                                            
+                                            logActivity('CREATE EVENT', `สร้างกิจกรรม: ${eName}\nวันที่: ${eventStartDate} ถึง ${eventEndDate}`);
+                                            setLoadingMsg(null);
+                                            setModal(null);
+                                            
+                                            setSuccessModal(
+                                                <div className="text-center">
+                                                    <div className="font-black text-sm mb-1 text-emerald-600">สร้างกิจกรรมสำเร็จ!</div>
+                                                    <div className="text-xs text-slate-600">เรื่อง: {eName}</div>
+                                                    <div className="text-xs text-slate-600 mt-1">เป้าหมาย: {targets.includes('SYSTEM_EVENT') ? 'ทุกคนในบริษัท' : `${targets.length} คน`}</div>
+                                                </div>
+                                            );
+
+                                            setEventStartDate(''); setEventEndDate(''); setEventInspectors([]); setShowEventDropdown(false);
+                                            document.getElementById('event_name_input').value = '';
+                                            
+                                        }} className="w-full py-3.5 bg-emerald-500 text-white font-bold rounded-xl shadow-md flex justify-center items-center gap-2 active:scale-95 transition-transform mt-2">
+                                            <Icons.Plus /> ยืนยันสร้างกิจกรรม
+                                        </button>
+                                    </div>
+                                </div>
+
+                                {/* 📍 แสดง List และฟังก์ชันแก้ไข/ลบ กิจกรรม */}
+                                <div className="mt-6 pt-4 border-t border-slate-200">
+                                    <div className="flex justify-between items-center mb-3">
+                                        <h4 className="font-bold text-slate-700 text-sm">รายการกิจกรรมในระบบ</h4>
+                                        {selectedEventsToDelete.length > 0 && (
+                                            <button onClick={() => handleBulkDelete('event', selectedEventsToDelete)} className="bg-red-50 text-red-600 px-3 py-1.5 rounded-lg text-[10px] font-bold active:scale-95 shadow-sm border border-red-200 transition-colors hover:bg-red-100">
+                                                🗑️ ลบที่เลือก ({selectedEventsToDelete.length})
+                                            </button>
+                                        )}
+                                    </div>
+                                    <div className="space-y-2 max-h-60 overflow-y-auto custom-scrollbar pr-1">
+                                        {(db.bookings || []).filter(b => b.job_type === 'company_event' && b.status !== 'cancelled').sort((a,b) => new Date(b.date) - new Date(a.date)).map(ge => {
+                                            // ดึงสีกิจกรรมออกมาแสดงผล
+                                            let customColor = '#22c55e';
+                                            const match = String(ge.equipment_no).match(/_(#[0-9a-fA-F]{6})/);
+                                            if (match) customColor = match[1];
+
+                                            return (
+                                                <div key={ge.id} className="flex items-center gap-3 bg-white p-3 rounded-xl border border-slate-200 shadow-sm hover:border-emerald-300 transition-all">
+                                                    <input type="checkbox" checked={selectedEventsToDelete.includes(ge.id)} onChange={(e) => {
+                                                        if (e.target.checked) setSelectedEventsToDelete([...selectedEventsToDelete, ge.id]);
+                                                        else setSelectedEventsToDelete(selectedEventsToDelete.filter(id => id !== ge.id));
+                                                    }} className="accent-red-500 w-4 h-4 rounded shadow-sm cursor-pointer flex-shrink-0" />
+                                                    
+                                                    <div className="w-2 h-full min-h-[40px] rounded-full flex-shrink-0" style={{backgroundColor: customColor}}></div>
+                                                    
+                                                    <div className="flex-1 min-w-0">
+                                                        <div className="font-bold text-slate-800 text-sm truncate">{ge.site_name} 
+                                                            <span className="text-[9px] text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded-md ml-2 border border-emerald-100">
+                                                                {ge.inspector_name === 'SYSTEM_EVENT' ? 'ทุกคน' : ge.inspector_name}
+                                                            </span>
+                                                        </div>
+                                                        <div className="text-[10px] text-slate-500 font-bold mt-1">📅 {formatSafeDate(ge.date)}</div>
+                                                    </div>
+                                                    <div className="flex flex-col gap-1">
+                                                        <button onClick={() => setModal({ type: 'edit_special', data: ge, returnTo: 'manage_events' })} className="px-2.5 py-1.5 bg-blue-50 text-blue-600 rounded-lg shadow-sm border border-blue-100 active:scale-95"><Icons.Edit /></button>
+                                                        <button onClick={() => handleCancelBooking(ge)} className="px-2.5 py-1.5 bg-red-50 text-red-600 rounded-lg shadow-sm border border-red-100 active:scale-95"><Icons.Trash /></button>
+                                                    </div>
+                                                </div>
+                                            );
+                                        })}
+                                        {(db.bookings || []).filter(b => b.job_type === 'company_event' && b.status !== 'cancelled').length === 0 && <div className="text-center text-xs text-slate-400 py-6 border-2 border-dashed bg-white rounded-xl">ไม่มีกิจกรรมในระบบ</div>}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Modal จัดการวันหยุด (สำหรับ Admin) */}
+                    {modal?.type === 'manage_holidays' && (
+                        <div className="modal-card w-full max-w-md rounded-3xl overflow-hidden shadow-2xl animate-pop flex flex-col max-h-[90vh] bg-white">
+                            <div className="bg-red-600 p-4 text-white flex justify-between items-center"><h3 className="font-bold flex items-center gap-2"><Icons.CalendarX /> จัดการวันหยุด</h3><button onClick={() => setModal(null)} className="bg-white/20 p-1.5 rounded-full"><Icons.X /></button></div>
+                            <div className="p-4 overflow-y-auto custom-scrollbar flex-1 bg-slate-50 space-y-4">
+                                <div className="bg-white p-4 rounded-xl shadow-sm border">
+                                    <h4 className="font-bold text-slate-700 mb-3 text-sm flex items-center gap-2"><Icons.Plus /> เพิ่มวันหยุดใหม่</h4>
+                                    <div className="space-y-3">
+                                        <input type="text" id="holiday_name_input" placeholder="ชื่อวันหยุด..." className="w-full p-2.5 text-sm border rounded-lg font-bold" />
+                                        <div className="grid grid-cols-2 gap-2">
+                                            <div><label className="text-[10px] font-bold text-slate-500 mb-1 block">วันที่เริ่ม</label><input type="date" value={holidayStartDate} onChange={(e) => setHolidayStartDate(e.target.value)} className="w-full p-2 border rounded-lg text-xs font-bold" /></div>
+                                            <div><label className="text-[10px] font-bold text-slate-500 mb-1 block">วันสิ้นสุด</label><input type="date" value={holidayEndDate} onChange={(e) => setHolidayEndDate(e.target.value)} className="w-full p-2 border rounded-lg text-xs font-bold" /></div>
+                                        </div>
+                                        <button onClick={async () => {
+                                            const hName = document.getElementById('holiday_name_input').value;
+                                            if(!hName || !holidayStartDate || !holidayEndDate) return setAlertMsg('กรุณากรอกข้อมูลให้ครบ');
+                                            
+                                            setLoadingMsg('กำลังสร้างวันหยุดลง Firebase...');
+                                            const eqNo = `HLD_${Date.now()}`;
+                                            if (window.dbFirestore) {
+                                                const batch = window.dbFirestore.batch();
+                                                for(let date of holidayDates) {
+                                                    const newId = window.SAIS_UTILS?.generateId ? window.SAIS_UTILS.generateId() : Date.now().toString() + Math.random();
+                                                    const docRef = window.dbFirestore.collection("bookings").doc(newId);
+                                                    batch.set(docRef, { id: newId, date: date, inspector_name: 'SYSTEM_HOLIDAY', job_type: 'public_holiday', site_name: hName, equipment_no: eqNo, created_by: user?.username, status: 'active' });
+                                                }
+                                                await batch.commit();
+                                            }
+                                            
+                                            logActivity('CREATE HOLIDAY', `เพิ่มวันหยุด: ${hName} (${holidayDates.length} วัน)`);
+                                            setLoadingMsg(null);
+                                            setModal(null);
+                                            
+                                            setSuccessModal(
+                                                <div className="text-center">
+                                                    <div className="font-black text-sm mb-1 text-red-600">สร้างวันหยุดสำเร็จ!</div>
+                                                    <div className="text-xs text-slate-600">เรื่อง: {hName}</div>
+                                                    <div className="text-xs text-slate-600 mt-1">จำนวนที่บล็อกตาราง: <span className="font-bold text-red-600">{holidayDates.length} วัน</span></div>
+                                                </div>
+                                            );
+
+                                            setHolidayStartDate(''); setHolidayEndDate(''); document.getElementById('holiday_name_input').value = '';
+                                            
+                                        }} className="w-full py-3 bg-red-600 text-white font-bold rounded-xl shadow-md flex justify-center items-center gap-2"><Icons.Plus /> กำหนดวันหยุด</button>
+                                    </div>
+                                </div>
+
+                                {/* 📍 แสดง List และฟังก์ชันแก้ไข/ลบ วันหยุด */}
+                                <div className="mt-6 pt-4 border-t border-slate-200">
+                                    <div className="flex justify-between items-center mb-3">
+                                        <h4 className="font-bold text-slate-700 text-sm">รายการวันหยุดในระบบ</h4>
+                                        {selectedHolidaysToDelete.length > 0 && (
+                                            <button onClick={() => handleBulkDelete('holiday', selectedHolidaysToDelete)} className="bg-red-50 text-red-600 px-3 py-1.5 rounded-lg text-[10px] font-bold active:scale-95 shadow-sm border border-red-200 transition-colors hover:bg-red-100">
+                                                🗑️ ลบที่เลือก ({selectedHolidaysToDelete.length})
+                                            </button>
+                                        )}
+                                    </div>
+                                    <div className="space-y-2 max-h-60 overflow-y-auto custom-scrollbar pr-1">
+                                        {(db.bookings || []).filter(b => b.job_type === 'public_holiday' && b.status !== 'cancelled').sort((a,b) => new Date(b.date) - new Date(a.date)).map(hd => (
+                                            <div key={hd.id} className="flex items-center gap-3 bg-white p-3 rounded-xl border border-slate-200 shadow-sm hover:border-red-300 transition-all">
+                                                <input type="checkbox" checked={selectedHolidaysToDelete.includes(hd.id)} onChange={(e) => {
+                                                    if (e.target.checked) setSelectedHolidaysToDelete([...selectedHolidaysToDelete, hd.id]);
+                                                    else setSelectedHolidaysToDelete(selectedHolidaysToDelete.filter(id => id !== hd.id));
+                                                }} className="accent-red-500 w-4 h-4 rounded shadow-sm cursor-pointer" />
+                                                <div className="flex-1 min-w-0">
+                                                    <div className="font-bold text-slate-800 text-sm truncate">{hd.site_name}</div>
+                                                    <div className="text-[10px] text-slate-500 font-bold mt-1">📅 {formatSafeDate(hd.date)}</div>
+                                                </div>
+                                                <div className="flex flex-col gap-1">
+                                                    <button onClick={() => setModal({ type: 'edit_special', data: hd, returnTo: 'manage_holidays' })} className="px-2.5 py-1.5 bg-blue-50 text-blue-600 rounded-lg shadow-sm border border-blue-100 active:scale-95"><Icons.Edit /></button>
+                                                    <button onClick={() => handleCancelBooking(hd)} className="px-2.5 py-1.5 bg-red-50 text-red-600 rounded-lg shadow-sm border border-red-100 active:scale-95"><Icons.Trash /></button>
+                                                </div>
+                                            </div>
+                                        ))}
+                                        {(db.bookings || []).filter(b => b.job_type === 'public_holiday' && b.status !== 'cancelled').length === 0 && <div className="text-center text-xs text-slate-400 py-6 border-2 border-dashed bg-white rounded-xl">ไม่มีวันหยุดในระบบ</div>}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     )}
                 </div>
