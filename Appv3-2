@@ -1,0 +1,917 @@
+    const dbRef = useRef(db);
+    useEffect(() => { dbRef.current = db; }, [db]);
+
+    const [currentDate, setCurrentDate] = useState(getThaiTime());
+    const [period, setPeriod] = useState(getThaiTime().getDate() > 15 ? 1 : 0); 
+    const todayLocalString = window?.SAIS_UTILS?.getLocalDateString(getThaiTime()) || getThaiTime().toISOString().split('T')[0];
+    const [lastSyncTime, setLastSyncTime] = useState(getThaiTime());
+    const [showMonthPicker, setShowMonthPicker] = useState(false);
+    const [pickerYear, setPickerYear] = useState(getThaiTime().getFullYear());
+    
+    // 📍 ระบบ Pull-to-refresh
+    const [isRefreshing, setIsRefreshing] = useState(false);
+    const [pullY, setPullY] = useState(0);
+    const touchStartY = useRef(0);
+    
+    const [isExporting, setIsExporting] = useState(false);
+    
+    // 📍 State สำหรับ Modal เปิดดูรูปภาพหรือเอกสาร
+    const [viewFileUrl, setViewFileUrl] = useState(null);
+    const [docUrls, setDocUrls] = useState({ layout: '', wiring: '', precheck: '', site_cond_1: '', site_cond_2: '', site_cond_3: '', site_cond_4: '', site_cond_5: '', site_cond_6: '' });
+
+    const [isDragging, setIsDragging] = useState(false);
+    const [isTrashHovered, setIsTrashHovered] = useState(false);
+    const [draggingTask, setDraggingTask] = useState(null);
+    const lastActivityTime = useRef(Date.now());
+
+    // 📍 ประกาศ State ควบคุมคู่มือการใช้งาน 4 ส่วน
+    const [showBookingHelp, setShowBookingHelp] = useState(false);
+    const [showLoginHelp, setShowLoginHelp] = useState(false);
+    const [showAdminHelp, setShowAdminHelp] = useState(false);
+    const [showRoleHelp, setShowRoleHelp] = useState(false);
+
+    // 📍 State สำหรับ Dashboard
+    const [dashYear, setDashYear] = useState(getThaiTime().getFullYear().toString());
+    const [dashMonth, setDashMonth] = useState((getThaiTime().getMonth() + 1).toString()); 
+    const [dashArea, setDashArea] = useState('All');
+    const [dashJobType, setDashJobType] = useState('All');
+
+    // ตรวจจับการใช้งานเพื่อหยุด Polling ถ้ายูสเซอร์ไม่ได้ขยับ
+    useEffect(() => {
+        const updateActivity = () => { lastActivityTime.current = Date.now(); };
+        window.addEventListener('mousemove', updateActivity);
+        window.addEventListener('keydown', updateActivity);
+        window.addEventListener('touchstart', updateActivity);
+        window.addEventListener('scroll', updateActivity, true);
+        return () => {
+            window.removeEventListener('mousemove', updateActivity);
+            window.removeEventListener('keydown', updateActivity);
+            window.removeEventListener('touchstart', updateActivity);
+            window.removeEventListener('scroll', updateActivity, true);
+        };
+    }, []);
+
+    useEffect(() => {
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        if (isMobile && !window.MobileDragDropPolyfillLoaded) {
+            window.MobileDragDropPolyfillLoaded = true;
+            const css = document.createElement('link');
+            css.rel = "stylesheet";
+            css.href = "https://cdn.jsdelivr.net/npm/mobile-drag-drop@2.3.0-rc.2/default.min.css";
+            document.head.appendChild(css);
+
+            const script = document.createElement('script');
+            script.src = "https://cdn.jsdelivr.net/npm/mobile-drag-drop@2.3.0-rc.2/index.min.js";
+            script.onload = () => {
+                const scrollScript = document.createElement('script');
+                scrollScript.src = "https://cdn.jsdelivr.net/npm/mobile-drag-drop@2.3.0-rc.2/scroll-behaviour.min.js";
+                scrollScript.onload = () => {
+                    window.MobileDragDrop.polyfill({
+                        dragImageTranslateOverride: window.MobileDragDrop.scrollBehaviourDragImageTranslateOverride
+                    });
+                    window.addEventListener('touchmove', () => {}, { passive: false }); 
+                };
+                document.head.appendChild(scrollScript);
+            };
+            document.head.appendChild(script);
+        }
+    }, []);
+
+    const [user, setUser] = useState(() => { 
+        try { 
+            const saved = localStorage.getItem('sais_user'); 
+            const savedTime = localStorage.getItem('sais_session_time');
+            if (saved && savedTime) {
+                if (Date.now() - parseInt(savedTime) > 86400000) {
+                    localStorage.removeItem('sais_user'); localStorage.removeItem('sais_session_time');
+                    return null;
+                }
+                return JSON.parse(saved); 
+            }
+            return null;
+        } catch(e) { return null; } 
+    });
+    
+    const [initialLoad, setInitialLoad] = useState(true);
+    const [loadingMsg, setLoadingMsg] = useState(null);
+    const [uploadingDoc, setUploadingDoc] = useState({ layout: false, wiring: false, precheck: false, site_cond_1: false, site_cond_2: false, site_cond_3: false, site_cond_4: false, site_cond_5: false, site_cond_6: false });
+    const [alertMsg, setAlertMsg] = useState(null);
+    const [confirmDialog, setConfirmDialog] = useState(null);
+    const [promptDialog, setPromptDialog] = useState(null);
+    const [successModal, setSuccessModal] = useState(null);
+    const [currentView, setCurrentView] = useState('calendar');
+    
+    const [isRegisterMode, setIsRegisterMode] = useState(false);
+    const [isForgotMode, setIsForgotMode] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+    const [showActivityModal, setShowActivityModal] = useState(false);
+    const [activityTab, setActivityTab] = useState('notif');
+    const [showSettings, setShowSettings] = useState(false);
+    
+    const [tableFontScale, setTableFontScale] = useState(() => { try { const saved = localStorage.getItem('sais_table_font_scale'); return saved ? parseFloat(saved) : 1.0; } catch(e) { return 1.0; } });
+    const [specialFontScale, setSpecialFontScale] = useState(() => { try { const saved = localStorage.getItem('sais_special_font_scale'); return saved ? parseFloat(saved) : 1.0; } catch(e) { return 1.0; } });
+    const [columnZoom, setColumnZoom] = useState(() => { try { const saved = localStorage.getItem('sais_column_zoom'); return saved ? parseFloat(saved) : 1.0; } catch(e) { return 1.0; } });
+    
+    const [filterArea, setFilterArea] = useState('All');
+    const [areaSelection, setAreaSelection] = useState('');
+    const [jobTypeSelection, setJobTypeSelection] = useState('');
+    const [productLineSelection, setProductLineSelection] = useState('');
+    const [adminTab, setAdminTab] = useState('menu'); 
+    const [adminBookingsLimit, setAdminBookingsLimit] = useState(20);
+    
+    const [myBookingsTab, setMyBookingsTab] = useState('pending');
+    const [myBookingsLimit, setMyBookingsLimit] = useState(20);
+    const [actionMenuId, setActionMenuId] = useState(null); 
+    const [logsLimit, setLogsLimit] = useState(20);
+    const [quickAddType, setQuickAddType] = useState('job');
+
+    const [searchQuery, setSearchQuery] = useState('');
+    const [localSearchQuery, setLocalSearchQuery] = useState('');
+    const [searchInspector, setSearchInspector] = useState('All');
+
+    useEffect(() => {
+        const handler = setTimeout(() => setSearchQuery(localSearchQuery), 400);
+        return () => clearTimeout(handler);
+    }, [localSearchQuery]);
+
+    const [logSearchQuery, setLogSearchQuery] = useState('');
+    const [localLogSearchQuery, setLocalLogSearchQuery] = useState('');
+    useEffect(() => {
+        const handler = setTimeout(() => setLogSearchQuery(localLogSearchQuery), 400); 
+        return () => clearTimeout(handler);
+    }, [localLogSearchQuery]);
+
+    const [leaveStartDate, setLeaveStartDate] = useState('');
+    const [leaveEndDate, setLeaveEndDate] = useState('');
+    const [leaveInspectors, setLeaveInspectors] = useState([]); 
+    const [showLeaveDropdown, setShowLeaveDropdown] = useState(false);
+    const [leaveType, setLeaveType] = useState('ลาพักร้อน');
+    const [customLeaveType, setCustomLeaveType] = useState(''); 
+    
+    const [eventStartDate, setEventStartDate] = useState('');
+    const [eventEndDate, setEventEndDate] = useState('');
+    const [eventInspectors, setEventInspectors] = useState([]);
+    const [showEventDropdown, setShowEventDropdown] = useState(false);
+    const [eventColor, setEventColor] = useState('#22c55e');
+    
+    const [holidayStartDate, setHolidayStartDate] = useState('');
+    const [holidayEndDate, setHolidayEndDate] = useState('');
+
+    const [selectedLeavesToDelete, setSelectedLeavesToDelete] = useState([]);
+    const [selectedEventsToDelete, setSelectedEventsToDelete] = useState([]);
+    const [selectedHolidaysToDelete, setSelectedHolidaysToDelete] = useState([]);
+
+    const [liveMapUrl, setLiveMapUrl] = useState('');
+    const scrollRef = useRef(null);
+
+    // 📍 2. Dynamic CSS Variables Injector 
+    const DynamicStyles = () => {
+        const s = db.settings || {};
+        return (
+            <style>{`
+                :root {
+                    --app-bg: ${s.appBg || '#f8fafc'};
+                    --header-bg: ${s.headerBg || '#1e293b'};
+                    --header-text: ${s.headerText || '#ffffff'};
+                    --table-header-bg: ${s.tableHeaderBg || '#1e293b'};
+                    --table-header-text: ${s.tableHeaderText || '#ffffff'};
+                    --table-border: ${s.tableBorder || '#cbd5e1'};
+                    --card-radius: ${s.cardRadius || '6'}px;
+                    --card-padding: ${s.cardPadding || '4'}px;
+                    --title-font-size: ${s.titleFontSize || '11'}px;
+                    --sub-font-size: ${s.subFontSize || '10'}px;
+                }
+                .app-container { background-color: var(--app-bg) !important; }
+                .main-header { background-color: var(--header-bg) !important; color: var(--header-text) !important; }
+                .main-header h1 { color: var(--header-text) !important; }
+                .sticky-corner, .sticky-top { background-color: var(--table-header-bg) !important; color: var(--table-header-text) !important; }
+                .sticky-left, .grid-cell { border-color: var(--table-border) !important; }
+                .task-content { border-radius: var(--card-radius) !important; padding: var(--card-padding) !important; }
+                .task-content .font-black { font-size: var(--title-font-size) !important; }
+                .task-content .font-bold { font-size: var(--sub-font-size) !important; }
+            `}</style>
+        );
+    };
+
+    const availableInspectors = useMemo(() => {
+        return (db.inspectors || []).filter(ins => {
+            return !(adminDb.users || []).some(u => u.inspector_mapped_name === ins.name && u.username !== modal?.data?.username);
+        });
+    }, [db.inspectors, adminDb.users, modal]);
+
+    useEffect(() => {
+        if (modal && modal.type === 'booking') {
+            const currentArea = areaSelection === 'other' ? (modal.data?.area || 'ไม่ระบุ') : areaSelection;
+            handleMapChange(currentArea);
+            setDocUrls({
+                layout: modal.data?.layout_img || '',
+                wiring: modal.data?.wiring_img || '',
+                precheck: modal.data?.precheck_img || '',
+                site_cond_1: modal.data?.site_cond_1 || '',
+                site_cond_2: modal.data?.site_cond_2 || '',
+                site_cond_3: modal.data?.site_cond_3 || '',
+                site_cond_4: modal.data?.site_cond_4 || '',
+                site_cond_5: modal.data?.site_cond_5 || '',
+                site_cond_6: modal.data?.site_cond_6 || ''
+            });
+        }
+    }, [modal, areaSelection]);
+
+    const getDiffLog = useCallback((oldData, newData, actionUser) => {
+        const site = newData?.site_name || oldData?.site_name || '-';
+        const eq = newData?.equipment_no || oldData?.equipment_no || '-';
+        const jt = newData?.job_type || oldData?.job_type || '-';
+        const inspector = newData?.inspector_name || oldData?.inspector_name || '-';
+        const dateStr = newData?.date ? formatSafeDate(newData.date) : (oldData?.date ? formatSafeDate(oldData.date) : '-');
+        
+        let userFullName = actionUser || '-';
+        if (adminDb && adminDb.users) {
+            const userObj = adminDb.users.find(u => String(u.username) === String(actionUser));
+            if (userObj && userObj.full_name) userFullName = `${userObj.full_name} (${actionUser})`;
+        }
+
+        if (!oldData) {
+            return `[เพิ่มรายการใหม่]\nหัวข้อ/โครงการ: ${site}\nประเภทงาน: ${jt}\nEq No.: ${eq}\nผู้ตรวจ: ${inspector}\nวันที่: ${dateStr}\nโดย: ${userFullName}`;
+        }
+        
+        let changes = [];
+        const labels = {
+            date: 'วันที่', inspector_name: 'ผู้ตรวจ', site_name: 'หัวข้อ/โครงการ',
+            equipment_no: 'Eq No.', unit_no: 'Unit', job_type: 'ประเภทงาน', 
+            area: 'พื้นที่', tel: 'เบอร์โทร', product_line: 'Product',
+            layout_doc: 'สถานะ Layout', wiring_doc: 'สถานะ Wiring', precheck_doc: 'สถานะ Precheck'
+        };
+        for (let key in labels) {
+            let oldVal = String(oldData[key] || '').trim();
+            let newVal = String(newData[key] || '').trim();
+            if (oldVal !== newVal) {
+                if (oldVal === 'false' || oldVal === 'pending') oldVal = 'รอตรวจสอบ';
+                if (oldVal === 'true') oldVal = 'ตรวจสอบแล้ว';
+                if (newVal === 'false' || newVal === 'pending') newVal = 'รอตรวจสอบ';
+                if (newVal === 'true') newVal = 'ตรวจสอบแล้ว';
+                changes.push(`• ${labels[key]}: [${oldVal || '-'}] ➡️ [${newVal || '-'}]`);
+            }
+        }
+        return changes.length > 0 ? `[อัปเดตข้อมูล]\nหัวข้อ/โครงการ: ${site}\nโดย: ${userFullName}\nการเปลี่ยนแปลง:\n${changes.join('\n')}` : `บันทึกการแก้ไขโดยไม่มีการเปลี่ยนแปลง (หัวข้อ: ${site})`;
+    }, [adminDb]);
+
+    useEffect(() => {
+        if (successModal) {
+            const timer = setTimeout(() => { setSuccessModal(null); }, 2000);
+            return () => clearTimeout(timer);
+        }
+    }, [successModal]);
+
+    // จัดการ UI Scale
+    useEffect(() => { localStorage.setItem('sais_table_font_scale', tableFontScale.toString()); }, [tableFontScale]);
+    useEffect(() => { localStorage.setItem('sais_special_font_scale', specialFontScale.toString()); }, [specialFontScale]);
+    useEffect(() => { localStorage.setItem('sais_column_zoom', columnZoom.toString()); }, [columnZoom]);
+
+    const updateTableFontScale = (adjustment) => { setTableFontScale(prev => Math.round(Math.max(0.3, Math.min(5.0, prev + adjustment)) * 10) / 10); };
+    const updateSpecialFontScale = (adjustment) => { setSpecialFontScale(prev => Math.round(Math.max(0.3, Math.min(5.0, prev + adjustment)) * 10) / 10); };
+    const updateColumnZoom = (adjustment) => { setColumnZoom(prev => Math.round(Math.max(0.3, Math.min(3.0, prev + adjustment)) * 10) / 10); };
+
+    const changePeriod = (dir) => {
+        if (dir === 'next') {
+            if (period === 0) setPeriod(1);
+            else { setPeriod(0); setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1)); }
+        } else {
+            if (period === 1) setPeriod(0);
+            else { setPeriod(1); setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1)); }
+        }
+    };
+
+    const handleMapChange = (val) => {
+        if (utils && typeof utils.getMapEmbedUrl === 'function') { setLiveMapUrl(utils.getMapEmbedUrl(val) || ''); } 
+        else { setLiveMapUrl(''); }
+    };
+
+    const handleExportJPG = () => {
+        setShowSettings(false);
+        setCurrentView('calendar');
+        setLoadingMsg('กำลังสร้างและปรับความคมชัดภาพตาราง... (รอสักครู่)');
+        setIsExporting(true);
+        setTimeout(() => {
+            const targetNode = document.getElementById('calendar-export-area');
+            if(targetNode) {
+                html2canvas(targetNode, { 
+                    scale: 2, useCORS: true, backgroundColor: '#f8fafc',
+                    windowWidth: targetNode.scrollWidth, windowHeight: targetNode.scrollHeight 
+                }).then(canvas => {
+                    const link = document.createElement('a');
+                    link.download = `SAIS_Schedule_${currentDate.getFullYear()}_${currentDate.getMonth()+1}_P${period+1}.jpg`;
+                    link.href = canvas.toDataURL('image/jpeg', 0.9);
+                    link.click();
+                    setIsExporting(false); setLoadingMsg(null); setSuccessModal('บันทึกรูปภาพสำเร็จ');
+                }).catch(err => {
+                    setIsExporting(false); setLoadingMsg(null); setAlertMsg('เกิดข้อผิดพลาดในการบันทึกภาพ');
+                });
+            } else {
+                setIsExporting(false); setLoadingMsg(null); setAlertMsg('ไม่พบตาราง');
+            }
+        }, 1500); 
+    };
+
+    const generateDates = useCallback((startStr, endStr, omitSunday = true) => {
+        if (!startStr || !endStr) return [];
+        let start = new Date(`${startStr}T12:00:00`); let end = new Date(`${endStr}T12:00:00`);
+        if (start > end) return [];
+        let dates = [];
+        let current = new Date(start);
+        while (current <= end) {
+            const localDateStr = utils.getLocalDateString ? utils.getLocalDateString(current) : current.toISOString().split('T')[0];
+            const isSunday = current.getDay() === 0;
+            const isGlobalHoliday = (db.bookings || []).some(b => b.date && formatSafeDate(b.date) === localDateStr && String(b.inspector_name) === 'SYSTEM_HOLIDAY');
+            if (!omitSunday || (!isSunday && !isGlobalHoliday)) dates.push(localDateStr);
+            current.setDate(current.getDate() + 1);
+        } return dates;
+    }, [db.bookings, utils]);
+
+    const leaveDates = useMemo(() => generateDates(leaveStartDate, leaveEndDate, true), [leaveStartDate, leaveEndDate, generateDates]);
+    const eventDates = useMemo(() => generateDates(eventStartDate, eventEndDate, true), [eventStartDate, eventEndDate, generateDates]);
+    const holidayDates = useMemo(() => generateDates(holidayStartDate, holidayEndDate, false), [holidayStartDate, holidayEndDate, generateDates]);
+    const isAdmin = useMemo(() => user?.role === 'admin', [user]);
+    
+    // 📍 1. แก้ไขลอจิกระบบแจ้งเตือน: กรองข้อมูลเฉพาะที่ยังไม่ได้อ่าน โดยอิงตาม username (รองรับ id รายบุคคล)
+    const unreadNotifs = useMemo(() => {
+        return (db.notifications || []).filter(n => {
+            const isTargeted = n.target === user?.username || (isAdmin && n.target === 'ALL_ADMIN');
+            const readers = String(n.isRead || '').split(',');
+            const hasRead = readers.includes(user?.username);
+            return isTargeted && !hasRead;
+        });
+    }, [db.notifications, user, isAdmin]);
+
+    const daysInView = useMemo(() => {
+        if(!utils.getLocalDateString) return [];
+        const days = [];
+        const year = currentDate.getFullYear(); const month = currentDate.getMonth(); const lastDay = new Date(year, month + 1, 0).getDate();
+        const start = period === 0 ? 1 : 16; const end = period === 0 ? 15 : lastDay; 
+        
+        for (let i = 0; i < 16; i++) {
+            const d = start + i;
+            if (d <= end) {
+                const date = new Date(year, month, d); const localDateStr = utils.getLocalDateString(date);
+                const globalHolidayItems = (db.bookings || []).filter(b => b.date && formatSafeDate(b.date) === localDateStr && String(b.inspector_name) === 'SYSTEM_HOLIDAY' && String(b.status) !== 'cancelled');
+                const globalEventItems = (db.bookings || []).filter(b => b.date && formatSafeDate(b.date) === localDateStr && String(b.inspector_name) === 'SYSTEM_EVENT' && String(b.status) !== 'cancelled');
+                
+                days.push({ 
+                    full: localDateStr, day: d, weekday: date.toLocaleDateString('en-US', { timeZone: 'Asia/Bangkok', weekday: 'short' }), 
+                    isSunday: date.getDay() === 0, 
+                    isGlobalHoliday: globalHolidayItems.length > 0 || date.getDay() === 0, globalHolidays: globalHolidayItems,
+                    isGlobalEvent: globalEventItems.length > 0, globalEvents: globalEventItems,
+                    isToday: localDateStr === todayLocalString, isEmpty: false 
+                });
+            } else { days.push({ isEmpty: true }); }
+        }
+        return days;
+    }, [currentDate, period, db.bookings, todayLocalString, utils]);
+
+    // 📍 Smart Polling
+    useEffect(() => {
+        const load = async () => {
+            let currentCache = null;
+            if (window.DB_CACHE) {
+                try {
+                    currentCache = await window.DB_CACHE.getItem('sais_core_db');
+                    if (currentCache && currentCache.bookings) { setDb(currentCache); setInitialLoad(false); }
+                } catch(e) {}
+            }
+            const isFirstLoad = !currentCache || !currentCache.bookings || currentCache.bookings.length === 0;
+            if(user) await fetchCoreData(isFirstLoad, currentCache);
+            setInitialLoad(false); 
+        }
+        if(SCRIPT_URL) load();
+
+        let timeoutId;
+        const scheduleNextFetch = () => {
+            const jitter = Math.floor(Math.random() * 60000); 
+            const baseInterval = 300000; 
+            const nextFetchIn = baseInterval + jitter;
+
+            timeoutId = setTimeout(() => {
+                const idleTime = Date.now() - lastActivityTime.current;
+                const isIdle = idleTime > 15 * 60 * 1000;
+                
+                if (!isIdle && document.visibilityState === 'visible' && user && !modal && !showActivityModal && !alertMsg && !confirmDialog && !promptDialog && !loadingMsg && !successModal && SCRIPT_URL && !isExporting && !viewFileUrl) {
+                    fetchCoreData(false, dbRef.current).finally(() => scheduleNextFetch());
+                } else {
+                    scheduleNextFetch();
+                }
+            }, nextFetchIn);
+        };
+        scheduleNextFetch();
+        return () => clearTimeout(timeoutId);
+    }, [modal, showActivityModal, alertMsg, confirmDialog, promptDialog, loadingMsg, successModal, SCRIPT_URL, isExporting, viewFileUrl, user]);
+
+    // 📍 เปลี่ยนกลับไปใช้ Google Sheets API Fetch
+    const fetchCoreData = async (needPast = false, currentCache = null) => {
+        if (!SCRIPT_URL || !user) return;
+        try {
+            const currentYear = currentDate.getFullYear();
+            const currentMonth = currentDate.getMonth();
+            const startFetchDate = utils.getLocalDateString ? utils.getLocalDateString(new Date(currentYear, currentMonth - 1, 1)) : '';
+            const endFetchDate = utils.getLocalDateString ? utils.getLocalDateString(new Date(currentYear, currentMonth + 2, 0)) : '';
+            const res = await fetch(SCRIPT_URL, { 
+                method: 'POST', 
+                body: JSON.stringify({ action: 'sync_core', api_key: window?.SAIS_CONFIG?.API_KEY, fetch_past: needPast, start_date: startFetchDate, end_date: endFetchDate }) 
+            });
+            const result = await res.json();
+            
+            if (result.status === 'ok') {
+                let finalDb = result.data;
+                if (!needPast && currentCache && currentCache.bookings) {
+                    const today = getThaiTime();
+                    today.setHours(0,0,0,0);
+                    const fetchedIds = new Set(result.data.bookings.map(b => b.id));
+                    const pastCachedBookings = currentCache.bookings.filter(b => {
+                        if (!b.date) return false;
+                        const bDate = new Date(b.date);
+                        return bDate < today && !fetchedIds.has(b.id);
+                    });
+                    finalDb.bookings = [...pastCachedBookings, ...result.data.bookings];
+                }
+                setDb(finalDb);
+                setLastSyncTime(getThaiTime()); 
+                if (window.DB_CACHE) window.DB_CACHE.setItem('sais_core_db', finalDb);
+            }
+        } catch (e) { console.error("Core Fetch Error"); }
+    };
+
+    const fetchAdminData = async (offset = 0, limit = 50, fetchType = 'all') => {
+        if (!SCRIPT_URL || !user) return;
+        try {
+            const payload = { action: 'sync_admin', api_key: window?.SAIS_CONFIG?.API_KEY, offset: offset, limit: limit, fetch_type: fetchType };
+            const res = await fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify(payload) });
+            const result = await res.json();
+            if (result.status === 'ok') { 
+                setAdminDb(prev => {
+                    if (offset === 0) return result.data;
+                    return {
+                        ...prev,
+                        logs: fetchType === 'logs' ? [...(prev.logs || []), ...(result.data.logs || [])] : prev.logs,
+                        all_bookings: fetchType === 'bookings' ? [...(prev.all_bookings || []), ...(result.data.all_bookings || [])] : prev.all_bookings
+                    };
+                });
+                setHasLoadedAdmin(true); 
+            }
+        } catch (e) { console.error("Admin Fetch Error"); }
+    };
+
+    const handleTabChange = (view) => {
+        setCurrentView(view);
+        if ((view === 'admin' || view === 'search' || view === 'dashboard') && !hasLoadedAdmin) fetchAdminData(0, 50, 'all');
+    };
+
+    // 📍 ใช้งาน apiAction (Google Sheets API) 100% เหมือนเวอร์ชันเก่า
+    const apiAction = async (payload, customLoadMsg = 'กำลังบันทึกข้อมูล...', disableAutoSync = false) => {
+        if (!SCRIPT_URL) return false;
+        if(customLoadMsg) setLoadingMsg(customLoadMsg);
+        try {
+            const payloadWithAuth = { ...payload, api_key: window?.SAIS_CONFIG?.API_KEY };
+            const res = await fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify(payloadWithAuth) });
+            const text = await res.text(); 
+            try {
+                const result = JSON.parse(text);
+                if (result.status === 'ok') { 
+                    if(!disableAutoSync) {
+                        await fetchCoreData(true, null);
+                        if(hasLoadedAdmin) await fetchAdminData(0, 50, 'all');
+                    }
+                    if(customLoadMsg) setLoadingMsg(null); 
+                    return true;
+                } else { 
+                    if(customLoadMsg) setLoadingMsg(null);
+                    setAlertMsg(result.message || 'ไม่ทราบสาเหตุ'); 
+                    return false; 
+                }
+            } catch(e) { 
+                if(customLoadMsg) setLoadingMsg(null);
+                setAlertMsg('ข้อผิดพลาดจากเซิร์ฟเวอร์ กรุณาลองใหม่'); 
+                return false; 
+            }
+        } catch (e) { 
+            if(customLoadMsg) setLoadingMsg(null);
+            setAlertMsg('การเชื่อมต่อเครือข่ายขัดข้อง'); 
+            return false; 
+        }
+    };
+
+    const handleTouchStart = (e) => { 
+        if (scrollRef.current && scrollRef.current.scrollTop === 0) touchStartY.current = e.touches[0].clientY; 
+    };
+    
+    const handleTouchMove = (e) => {
+        if (scrollRef.current && scrollRef.current.scrollTop === 0 && touchStartY.current > 0) {
+            const diff = e.touches[0].clientY - touchStartY.current;
+            if (diff > 0 && diff < 80) setPullY(diff);
+        }
+    };
+    
+    const handleTouchEnd = async () => {
+        if (pullY > 50 && !isRefreshing) { 
+            setIsRefreshing(true);
+            setPullY(50); 
+            await fetchCoreData(false, dbRef.current); 
+            setIsRefreshing(false); 
+        }
+        setPullY(0); 
+        touchStartY.current = 0;
+    };
+
+    const handleBulkDelete = async (type, ids) => {
+        if (ids.length === 0) return;
+        setConfirmDialog({
+            msg: `ยืนยันลบข้อมูลที่เลือกทั้ง ${ids.length} รายการ?`,
+            onConfirm: async () => {
+                setConfirmDialog(null); setLoadingMsg('กำลังลบข้อมูลแบบกลุ่ม...');
+                try {
+                    const logDetail = `[ลบข้อมูลแบบกลุ่ม]\nหมวดหมู่: ${type}\nจำนวน: ${ids.length} รายการ`;
+                    const res = await utils.fetchWithRetry(SCRIPT_URL, { 
+                        method: 'POST', body: JSON.stringify({ action: 'delete_multiple', ids: ids, user: user?.username, reason: logDetail }) 
+                    });
+                    if (res.status === 'ok') {
+                        if (type === 'leave') setSelectedLeavesToDelete([]);
+                        if (type === 'event') setSelectedEventsToDelete([]);
+                        if (type === 'holiday') setSelectedHolidaysToDelete([]);
+                        await fetchCoreData(true, null); 
+                        setLoadingMsg(null);
+                        setSuccessModal(`ลบสำเร็จ ${res.deleted} รายการ`);
+                    } else { 
+                        setLoadingMsg(null); setAlertMsg('เกิดข้อผิดพลาดในการลบ'); 
+                    }
+                } catch(e) { 
+                    setLoadingMsg(null); setAlertMsg('การเชื่อมต่อขัดข้อง'); 
+                }
+            }
+        });
+    };
+
+    const handleCancelBooking = (booking) => {
+        if(!booking?.id) return;
+        setConfirmDialog({
+            msg: "ยืนยันลบข้อมูลนี้ใช่หรือไม่?",
+            onConfirm: async () => {
+                setConfirmDialog(null);
+                const isSpecial = String(booking.job_type).includes('leave') || String(booking.job_type).includes('event') || String(booking.job_type).includes('holiday');
+                let logDetail = '';
+                if (isSpecial) {
+                    logDetail = `เหตุผล: [ลบรายการ]\nโดย: ${user?.username || 'admin'}\nประเภทงาน: ${booking.job_type || '-'}\nวันที่: ${booking.date ? formatSafeDate(booking.date) : '-'}`;
+                } else {
+                    logDetail = `[ลบรายการ]\nโดย: ${user?.username || 'admin'}\nโครงการ: ${booking.site_name || '-'}\nEq No.: ${booking.equipment_no || '-'}\nProduct: ${booking.product_line || '-'}\nประเภทงาน: ${booking.job_type || '-'}\nวันที่: ${booking.date ? formatSafeDate(booking.date) : '-'}`;
+                }
+                const ok = await apiAction({ action: 'delete_booking', id: booking.id, user: user?.username || 'admin', reason: logDetail, job_type: booking.job_type, equipment_no: booking.equipment_no }, 'กำลังลบ...');
+                if(ok) { setSuccessModal('ลบสำเร็จ'); setModal(null); }
+            }
+        });
+    };
+
+    const handleCancelJob = (booking) => {
+        if(!booking?.id) return;
+        const isPastDate = booking.date && formatSafeDate(booking.date) < todayLocalString;
+        if (isPastDate && !isAdmin) return setAlertMsg('🔒 ไม่อนุญาตให้ยกเลิกคิวงานที่ผ่านมาแล้วครับ (ติดต่อ Admin หากจำเป็น)');
+        setPromptDialog({
+            msg: "โปรดระบุเหตุผลในการยกเลิกคิวงานนี้:",
+            onSubmit: (reason) => {
+                const isSpecial = String(booking.job_type).includes('leave') || String(booking.job_type).includes('event') || String(booking.job_type).includes('holiday');
+                let logDetail = '';
+                if (isSpecial) {
+                    logDetail = `เหตุผล: [ยกเลิกรายการ: ${reason || 'ไม่ระบุ'}]\nโดย: ${user?.username || '-'}\nประเภทงาน: ${booking.job_type || '-'}\nวันที่: ${booking.date ? formatSafeDate(booking.date) : '-'}`;
+                } else {
+                    logDetail = `[ยกเลิกคิวงาน]\nโดย: ${user?.username || '-'}\nโครงการ: ${booking.site_name || '-'}\nEq No.: ${booking.equipment_no || '-'}\nProduct: ${booking.product_line || '-'}\nประเภทงาน: ${booking.job_type || '-'}\nเหตุผล: ${reason || 'ไม่ระบุ'}`;
+                }
+                apiAction({ action: 'delete_booking', id: booking.id, user: user?.username || 'admin', reason: logDetail, job_type: booking.job_type, equipment_no: booking.equipment_no }, 'กำลังยกเลิกคิวงาน...').then(ok => {
+                    if(ok) { setModal(null); setActionMenuId(null); setSuccessModal('ยกเลิกคิวสำเร็จ'); }
+                });
+            }
+        });
+    };
+
+    const handleVerifyDoc = async (booking, docField, isChecked) => {
+        if (!isAdmin) return;
+        const val = isChecked ? 'true' : 'pending';
+        const docName = docField.replace('_doc', '').toUpperCase();
+        const logDetail = `[อัปเดตสถานะเอกสาร]\nโดย: ${user?.username}\nเอกสาร: ${docName} -> ${isChecked ? 'ตรวจสอบแล้ว' : 'รอตรวจสอบ'}\nโครงการ: ${booking.site_name}`;
+        
+        const payload = {
+            ...booking, action: 'update_booking', [docField]: val, reason: logDetail
+        };
+        const ok = await apiAction(payload, `กำลังอัปเดตสถานะ ${docName}...`);
+        if (ok) setSuccessModal(`อัปเดตเอกสาร ${docName} สำเร็จ`);
+    };
+
+    const handleFileUpload = async (e, docType, isMultiple = false) => {
+        const files = e.target.files;
+        if (!files || files.length === 0) return;
+        
+        setUploadingDoc(prev => ({ ...prev, [docType]: true })); 
+        setLoadingMsg('กำลังอัปโหลดเอกสาร/รูปภาพ...');
+        
+        try {
+            let uploadedUrls = [];
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                let base64Data = "";
+                let mimeType = file.type;
+                
+                if (mimeType.startsWith('image/')) {
+                    base64Data = await utils.compressImage(file);
+                } else if (mimeType === 'application/pdf') {
+                    base64Data = await new Promise((resolve, reject) => {
+                        const reader = new FileReader();
+                        reader.onload = () => resolve(reader.result);
+                        reader.onerror = error => reject(error);
+                        reader.readAsDataURL(file);
+                    });
+                } else {
+                    setAlertMsg('รองรับเฉพาะไฟล์รูปภาพและ PDF เท่านั้น');
+                    continue;
+                }
+
+                const res = await utils.fetchWithRetry(SCRIPT_URL, { 
+                    method: 'POST', 
+                    body: JSON.stringify({ 
+                        action: 'upload_image', 
+                        api_key: window?.SAIS_CONFIG?.API_KEY,
+                        base64: base64Data, 
+                        mimeType: mimeType, 
+                        fileName: `SAIS_${docType}_${Date.now()}_${i}.${mimeType === 'application/pdf' ? 'pdf' : 'jpg'}` 
+                    }) 
+                });
+
+                if (res.status === 'ok') { 
+                    uploadedUrls.push(res.fileUrl); 
+                }
+            }
+            
+            if (uploadedUrls.length > 0) {
+                if (isMultiple) {
+                    setDocUrls(prev => ({
+                        ...prev,
+                        [docType]: prev[docType] ? prev[docType] + ',' + uploadedUrls.join(',') : uploadedUrls.join(',')
+                    }));
+                } else {
+                    setDocUrls(prev => ({ ...prev, [docType]: uploadedUrls[0] }));
+                }
+                setSuccessModal(`อัปโหลดเอกสารสำเร็จ`);
+            }
+        } catch(err) { 
+            setAlertMsg('เกิดข้อผิดพลาดในการอัปโหลด'); 
+        }
+        
+        setLoadingMsg(null); 
+        setUploadingDoc(prev => ({ ...prev, [docType]: false }));
+    };
+
+    const handleDragStart = (e, taskId) => { 
+        e.dataTransfer.setData('taskId', taskId);
+        setDraggingTask(db.bookings.find(b => String(b.id) === String(taskId))); 
+        setIsDragging(true); 
+    };
+
+    const handleDragOver = (e) => { 
+        e.preventDefault(); 
+        e.currentTarget.classList.add('bg-blue-50/60', 'border-2', 'border-blue-400', 'border-dashed'); 
+    };
+
+    const handleDragLeave = (e) => { 
+        e.currentTarget.classList.remove('bg-blue-50/60', 'border-2', 'border-blue-400', 'border-dashed'); 
+    };
+
+    const handleDragEnd = (e) => {
+        setIsDragging(false); setIsTrashHovered(false); setDraggingTask(null);
+    };
+
+    const handleTrashDragOver = (e) => {
+        e.preventDefault();
+        if (!isTrashHovered) setIsTrashHovered(true);
+    };
+
+    const handleTrashDragLeave = (e) => {
+        setIsTrashHovered(false);
+    };
+
+    const handleTrashDrop = async (e) => {
+        e.preventDefault();
+        setIsDragging(false);
+        setIsTrashHovered(false);
+        
+        if (!isAdmin) return;
+        const taskId = e.dataTransfer.getData('taskId');
+        const task = draggingTask || db.bookings.find(b => String(b.id) === String(taskId));
+        
+        if (!task) return setAlertMsg('ไม่พบข้อมูลการ์ดที่ต้องการลบทิ้ง');
+        
+        setConfirmDialog({
+            msg: `คุณกำลังลากการ์ดทิ้งลงถังขยะ\nยืนยันลบข้อมูลนี้ใช่หรือไม่?\n\n📌 รายการ: ${task.site_name || task.equipment_no}`,
+            onConfirm: async () => {
+                setConfirmDialog(null);
+                setDraggingTask(null);
+                const isSpecial = String(task.job_type).includes('leave') || String(task.job_type).includes('event') || String(task.job_type).includes('holiday');
+                let logDetail = '';
+                if (isSpecial) {
+                    logDetail = `เหตุผล: [ลบรายการ (Drag & Drop)]\nโดย: ${user?.username || 'admin'}\nประเภทงาน: ${task.job_type || '-'}\nวันที่: ${task.date ? formatSafeDate(task.date) : '-'}`;
+                } else {
+                    logDetail = `[ลบรายการด้วย Drag & Drop ถังขยะ]\nโดย: ${user?.username || 'admin'}\nโครงการ: ${task.site_name || '-'}\nEq No.: ${task.equipment_no || '-'}`;
+                }
+                const ok = await apiAction({ action: 'delete_booking', id: task.id, user: user?.username || 'admin', reason: logDetail, job_type: task.job_type, equipment_no: task.equipment_no }, 'กำลังลบทิ้ง...');
+                if(ok) setSuccessModal('ลบรายการลงถังขยะสำเร็จ');
+            }
+        });
+    };
+
+    const handleDrop = async (e, targetDate, targetInspector) => {
+        e.preventDefault(); e.currentTarget.classList.remove('bg-blue-50/60', 'border-2', 'border-blue-400', 'border-dashed');
+        if (!isAdmin) return setAlertMsg('เฉพาะแอดมินที่สามารถลากย้ายคิวได้ครับ');
+        const taskId = e.dataTransfer.getData('taskId');
+        const task = draggingTask || db.bookings.find(b => String(b.id) === String(taskId));
+        if (!task) return setAlertMsg('เกิดข้อผิดพลาด ไม่พบข้อมูลการ์ด กรุณาลองลากใหม่อีกครั้ง');
+        
+        const jobTypeLower = String(task.job_type).toLowerCase();
+        const isSpecial = jobTypeLower.includes('leave') || jobTypeLower.includes('event') || jobTypeLower.includes('holiday');
+
+        let finalInspector = targetInspector;
+        if (task.inspector_name === 'SYSTEM_EVENT') finalInspector = 'SYSTEM_EVENT';
+        if (task.inspector_name === 'SYSTEM_HOLIDAY') finalInspector = 'SYSTEM_HOLIDAY';
+
+        const oldDate = task.date ? formatSafeDate(task.date) : 'ไม่ระบุ';
+        const oldInspector = task.inspector_name;
+
+        if (oldDate === targetDate && oldInspector === finalInspector) return setDraggingTask(null);
+        
+        if (!isSpecial) {
+            const isDup = db.bookings.some(b => formatSafeDate(b.date) === targetDate && String(b.equipment_no) === String(task.equipment_no) && String(b.id) !== String(task.id) && String(b.status) !== 'cancelled');
+            if (isDup) return setAlertMsg('ไม่สามารถย้ายได้ เนื่องจาก Eq No. นี้ถูกจองไปแล้วในวันที่คุณเลือก');
+        }
+
+        let confirmMsgNode = (
+            <div className="text-left mt-2">
+                <div className="text-sm font-black text-slate-800 mb-3 text-center bg-slate-100 p-2 rounded-lg">
+                    📌 {task.site_name || task.equipment_no}
+                </div>
+                <div className="space-y-2">
+                    {oldDate !== targetDate && (
+                        <div className="flex items-center justify-between text-xs bg-white p-2 border border-slate-200 rounded-lg shadow-sm">
+                            <span className="text-slate-500 font-bold">📅 เลื่อนวันที่:</span>
+                            <div className="flex items-center gap-2">
+                                <span className="text-red-500 line-through decoration-red-300">{oldDate}</span>
+                                <span>➡️</span>
+                                <span className="text-green-600 font-black">{targetDate}</span>
+                            </div>
+                        </div>
+                    )}
+                    {oldInspector !== finalInspector && finalInspector !== 'SYSTEM_EVENT' && finalInspector !== 'SYSTEM_HOLIDAY' && (
+                        <div className="flex items-center justify-between text-xs bg-white p-2 border border-slate-200 rounded-lg shadow-sm">
+                            <span className="text-slate-500 font-bold">👤 ย้ายผู้ตรวจ:</span>
+                            <div className="flex items-center gap-2">
+                                <span className="text-red-500 line-through decoration-red-300">{oldInspector}</span>
+                                 <span>➡️</span>
+                                <span className="text-blue-600 font-black">{finalInspector}</span>
+                            </div>
+                        </div>
+                     )}
+                </div>
+                <div className="mt-3 text-[10px] text-red-500 text-center font-bold">
+                    *โปรดตรวจสอบข้อมูลก่อนกดยืนยันการย้าย*
+                </div>
+            </div>
+        );
+
+        setConfirmDialog({
+            msg: confirmMsgNode,
+            onConfirm: async () => {
+                setConfirmDialog(null); setDraggingTask(null);
+                const logDetail = `[ย้ายคิวงาน]\nโดย: ${user?.username || '-'}\nวันที่: [${oldDate}] ➡️ [${targetDate}]`;
+                const ok = await apiAction({ action: 'update_booking', id: task.id, date: targetDate, inspector_name: finalInspector, user: user?.username || 'admin', reason: logDetail, job_type: task.job_type, equipment_no: task.equipment_no }, 'กำลังย้ายข้อมูล...');
+                if (ok) setSuccessModal('ลากย้ายรายการสำเร็จเรียบร้อย');
+            }
+        });
+    };
+
+    const filteredBookings = useMemo(() => { 
+        return (db.bookings || []).filter(b => filterArea === 'All' ? true : String(b.area || '') === filterArea); 
+    }, [db.bookings, filterArea]);
+
+    const handleEditSpecialSubmit = async (e) => {
+        e.preventDefault();
+        const fd = new FormData(e.target);
+        const newTitle = fd.get('site_name'); const newInspector = fd.get('inspector_name'); const newDate = fd.get('date');
+        const logDetail = `[แก้ไขคิวพิเศษ]\nโดย: ${user?.username}\nเปลี่ยนวันที่เป็น ${newDate}\nผู้ตรวจ: ${newInspector}\nหัวข้อ: ${newTitle}`;
+        const payload = { 
+            ...modal.data, action: 'update_booking', id: modal.data.id, 
+            site_name: newTitle, inspector_name: newInspector, date: newDate, 
+            user: user?.username, reason: logDetail, job_type: modal.data.job_type, equipment_no: modal.data.equipment_no 
+        };
+        const ok = await apiAction(payload, 'กำลังอัปเดตข้อมูล...');
+        if(ok) { 
+            setSuccessModal('อัปเดตสำเร็จ');
+            if (modal.returnTo) setModal({ type: modal.returnTo });
+            else setModal(null);
+        }
+    };
+
+    const handleBookingSubmit = async (e) => {
+        e.preventDefault();
+        const fd = new FormData(e.target);
+        const data = Object.fromEntries(fd);
+        if (!user?.username) return setAlertMsg('กรุณาเข้าสู่ระบบก่อนทำรายการ');
+        
+        let finalArea = areaSelection === 'other' ? (fd.get('custom_area') || 'ไม่ระบุ') : (fd.get('area') || areaSelection);
+        let finalProductLine = productLineSelection === 'อื่นๆโปรดระบุ' ? (fd.get('custom_product_line') || 'ไม่ระบุ') : (fd.get('product_line') || productLineSelection);
+        let finalJobType = fd.get('job_type') || jobTypeSelection;
+        if (!finalProductLine || finalProductLine === '') return setAlertMsg('กรุณาเลือก Product Line');
+        if (!finalJobType || finalJobType === '') return setAlertMsg('กรุณาเลือก ประเภทงาน');
+        if (!finalArea || finalArea === '') return setAlertMsg('กรุณาเลือก พื้นที่');
+
+        const isAdminOverride = fd.get('isAdminOverride') === 'true' || (isAdmin && modal?.data?.id);
+        const targetInspector = isAdminOverride ? fd.get('admin_inspector_target') : modal?.data?.inspector_name;
+        const targetDate = isAdminOverride ? fd.get('admin_date_target') : modal?.data?.date;
+        const isPastDate = targetDate < todayLocalString;
+        if (isPastDate && !isAdmin && modal?.data?.id && quickAddType === 'job') return setAlertMsg('🔒 ไม่อนุญาตให้แก้ไขข้อมูลงานที่ผ่านมาแล้วครับ (ติดต่อ Admin หากจำเป็น)');
+        if (!targetInspector || !targetDate) return setAlertMsg('ข้อมูลวันหรือผู้ตรวจไม่ครบถ้วน กรุณาเลือกวันที่และผู้ตรวจให้ชัดเจน');
+
+        if (!isAdmin && quickAddType === 'job') {
+            const hasLayout = docUrls.layout || modal?.data?.layout_img;
+            const hasWiring = docUrls.wiring || modal?.data?.wiring_img;
+            const hasPrecheck = docUrls.precheck || modal?.data?.precheck_img;
+            if (!hasLayout || !hasWiring || !hasPrecheck) {
+                return setAlertMsg('⚠️ ไม่สามารถบันทึกคิวงานได้!\nกรุณาอัปโหลดเอกสารแนบให้ครบทั้ง 3 ส่วน (Layout, Wiring, Pre-check)');
+            }
+        }
+
+        // สำหรับเพิ่มกิจกรรม วันหยุด หรือ วันลา (ใช้ apiAction ส่งเป็น Array แบบเวอร์ชันเก่า 100%)
+        if (quickAddType !== 'job') {
+            let p_jobType = '', p_siteName = fd.get('site_name'), p_eq = '';
+            if (quickAddType === 'leave') {
+                p_jobType = 'leave';
+                p_siteName = fd.get('leave_type') === 'อื่นๆโปรดระบุ' ? fd.get('custom_leave') : fd.get('leave_type');
+                p_eq = `LEAVE_${Date.now()}`;
+            } else if (quickAddType === 'event') {
+                p_jobType = 'company_event';
+                p_eq = `EVENT_${Date.now()}`;
+            } else if (quickAddType === 'holiday') {
+                p_jobType = 'public_holiday';
+                p_eq = `HLD_${Date.now()}`;
+            }
+            const logDetail = `[บันทึก${quickAddType}]\nโดย: ${user?.username}\nวันที่: ${targetDate}\nหัวข้อ: ${p_siteName}\nผู้ตรวจ: ${targetInspector}`;
+            const payload = { action: 'create_multiple_bookings', dates: [targetDate], inspector_name: quickAddType === 'holiday' ? 'SYSTEM_HOLIDAY' : targetInspector, job_type: p_jobType, site_name: p_siteName, equipment_no: p_eq, user: user?.username, reason: logDetail };
+            const ok = await apiAction(payload, `กำลังบันทึก${quickAddType}...`);
+            if(ok) { setModal(null); setSuccessModal('บันทึกสำเร็จ'); }
+            return;
+        }
+
+        const isDup = (db.bookings || []).some(b => {
+            const sameDate = b.date && formatSafeDate(b.date) === targetDate;
+            if (!sameDate) return false;
+            if (b.id === modal?.data?.id) return false;
+            if (String(b.inspector_name) === 'SYSTEM_HOLIDAY') return false;
+            if (String(b.status) === 'cancelled') return false;
+            if (String(b.equipment_no) === String(data.equipment_no)) return true;
+            if (!isAdmin && String(b.inspector_name) === targetInspector) return true;
+            return false;
+        });
+        if (isDup) return setAlertMsg(isAdmin ? `เลข Eq No. ${data.equipment_no} ถูกจองไปแล้วในวันนี้` : 'ผู้ตรวจคิวเต็มแล้วในวันนี้');
+
+        const targetInspectorObj = (db.inspectors || []).find(i => i.name === targetInspector);
+        let allowedCerts = ['ES1', '3300', 'S-villas'];
+        if (targetInspectorObj && targetInspectorObj.product_lines && targetInspectorObj.product_lines.trim() !== '') {
+            allowedCerts = targetInspectorObj.product_lines.split(',').map(s => s.trim());
+        }
+        if (!allowedCerts.includes(finalProductLine) && finalProductLine !== 'ไม่ระบุ') {
+            return setAlertMsg(`ผู้ตรวจ "${targetInspector}" ไม่ได้รับสิทธิ์ให้ตรวจ Product Line: ${finalProductLine}\n(สิทธิ์ปัจจุบัน: ${allowedCerts.join(', ')})`);
+        }
+
+        const payload = {
+            action: modal?.data?.id ? 'update_booking' : 'create_booking',
+            ...data, site_name: data.site_name, tel: String(data.tel || ''), area: finalArea, job_type: finalJobType, product_line: finalProductLine,
+            id: modal?.data?.id, inspector_name: targetInspector, date: targetDate, user: user?.username,
+            layout_img: docUrls.layout || modal?.data?.layout_img || '',
+            wiring_img: docUrls.wiring || modal?.data?.wiring_img || '',
+            precheck_img: docUrls.precheck || modal?.data?.precheck_img || '',
+            site_cond_1: docUrls.site_cond_1 || modal?.data?.site_cond_1 || '',
+            site_cond_2: docUrls.site_cond_2 || modal?.data?.site_cond_2 || '',
+            site_cond_3: docUrls.site_cond_3 || modal?.data?.site_cond_3 || '',
+            site_cond_4: docUrls.site_cond_4 || modal?.data?.site_cond_4 || '',
+            site_cond_5: docUrls.site_cond_5 || modal?.data?.site_cond_5 || '',
+            site_cond_6: docUrls.site_cond_6 || modal?.data?.site_cond_6 || ''
+        };
+
+        if (!modal?.data?.id) {
+            payload.layout_doc = 'false';
+            payload.wiring_doc = 'false'; 
+            payload.precheck_doc = 'false';
+        } else {
+            payload.layout_doc = modal.data.layout_doc || 'false';
+            payload.wiring_doc = modal.data.wiring_doc || 'false';
+            payload.precheck_doc = modal.data.precheck_doc || 'false';
+        }
+
+        payload.reason = getDiffLog(modal?.data?.id ? modal.data : null, payload, user?.username);
+        const ok = await apiAction(payload, modal?.data?.id ? 'กำลังอัปเดตข้อมูล...' : 'กำลังบันทึกคิวงาน...');
+        if (ok) { 
+            setSuccessModal(modal?.data?.id ? 'แก้ไขคิวงานสำเร็จ!' : 'จองคิวงานสำเร็จ!');
+            setModal(null);
+            setAreaSelection(''); setJobTypeSelection(''); setProductLineSelection(''); setLiveMapUrl('');
+            setDocUrls({ layout: '', wiring: '', precheck: '', site_cond_1: '', site_cond_2: '', site_cond_3: '', site_cond_4: '', site_cond_5: '', site_cond_6: '' });
+        }
+    };
